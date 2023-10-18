@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      OmniStudy Platform
+      OmniStudy Platform - GH Actions Update
     </div>
   );
 }
