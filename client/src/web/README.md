@@ -1,4 +1,4 @@
-# OmniStudy Web Application
+# OmniStudy Static Website
 
 This directory will hold all files that are associated with the static website of the platform. The static website contains all pages of the site that would be able to be visited without being logged in, i.e.: an outside user learning about our product.
 
