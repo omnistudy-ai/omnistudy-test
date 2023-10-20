@@ -10,11 +10,8 @@ function App() {
 
   return (
     <div className="App">
-      OmniStudy Platform - Automatic Deploy From Branch Jamison
-
-      <h1>AI Learning</h1>
-      <h1>Transcriptions</h1>
-      <h1>What else folks?</h1>
+      OmniStudy Platform - Automatic Deploy From Branch Jamison 
+      <h1>Here's a line that will deploy from the org repo.</h1>
     </div>
   );
 }
