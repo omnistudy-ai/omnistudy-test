@@ -1,0 +1,28 @@
+// Package imports
+import { useParams, useNavigate } from "react-router-dom";
+
+export default function Assignment() {
+
+    // Get URL parameters
+    // cid: course ID
+    // aid: assignment ID
+    const params = useParams<ParamsType>();
+
+    // TODO: Check to see if the assignment exists for the user
+    // If it does not, redirect the user to the 404 page
+    const navigate = useNavigate();
+
+    return(
+        <div>
+            Assignment {params.aid} for Course {params.cid}
+        </div>
+    );
+}
+
+// --------- OBJECT TYPE DEFINITIONS --------- //
+
+// Define the type of the URL parameters
+type ParamsType = {
+    cid: string,
+    aid: string
+}

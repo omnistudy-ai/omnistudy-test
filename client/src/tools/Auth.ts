@@ -1,5 +1,6 @@
 import { User } from "firebase/auth";
 
+// Singleton class to hold global auth state
 class Auth {
 
     // class attributes
@@ -30,3 +31,5 @@ class Auth {
 }
 
 export let AppAuth = new Auth();
+//// IMPORTANT: Only use this class as defined below
+// import { AppAuth } from "./tools/Auth";

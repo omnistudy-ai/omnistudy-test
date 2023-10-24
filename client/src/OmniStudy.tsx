@@ -1,10 +1,10 @@
-import './App.css';
+import './OmniStudy.css';
 
-import WebStatic from './web/components/WebStatic';
+import WebStatic from './web/WebStatic';
 import WebApp from './app/WebApp';
 import { Routes, Route } from "react-router-dom";
 
-function App() {
+function OmniStudy() {
 
   return (
     <div className="App">
@@ -18,4 +18,4 @@ function App() {
   );
 }
 
-export default App;
+export default OmniStudy;
