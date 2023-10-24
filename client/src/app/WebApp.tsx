@@ -8,6 +8,7 @@ import Assignments from "./components/task_tracking/Assignments";
 import Course from "./components/task_tracking/Course";
 import Courses from "./components/task_tracking/Courses";
 import NotFound404 from "../404";
+import DocQA from "./components/DocQA";
 
 // Utility imports
 import { AppAuth } from "../tools/Auth";
@@ -39,6 +40,9 @@ export default function WebApp() {
 
                 {/* Display information about an assignment for a specific course */}
                 <Route path="/courses/:cid/assignments/:aid" element={<Assignment/>}/>
+
+                {/* Testing document question and answering */}
+                <Route path="/doc-qa" element={<DocQA/>}/>
 
                 {/* Display a 404 error for all routes not listed above */}
                 <Route path="/*" element={<NotFound404/>}/>
