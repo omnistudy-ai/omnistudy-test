@@ -1,13 +1,16 @@
 // Package imports
 import { Routes, Route, useNavigate } from "react-router-dom";
 
-// Component imports
+// Page imports
 import Home from "./components/main/Home";
-import Assignment from "./components/task_tracking/Assignment";
-import Assignments from "./components/task_tracking/Assignments";
-import Course from "./components/task_tracking/Course";
-import Courses from "./components/task_tracking/Courses";
+import Assignment from "./components/pages/course/Assignment";
+import Assignments from "./components/pages/course/Assignments";
+import Course from "./components/pages/course/Course";
+import Courses from "./components/pages/course/Courses";
+import Settings from "./components/pages/misc/Settings";
 import NotFound404 from "../404";
+
+// Component imports
 import DocQA from "./components/DocQA";
 
 // Utility imports
@@ -40,6 +43,9 @@ export default function WebApp() {
 
                 {/* Display information about an assignment for a specific course */}
                 <Route path="/courses/:cid/assignments/:aid" element={<Assignment/>}/>
+
+                {/* Display user and application settings */}
+                <Route path="/settings" element={<Settings/>}/>
 
                 {/* Testing document question and answering */}
                 <Route path="/doc-qa" element={<DocQA/>}/>
