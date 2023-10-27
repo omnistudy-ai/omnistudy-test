@@ -1,5 +1,6 @@
 owen_start:
 	git checkout -b owen
+	git checkout owen
 
 owen_push:
 	git add *
