@@ -1,10 +1,10 @@
-owen_start:
+noah_start:
 	git checkout -b owen
 	git checkout owen
 
-owen_push:
+noah_push:
 	git add *
 	git commit -m "$(msg)"
-	git push -u origin owen
+	git push -u origin noah
 	git checkout main
-	git branch -D owen
+	git branch -D noah
