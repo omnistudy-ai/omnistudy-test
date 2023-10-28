@@ -9,9 +9,11 @@ function Navbar() {
 
     return (
         <header className="navbar">
-            <Link to="/">Home</Link>
-            <Link to="/Pricing">Pricing</Link>
-            <Link to="/About">About Us</Link>
+            <Link to="/">Welcome!</Link>
+            <Link to="/Courses">Courses</Link>
+            <Link to="/Assignments">Assignments</Link>
+            <Link to="/Settings">Settings</Link>
+        
             <button onClick={handleLoginClick}>Login</button>
         </header>
     );
