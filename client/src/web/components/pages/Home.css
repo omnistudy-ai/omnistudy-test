@@ -1,40 +1,37 @@
 .homepage {
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     padding: 20px;
 }
 
 .navbar {
     display: flex;
     justify-content: space-around;
-    background-color: #00ADB5;
-    padding: 10px 20px; /* Increased padding */
-    font-family: 'Roboto', sans-serif; /* Modern font */
-    border-radius: 5px;
+    background-color: #222831;
+    padding: 10px 20px;
+    font-family: sans-serif; 
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
 }
 
 .navbar a, .navbar button {
     color: #EEEEEE;
     text-decoration: none;
-    padding: 12px 24px; /* Increased padding */
-    transition: background-color 0.3s; /* Added transition */
+    padding: 12px 24px; 
+    transition: all 0.3s;
     border-radius: 5px;
 }
 
-.navbar a:hover {
-    background-color: #393E46;
-    color: #EEEEEE; /* Made the text white on hover for contrast */
+.navbar a:hover, .navbar button:hover {
+    background-color: #00ADB5;
+    color: #EEEEEE; 
     border-radius: 5px;
+    box-shadow: 0 0 15px #00ADB5; 
 }
 
 .navbar button {
-    background-color: #222831;
+    background-color: #00ADB5;
     border: none;
     border-radius: 5px;
     cursor: pointer; 
-}
-
-.navbar button:hover {
-    background-color: #393E46;
-    color: #ffffff;
-    border-radius: 5px;
 }
