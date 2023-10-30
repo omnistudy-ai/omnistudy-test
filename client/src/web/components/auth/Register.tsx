@@ -27,7 +27,7 @@ export default function Register() {
                         <input type="password" onChange={(event)=>setRegisterPassword(event.target.value)} name="password" required />
                         <label>Password</label>
                     </div>
-                    <a href="#!" /*</form>onClick={register}*/ className="animated-btn"> 
+                    <a href="#!" onClick={register} className="animated-btn"> 
                         <span></span>
                         <span></span>
                         <span></span>
