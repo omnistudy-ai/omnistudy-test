@@ -25,6 +25,9 @@ export default function WebStatic() {
                 {/* Show the pricing page to the user */}
                 <Route path="/pricing" element={<Pricing/>}></Route>
 
+                {/* Show the register page to the user */}
+                <Route path="/register" element={<Register/>}></Route>
+
                 {/* Display a 404 error for all routes not listed above */}
                 <Route path="/*" element={<NotFound404/>}></Route>
             </Routes>
