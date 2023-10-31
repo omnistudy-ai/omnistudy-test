@@ -1,0 +1,34 @@
+.About {
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.About h1, .About h2 {
+    color: #393E46;
+}
+
+.About section {
+    margin-bottom: 20px;
+}
+.project-manager{
+    max-width: 700px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    padding-bottom: 20px;
+}
+
+.project-overview p {
+    max-width: 700px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    padding-bottom: 20px;
+}
+
+.project-goals p {
+    max-width: 700px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    padding-bottom: 20px;
+}
+
+
