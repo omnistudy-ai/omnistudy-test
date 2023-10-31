@@ -1,0 +1,82 @@
+import { db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
+
+import AssignmentsDB, { AssignmentSchema } from "./Assignments";
+
+class UsersDatabase {
+    /**
+     * Get a user by their ID.
+     * 
+     * Usage:
+     *  import UsersDB from "./path/to/file"
+     *  const user = await UsersDB.getUserById(1);
+     *  if(user)
+     *     console.log(user.name);
+     *  else {}
+     * 
+     * @param id - the id of the user
+     * @returns the user object, or null if not found
+     */
+    async getUserById(id: number): Promise<UserSchema | null> {
+        const docRef = doc(db, "users", id.toString());
+        const docSnap = await getDoc(docRef);
+        if(docSnap.exists()) {
+            const data = await docSnap.data();
+            return data as UserSchema;
+        }
+        else 
+            return null;
+    }
+
+    /**
+     * Get the assignment data of a user by their ID.
+     * 
+     * Usage:
+     *  const assignments = await UsersDB.getUserAssignments(1);
+     *  if(assignments)
+     *   console.log(assignments);
+     *  else {}
+     * 
+     * @param id - the id of the user
+     * @returns the array of assignment ids of the user, or null if not found
+     */
+    async getUserCourses(id: number): Promise<Array<number> | null> {
+        const userData = await this.getUserById(id);
+        if(userData)
+            return userData.courses;
+        else 
+            return null;
+    }
+
+    /**
+     * Get the course data of a user by their ID.
+     * 
+     * @param id 
+     * @returns 
+     */
+    async getUserAssignments(id: number): Promise<Array<AssignmentSchema> | null> {
+        const userData = await this.getUserById(id);
+        if(userData) {
+            const assignmentData: Array<AssignmentSchema> = [];
+            for(let i = 0; i < userData.assignments.length; i++) {
+                const assignmentObject = await AssignmentsDB.getAssignmentById(userData.assignments[i]);
+                if(assignmentObject)
+                    assignmentData.push(assignmentObject);
+            }
+            return assignmentData;
+        }
+        else 
+            return null;
+    }
+}
+
+export default new UsersDatabase();
+
+// ============ OBJECT TYPE DEFINITIONS ============ //
+
+type UserSchema = {
+    id: number, 
+    name: string,
+    courses: Array<number>,
+    assignments: Array<number>
+}
