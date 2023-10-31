@@ -36,3 +36,7 @@ jamison_push:
 	git push -u origin jamison
 	git checkout main
 	git branch -D jamison
+
+# Start react app client
+start_client:
+	cd client && npm start

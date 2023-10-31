@@ -1,9 +1,9 @@
 import "./Home.css";
 import Navbar from "../nav/Navbar";
 import Container from "../UI/Container";
-import heroImg from "../../assests/Android-bro.png";
-import featureImg from "../../assests/Android-bro2.png";
-import missionImg from "../../assests/mission-img.png";
+import heroImg from "../../assets/Android-bro.png";
+import featureImg from "../../assets/Android-bro2.png";
+import missionImg from "../../assets/mission-img.png";
 import Card from "../UI/Card";
 
 export default function Home() {

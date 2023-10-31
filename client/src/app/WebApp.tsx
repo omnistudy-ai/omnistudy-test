@@ -11,6 +11,7 @@ import Settings from "./components/pages/misc/Settings";
 import NotFound404 from "../404";
 
 // Component imports
+import Navbar from "./components/nav/Navbar";
 import DocQA from "./components/DocQA";
 
 // Utility imports
@@ -28,6 +29,9 @@ export default function WebApp() {
 
     return(
         <div>
+
+            <Navbar></Navbar>
+
             <Routes>
                 {/* Show the application dashboard */}
                 <Route path="/" element={<Home/>}/>
