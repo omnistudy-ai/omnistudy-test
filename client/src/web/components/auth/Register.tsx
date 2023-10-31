@@ -1,35 +1,33 @@
 import "./Register.css";
 import React, { useState } from 'react';
+import { auth } from '../../../tools/firebase'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
-export default function Register() {
-    const [dobFocus, setDobFocus] = useState(false); // Already removed the React. prefix since useState is imported
-
+export default function Register() {    
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");  
+    const register = async ()  => {
+        try{
+            const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+            console.log(user);
+        } catch(error:any){
+            console.log(error.message);
+        }
+    };
     return (
         <div>
             <div className="register-box">
                 <h2>Register</h2>
                 <form>
                     <div className="user-box">
-                        <input type="text" name="firstName" required />
-                        <label>First Name</label>
-                    </div>
-                    <div className="user-box">
-                        <input type="text" name="lastName" required />
-                        <label>Last Name</label>
-                    </div>
-                    <div className="user-box">
-                        <input type="tel" name="phoneNumber" required />
-                        <label>Phone Number</label>
-                    </div>
-                    <div className="user-box">
-                        <input type="email" name="email" required />
+                        <input type="email"  onChange={(event)=>setRegisterEmail(event.target.value)} name="email" required />
                         <label>Email</label>
                     </div>
                     <div className="user-box">
-                        <input type="password" name="password" required />
+                        <input type="password" onChange={(event)=>setRegisterPassword(event.target.value)} name="password" required />
                         <label>Password</label>
                     </div>
-                    <a href="#" className="animated-btn"> 
+                    <a href="#!" onClick={register} className="animated-btn"> 
                         <span></span>
                         <span></span>
                         <span></span>

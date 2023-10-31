@@ -1,14 +1,15 @@
 .navbar {
     display: flex;
+    align-items: center;
     justify-content: space-around;
     background-color: #222831;
     padding: 10px 20px;
-    font-family: sans-serif; 
+    font-family: sans-serif;
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
+    height: 60px;
 }
-
 .navbar a, .navbar button {
     color: #EEEEEE;
     text-decoration: none;
