@@ -114,6 +114,6 @@ Before making changes, but after pulling, switch to a new branch titled with you
 ## Testing Your Code
 I have provided the necessary team members with a .env file that contains all of the proper API keys to use the Firebase platform to test your code. I am going to be creating a guide to use the local Firebase emulators soon and provide you with mock data to use for testing. For now, continue as normal.
 
-=======IMPORTANT=======  
+=======================================IMPORTANT=======================================  
 * PLEASE DO NOT MERGE ANY BRANCHES OR CONFIRM PULL REQUESTS ON THE github.com WEBSITE. I WILL BE HANDLING ALL OF THAT. IF YOU HAVE ANY QUESTIONS, PLEASE CONTACT ME.
 * PLEASE BY ANY MEANS DO NOT PUSH THIS .env FILE TO THE PUBLIC GITHUB REPOSITORY. THIS FILE CONTAINS SENSITIVE INFORMATION THAT SHOULD NOT BE SHARED WITH ANYONE OUTSIDE OF THE TEAM.
