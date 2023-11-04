@@ -1,9 +1,11 @@
 import "./Home.css";
 import Navbar from "../nav/Navbar";
 import Container from "../UI/Container";
-import heroImg from "../../assets/Android-bro.png";
-import featureImg from "../../assets/Android-bro2.png";
-import missionImg from "../../assets/mission-img.png";
+import heroImg from "../../assets/hero-img.png";
+import featureImg from "../../assets/feature-img.png";
+import missionImg from "../../assets/content-img.png";
+import logo from "../../assets/OmniStudy-logo.png";
+import statImg from "../../assets/stat-img.png";
 import Card from "../UI/Card";
 
 export default function Home() {
@@ -12,15 +14,90 @@ export default function Home() {
       <Navbar />
       <section className="hero">
         <Container>
-          <div className="hero-content">
-            <h1>
-              Welcome to <span>OmniStudy</span>
-            </h1>
-            <p>Your one-stop platform for all your educational needs.</p>
-            <a href="/register">Get Started</a>
+          <div className="hero-grid">
+            <div className="hero-content">
+              <h1>
+                Welcome to <span>OmniStudy</span>
+              </h1>
+              <p>Your one-stop platform for all your educational needs.</p>
+              <a href="/register">Get Started</a>
+            </div>
+            <div className="hero-img">
+              <img src={heroImg} alt="" />
+            </div>
           </div>
-          <div className="hero-img">
-            <img src={heroImg} alt="" />
+        </Container>
+      </section>
+      <section className="stat">
+        <Container>
+          <div className="stat-content">
+            <h2>Reduce Weekly Study Time By 25%</h2>
+            <div className="stat-grid">
+              <Card className="stat-item">
+                <div>
+                  <h4>Users</h4>
+                </div>
+                <div>
+                  <h3>1347</h3>
+                  <span>570 last month</span>
+                </div>
+              </Card>
+              <Card className="stat-item">
+                <div>
+                  <h4>Info</h4>
+                </div>
+                <div>
+                  <h3>10</h3>
+                  <span>2 Last Month</span>
+                </div>
+              </Card>
+              <Card>
+                <div className="stat-info">
+                  <div>
+                    <h4>Study Time Reduced</h4>
+                  </div>
+                  <div>
+                    <h3>25%</h3>
+                    <span>down 3% last month</span>
+                  </div>
+                </div>
+                <div className="stat-img">
+                  <img src={statImg} alt="" />
+                </div>
+              </Card>
+            </div>
+            <div className="stat-text">
+              <Card>
+                <h3>What We Did</h3>
+                <p>
+                  Study Shows OmniStudy reduced universitys students weekly
+                  study time by 25%. By providing students with a virtual study
+                  companion, OmniStudy tailors study materials and schedules to
+                  their unique learning styles and needs. The AI's real-time
+                  feedback and adaptive learning recommendations have empowered
+                  students to study smarter, not harder. As a result, they now
+                  devote less time to studying, yet achieve better results,
+                  leaving them with more time for other pursuits while still
+                  excelling in their educational pursuits.
+                </p>
+              </Card>
+              <Card>
+                <h3>How We Did It</h3>
+                <p>
+                  Through strategic partnerships with educational institutions,
+                  we established a seamless rollout process. University
+                  administrators integrated our AI platform into their learning
+                  management systems, ensuring widespread accessibility. We
+                  conducted informative workshops and training sessions,
+                  equipping students with the skills to leverage OmniStudy
+                  effectively. Feedback channels were established to continually
+                  refine the platform, ensuring it met the unique needs of
+                  students at each campus. This collaborative effort led to a
+                  successful, wide-reaching implementation, benefitting students
+                  across multiple universities.
+                </p>
+              </Card>
+            </div>
           </div>
         </Container>
       </section>
@@ -177,7 +254,7 @@ export default function Home() {
         <Container>
           <div className="footer-top">
             <div className="footer-logo">
-              <img src={featureImg} alt="" />
+              <img src={logo} alt="" />
             </div>
             <div className="footer-links">
               <div className="footer-omnistudy-links">

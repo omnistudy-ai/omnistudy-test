@@ -1,6 +1,112 @@
 .Pricing {
-    font-family: sans-serif;
-    padding: 20px;
+  font-family: sans-serif;
+  background-color: transparent;
+  height: 120vh;
+  background: radial-gradient(ellipse at bottom, #00adb5cf, black);
 }
 
+.pricing-content {
+  background-color: transparent;
+}
 
+.pricing-content span,
+.pricing-grid h2 {
+  color: #f5f5f5;
+  background: linear-gradient(to right, #f5f5f5, #00adb5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pricing-content h1 {
+  color: #f5f5f5;
+  font-size: 3rem;
+  font-weight: 400;
+  margin: 1rem 0;
+}
+
+.pricing-content span {
+  letter-spacing: 0.1rem;
+  font-size: 1.2rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.pricing-grid .card {
+  padding: 40px;
+  border: 1px solid #00adb5;
+  background-color: #292e3482;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+  transition: all 0.5s;
+}
+
+.pricing-grid .card:hover {
+  transform: scale(1.1);
+  background-color: #292e34;
+  box-shadow: 0 0 15px #00adb5;
+}
+
+.pricing-grid h4,
+.pricing-grid h2 {
+  margin: 0.5rem 0;
+}
+
+.pricing-grid h2 {
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.pricing-grid h4 {
+  color: #f5f5f5;
+  letter-spacing: 0.1rem;
+}
+
+.price-item-features h4 {
+  margin-bottom: 1.5rem;
+}
+
+.price-item-header,
+.price-item-features {
+  width: 100%;
+  text-align: left;
+}
+
+.price-item-header {
+  border-bottom: 1px solid #292e34;
+}
+
+.price-item-features ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.price-item-features li {
+  color: #f5f5f5;
+  margin-bottom: 1rem;
+}
+
+.pricing-grid .card a {
+  color: #f5f5f5;
+  text-decoration: none;
+  padding: 12px 24px;
+  transition: all 0.3s;
+  border-radius: 5px;
+  background-color: #00adb5;
+  cursor: pointer;
+}
+
+.pricing-grid .card a:hover {
+  background-color: #00adb5;
+  color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #00adb5;
+}

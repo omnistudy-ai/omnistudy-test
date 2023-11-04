@@ -1,13 +1,22 @@
 .navbar {
   display: flex;
   justify-content: space-around;
-  background-color: #222831;
+  background-color: #292e34;
   padding: 10px 20px;
   font-family: sans-serif;
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  margin: 20px;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 100px;
+  width: auto;
 }
 
 .navbar a,
@@ -17,6 +26,8 @@
   padding: 12px 24px;
   transition: all 0.3s;
   border-radius: 5px;
+  font-size: 1rem;
+  margin-left: 1rem;
 }
 
 .navbar a:hover,
