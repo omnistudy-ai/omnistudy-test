@@ -9,9 +9,10 @@ section {
 }
 
 .hero {
-  height: 60vh;
+  height: 500px;
   margin: 0;
   background-image: url("../../assets/hero-background.png");
+  background-repeat: no-repeat;
   background-position: center;
 }
 
@@ -89,6 +90,7 @@ section {
 .stat {
   margin-top: 0;
   background-image: url("../../assets/stat-background.png");
+  background-repeat: no-repeat;
   background-position: bottom;
 }
 
