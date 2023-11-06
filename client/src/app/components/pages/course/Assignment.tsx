@@ -1,5 +1,5 @@
 // Package imports
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function Assignment() {
 
