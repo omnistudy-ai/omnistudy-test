@@ -10,7 +10,7 @@ export default function Assignment() {
 
     // TODO: Check to see if the assignment exists for the user
     // If it does not, redirect the user to the 404 page
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return(
         <div>

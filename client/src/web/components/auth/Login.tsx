@@ -14,7 +14,7 @@ export default function Login() {
             <input type="password" name="" required />
             <label>Password</label>
           </div>
-          <a href="#">
+          <a href="/#">
             <span></span>
             <span></span>
             <span></span>
@@ -22,7 +22,7 @@ export default function Login() {
             Submit
           </a>
           <div className="register-link">
-            <p>Don't have an account? <a href="/register">Register here</a></p>
+            <p>Don't have an account? <a href={"/register"}>Register here</a></p>
           </div>
         </form>
       </div>

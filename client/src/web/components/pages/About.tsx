@@ -43,7 +43,7 @@ export default function About() {
 
             <section className="project-manager">
                 <h2>Project Manager</h2>
-                <img src="../blue-vape.png" alt="Image description" style={{ maxWidth: '50%', height: 'auto' }} />
+                <img src="../blue-vape.png" alt="About the project manager" style={{ maxWidth: '50%', height: 'auto' }} />
                 <p>
                     The man behind it all! Jamison Grudem, best described as a relentless innovator, known for his extraordinary visons.
                     He navigates the realms of unknown, mystifying everyone in his path. Grudem, is the architect of this educational experience
