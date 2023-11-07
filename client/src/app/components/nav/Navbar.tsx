@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { NavbarData } from "./NavbarData";
+
+import logoImg from "../../assets/OmniStudy-logo2.png";
+
 function Navbar() {
     const navigate = useNavigate();
 
@@ -10,6 +13,12 @@ function Navbar() {
 
     return (
         <div className="sidebar">
+
+            <div className="sidebarLogo">
+                <img className="sidebarLogoImg" src={logoImg} alt="" />
+                <p className="sidebarLogoText">OmniStudy</p>
+            </div>
+
             <ul className="sidebarList">
                 {NavbarData.map((val,key)=>{
                     return (
