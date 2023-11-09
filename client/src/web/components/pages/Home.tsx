@@ -109,10 +109,11 @@ export default function Home() {
               <div className="feature-item-img">
                 <img src={featureImg} alt="" />
               </div>
-              <h3>Lorem, ipsum.</h3>
+              <h3>Quiz Generator</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem,
-                praesentium.
+                Get a custom quiz that's created just for you, 
+                using the notes you've uploaded to test and expand 
+                your understanding in a personalized way.
               </p>
               <a href="/">Learn More</a>
             </Card>
@@ -120,10 +121,11 @@ export default function Home() {
               <div className="feature-item-img">
                 <img src={featureImg} alt="" />
               </div>
-              <h3>Lorem, ipsum.</h3>
+              <h3>Flashcard Creator</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem,
-                praesentium.
+              Enjoy a personalized learning experience with a tailor-made
+              flashcard set, crafted from your own materials to help you 
+              study!
               </p>
               <a href="/">Learn More</a>
             </Card>
@@ -131,10 +133,10 @@ export default function Home() {
               <div className="feature-item-img">
                 <img src={featureImg} alt="" />
               </div>
-              <h3>Lorem, ipsum.</h3>
+              <h3>Automatic Notes</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem,
-                praesentium.
+              Streamline your note-taking with OmniStudy automatic notes, an 
+              innovative feature to transcribe spoken words into structured notes.
               </p>
               <a href="/">Learn More</a>
             </Card>
@@ -149,17 +151,11 @@ export default function Home() {
           <div className="mission-content">
             <h2>Our Mission</h2>
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-              culpa voluptatibus ratione quod illum, minima quo omnis,
-              laboriosam corrupti voluptate aut. Nemo distinctio, minima dolore
-              possimus reiciendis quia temporibus ipsum. Repudiandae voluptas
-              vitae id ad quis rerum odio, perferendis deleniti in minima, sunt
-              ducimus facilis eaque et animi. Iure, placeat officia. Est iste,
-              officia accusamus veritatis temporibus ut nobis labore? Dolores
-              debitis ducimus temporibus labore hic quia impedit cupiditate
-              molestiae? Cupiditate labore ea repudiandae ratione esse fugiat
-              similique facere assumenda atque odio eaque, recusandae rerum
-              nulla exercitationem? Repudiandae, velit quasi.
+            At the heart of our mission is a dedication to revolutionizing the learning experience. 
+            We envision leveraging the power of technology to create unparalleled educational 
+            experiences that transcend traditional boundaries. Recognizing that learning is an 
+            ever-evolving journey, our platform is designed to facilitate effective and engaging 
+            education for everyone, anywhere.
             </p>
           </div>
         </Container>
@@ -201,11 +197,11 @@ export default function Home() {
               </div>
               <div className="testimonial-content">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maiores nulla deleniti pariatur alias nemo ea distinctio eaque
-                  sit amet labore.
+                The flashcard feature has revolutionized my study sessions; it's so 
+                intuitive and effective! I've retained more information this semester 
+                than ever before
                 </p>
-                <h3>- John Doe</h3>
+                <h3>- Jack Mikolai</h3>
               </div>
             </Card>
             <Card className="testimonial-item">
@@ -214,11 +210,10 @@ export default function Home() {
               </div>
               <div className="testimonial-content">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maiores nulla deleniti pariatur alias nemo ea distinctio eaque
-                  sit amet labore.
+                Their expert-curated study materials and practice quizzes have been invaluable. 
+                My understanding of complex subjects has improved dramatically
                 </p>
-                <h3>- John Doe</h3>
+                <h3>- Leif King</h3>
               </div>
             </Card>
             <Card className="testimonial-item">
@@ -227,11 +222,10 @@ export default function Home() {
               </div>
               <div className="testimonial-content">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maiores nulla deleniti pariatur alias nemo ea distinctio eaque
-                  sit amet labore.
+                OmniStudy has been a lifesaver during finals! The 24/7 homework help and study
+                resources provide the support I needed to excel!
                 </p>
-                <h3>- John Doe</h3>
+                <h3>- Nick Ramler</h3>
               </div>
             </Card>
             <Card className="testimonial-item">
@@ -240,11 +234,10 @@ export default function Home() {
               </div>
               <div className="testimonial-content">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maiores nulla deleniti pariatur alias nemo ea distinctio eaque
-                  sit amet labore.
+                Thanks to the incredible study tools available, I've seen a huge improvement in 
+                my time management and exam scores. It's like having a personal academic coach!
                 </p>
-                <h3>- John Doe</h3>
+                <h3>- Cooper Marsherall</h3>
               </div>
             </Card>
           </div>
