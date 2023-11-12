@@ -1,28 +1,34 @@
+// Navbar.tsx
 import { Link, useNavigate } from "react-router-dom";
-import Container from "../../../web/components/UI/Container";
-import logo from "../../assets/OmniStudy-logo2.png";
 import "./Navbar.css";
+import { NavbarData } from "./NavbarData";
 function Navbar() {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const handleLoginClick = () => {
-    navigate("/login");
-  };
+    const handleLoginClick = () => {
+        navigate("/login");
+    };
 
-  return (
-    <header className="navbar">
-      <Container>
-        <div className="navbar-logo">
-          <img src={logo} alt="" />
+    return (
+        <div className="sidebar">
+            <ul className="sidebarList">
+                {NavbarData.map((val,key)=>{
+                    return (
+                        <li 
+                        key={ key } 
+                        id={  window.location.pathname == val.link ? "active" : "" }
+                        className="row" 
+                        onClick={() => { 
+                            window.location.pathname = val.link 
+                        }}
+                        >
+                            <div id="icon" >{ val.icon }</div>
+                            <div id="title" >{ val.title }</div>
+                        </li>
+                    )
+                })}
+            </ul>
         </div>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/Pricing">Pricing</Link>
-          <Link to="/About">About Us</Link>
-          <button onClick={handleLoginClick}>Login</button>
-        </nav>
-      </Container>
-    </header>
-  );
-}
-export default Navbar;
+       
+    );
+} export default Navbar;
