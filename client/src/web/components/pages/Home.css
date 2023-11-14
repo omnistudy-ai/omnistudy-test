@@ -392,3 +392,94 @@ footer {
   font-size: 1.5rem;
   font-weight: 400;
 }
+
+@media (min-width: 475px) {
+}
+
+@media (max-width: 640px) {
+  .navbar .container {
+    flex-direction: column;
+  }
+
+  .stat-grid {
+    display: none;
+  }
+
+  .stat-text {
+    grid-template-columns: none;
+  }
+
+  .footer-top {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 300px;
+  }
+
+  .hero-img img {
+    display: none;
+  }
+
+  .hero-grid {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .footer-links {
+    width: 100%;
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .feature-grid,
+  .testimonial-grid {
+    grid-template-columns: none;
+  }
+
+  .feature-item img {
+    height: 100px;
+    object-fit: contain;
+  }
+
+  .mission-statement .container,
+  .content .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mission-content,
+  .content-content {
+    align-items: center;
+    text-align: center;
+    order: 2;
+  }
+
+  .mission-statement .container img,
+  .content .container img {
+    height: 200px;
+    width: auto;
+  }
+}
+
+@media (max-width: 1100px) {
+  .homepage h1,
+  h2,
+  .features h2,
+  .mission-content h2,
+  .content-content h2,
+  .testimonials h2,
+  .stat h2 {
+    font-size: 2.5rem;
+  }
+}
