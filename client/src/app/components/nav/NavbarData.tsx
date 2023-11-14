@@ -1,3 +1,4 @@
+// this is NavbarData.tsx
 import HomeIcon from '@mui/icons-material/Home';
 import CourseIcon from '@mui/icons-material/School';
 import AssignmentsIcon from '@mui/icons-material/Grading';
@@ -8,19 +9,14 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 
 export const NavbarData = [
     {
-        title: "Welcome",
-        icon: <HomeIcon />,
-        link: "/app"
-    },
-    {
         title: "Dashboard",
         icon: <DashboardIcon />,
-        link: "/app/dashboard"
+        link: "/app"
     },
     {
         title: "Course",
         icon: <CourseIcon />,
-        link: "/app/Course"
+        link: "/app/Courses"
     },    
     {
         title: "Assignments",
