@@ -1,29 +1,18 @@
+
+
 .sidebar{
+  top:0px;
   width: 250px;
   height: 100vh;
   background-color: #222831;
   overflow-x: hidden;
+  overflow-y: hidden;
   position: absolute;
   box-shadow: 4px 0 15px rgba(0,0,0,.6);
   font-family: sans-serif;
-}
 
-.sidebarLogo {
-  text-align: left;
-  padding: 10px 25px;
-  display: flex;
-  column-gap: 10px;
 }
-.sidebarLogoImg {
-  height: 50px;
-}
-.sidebarLogoText {
-  color: #00adb5;
-  font-size: 16px;
-}
-
 .sidebarList{
-  margin: 0;
   width: 100%;
   height: auto;
   padding: 0;
