@@ -8,7 +8,7 @@ import Assignments from "./components/pages/course/Assignments";
 import Course from "./components/pages/course/Course";
 import Courses from "./components/pages/course/Courses";
 import Settings from "./components/pages/misc/Settings";
-import NotFound404 from "../404";
+import NotFound404 from "./NotFound404";
 
 // Component imports
 import Navbar from "./components/nav/Navbar";
@@ -16,16 +16,21 @@ import DocQA from "./components/DocQA";
 
 // Utility imports
 import { AppAuth } from "../tools/Auth";
+import { useEffect } from "react";
 
 export default function WebApp() {
 
     // Ensure the user is logged in before displaying any of the routes below
     // If the user is not logged in, redirect them to the login page
     const navigate = useNavigate();
-    // DEV MODE: Set to true to skip the login check
-    if(AppAuth.getAuthorized() /* === false */) { 
-        navigate("/login"); 
-    }
+
+    useEffect(() => {
+        console.log(AppAuth.getAuthorized());
+        if(AppAuth.getAuthorized() /* === false */) { 
+            console.log("Redirecting to login page");
+            navigate("/login"); 
+        }
+    });
 
     return(
         <div>

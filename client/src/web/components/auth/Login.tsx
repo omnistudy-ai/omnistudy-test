@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../tools/firebase'; // Adjust the import path as needed
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
+// Singleton app auth object
+import { AppAuth } from '../../../tools/Auth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -11,7 +13,10 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       // This will sign in the user with the email and password provided
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      // Set the user as authorized
+      AppAuth.setAuthorized(true);
+      AppAuth.setUser(userCredential.user);
       // Navigate to your desired route after successful login
       navigate('/dashboard');
     } catch (error) {

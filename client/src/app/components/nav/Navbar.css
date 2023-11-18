@@ -1,36 +1,32 @@
-
-
-.sidebar{
-  top:0px;
+.sidebar {
+  top: 0px;
   width: 250px;
   height: 100vh;
   background-color: #222831;
   overflow-x: hidden;
   overflow-y: hidden;
   position: absolute;
-  box-shadow: 4px 0 15px rgba(0,0,0,.6);
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6);
   font-family: sans-serif;
-
+  position: fixed;
 }
-.sidebarList{
+.sidebarList {
   width: 100%;
   height: auto;
   padding: 0;
 }
-.sidebarList .row:hover{
+.sidebarList .row:hover {
   cursor: pointer;
   background-color: #00adb5;
   border-radius: 5px;
   box-shadow: 0 0 15px #00adb5;
-
 }
-.sidebarList #active{
+.sidebarList #active {
   background-color: #00adb5;
   border-radius: 5px;
   box-shadow: 0 0 15px #00adb5;
-
 }
-.sidebarList .row{
+.sidebarList .row {
   width: 100%;
   height: 50px;
   list-style-type: none;
@@ -42,14 +38,12 @@
   align-items: center;
 }
 
-.row #icon{
+.row #icon {
   flex: 30%;
- 
-
 }
 
-.row #title{
+.row #title {
   flex: 70%;
-  margin-left: 20px; text-align: left;
-
+  margin-left: 20px;
+  text-align: left;
 }
