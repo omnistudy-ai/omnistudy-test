@@ -2,13 +2,6 @@
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
-  border: solid 2px #00adb5;
 
-  
 }
 
-.card:hover {
-  box-shadow: 0 0 15px #00adb5;
-  transform: scale(1.05); 
-}

@@ -33,7 +33,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ courseName, timeSpent, timeIncr
                 </div>
               </Typography>
               <Typography variant="h5">
-                <div className='prop1-course'>
+                <div className='prop1'>
                   {courseName}
                 </div>
               </Typography>
@@ -49,27 +49,6 @@ const CourseCard: React.FC<CourseCardProps> = ({ courseName, timeSpent, timeIncr
                 <BookOpenIcon />
               </SvgIcon>
             </Avatar>
-          </Stack>
-          <Stack
-            alignItems="center"
-            direction="row"
-            spacing={2}
-            sx={{ mt: 2 }}
-          >
-            <SvgIcon
-              color={timeIncreased ? 'success' : 'error'}
-              fontSize="small"
-            >
-              {timeIncreased ? <ArrowUpIcon /> : <ArrowDownIcon />}
-            </SvgIcon>
-            <Typography
-              color="text.primary"
-              variant="body2"
-            ><div className="timeIncreased-text">
-              {timeSpent} hrs more this week
-              </div>
-              
-            </Typography>
           </Stack>
         </CardContent>
       </Card>
