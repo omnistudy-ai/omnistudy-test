@@ -10,7 +10,7 @@
   position: absolute;
   box-shadow: 4px 0 15px rgba(0,0,0,.6);
   font-family: sans-serif;
-
+  
 }
 .sidebarList{
   width: 100%;
@@ -40,6 +40,7 @@
   color: white;
   justify-content: center;
   align-items: center;
+  
 }
 
 .row #icon{

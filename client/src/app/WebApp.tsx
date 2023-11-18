@@ -2,7 +2,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Page imports
-import Home from "./components/main/Home";
+import Dashboard from "./components/main/Dashboard";
 import Assignment from "./components/pages/course/Assignment";
 import Assignments from "./components/pages/course/Assignments";
 import Course from "./components/pages/course/Course";
@@ -34,7 +34,7 @@ export default function WebApp() {
 
             <Routes>
                 {/* Show the application dashboard */}
-                <Route path="/" element={<Home/>}/>
+                <Route path="/" element={<Dashboard/>}/>
 
                 {/* Display all the courses to the user */}
                 <Route path="/courses" element={<Courses/>}/>
