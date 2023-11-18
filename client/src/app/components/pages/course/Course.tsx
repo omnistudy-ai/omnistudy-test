@@ -1,5 +1,5 @@
 // Package imports
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 export default function Course() {
 
@@ -9,7 +9,7 @@ export default function Course() {
 
     // TODO: Check to see if the course exists for the user
     // If it does not, redirect the user to the 404 page
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return(
         <div>

@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import AssignmentsDB, { AssignmentSchema } from "./Assignments";
 
@@ -28,6 +28,15 @@ class UsersDatabase {
             return null;
     }
 
+        /**
+     * Add a new user to Firestore.
+     * @param user The user object to add to Firestore.
+     */
+    async addUser(user: UserSchema): Promise<void> {
+        const userRef = doc(db, "users", user.id.toString());
+        await setDoc(userRef, user);
+    }
+    
     /**
      * Get the assignment data of a user by their ID.
      * 
@@ -75,8 +84,11 @@ export default new UsersDatabase();
 // ============ OBJECT TYPE DEFINITIONS ============ //
 
 type UserSchema = {
-    id: number, 
-    name: string,
+    id: string, 
+    firstName: string,
+    lastName: string,
+    phoneNumber: string,
+    email: string,
     courses: Array<number>,
     assignments: Array<number>
 }

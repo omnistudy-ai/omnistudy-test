@@ -31,6 +31,6 @@ export const NavbarData = [
     {
         title: "Logout",
         icon: <LogoutIcon />,
-        link: "/logout"
+        link: "/"
     },
 ]

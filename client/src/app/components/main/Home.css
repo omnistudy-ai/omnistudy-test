@@ -1,0 +1,12 @@
+.homepage {
+  font-family: sans-serif;
+
+}
+.card__container{
+  margin-left: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+
+}
