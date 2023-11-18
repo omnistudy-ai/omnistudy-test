@@ -8,7 +8,7 @@ import Assignments from "./components/pages/course/Assignments";
 import Course from "./components/pages/course/Course";
 import Courses from "./components/pages/course/Courses";
 import Settings from "./components/pages/misc/Settings";
-import NotFound404 from "../404";
+import NotFound404 from "./NotFound404";
 
 // Component imports
 import Navbar from "./components/nav/Navbar";
