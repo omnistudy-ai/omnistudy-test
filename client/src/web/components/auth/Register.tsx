@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../tools/firebase'; // Adjust the import path as needed
+import { AppAuth } from '../../../tools/Auth';
 import { useNavigate } from "react-router-dom";
 import UsersDB from '../../../tools/db/Users'; // Adjust the import path as needed
 import "./Register.css";
@@ -21,17 +22,22 @@ const Register: React.FC = () => {
             const user = userCredential.user;
 
             // Create a user object to add to Firestore
-            // Create a user object to add to Firestore
             const newUser = {
                 id: user.uid,
                 firstName: firstName,
                 lastName: lastName,
+                name: user.displayName,
                 phoneNumber: phoneNumber,
                 email: registerEmail, // Or use user.email to get the email from the authentication object
                 courses: [], // Assuming new users do not have courses initially
-                assignments: [] // Assuming new users do not have assignments initially
+                assignments: [], // Assuming new users do not have assignments initially
+                createdAt: new Date().toISOString(),
+                plan: "free"
             };
 
+            // Set the user as authorized
+            AppAuth.setAuthorized(true);
+            AppAuth.setUser(user);
 
             // Use UsersDB to add the user to Firestore
             await UsersDB.addUser(newUser);
