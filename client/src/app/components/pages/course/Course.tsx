@@ -1,5 +1,6 @@
 // Package imports
 import { useParams } from "react-router-dom";
+import "./Course.css";
 
 export default function Course() {
 
@@ -12,8 +13,10 @@ export default function Course() {
     // const navigate = useNavigate();
 
     return(
-        <div>
-            Course {params.cid}
+        <div className="course-page">
+            <div className="header">
+                <h2 className="text">Course {params.cid}</h2>
+            </div>
         </div>
     )
 }
@@ -22,5 +25,5 @@ export default function Course() {
 
 // Define the type of the URL parameters
 type ParamsType = {
-    cid: string
+    cid: string,
 }

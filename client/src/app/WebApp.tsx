@@ -1,5 +1,6 @@
 // Package imports
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 // Page imports
 import Dashboard from "./components/main/Dashboard";
@@ -16,7 +17,6 @@ import DocQA from "./components/DocQA";
 
 // Utility imports
 import { AppAuth } from "../tools/Auth";
-import { useEffect } from "react";
 
 export default function WebApp() {
 
@@ -33,7 +33,7 @@ export default function WebApp() {
     });
 
     return(
-        <div>
+        <div className="web-app">
 
             <Navbar></Navbar>
 
