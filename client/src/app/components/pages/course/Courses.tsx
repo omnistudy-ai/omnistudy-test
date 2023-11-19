@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../../../web/components/UI/Card";
 import Container from "../../../../web/components/UI/Container";
 import ComputerIcon from "@mui/icons-material/Computer";
@@ -6,52 +6,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import "./Courses.css";
 import { v4 as uuidv4 } from "uuid";
 
+import UsersDB from "../../../../tools/db/Users";
 import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
-import { useAppAuth } from "../../../../tools/Auth";
+import AppAuth from "../../../../tools/Auth";
 
 export default function Courses() {
-  const [courses, setCourses] = useState([
-    {
-      id: "1",
-      icon: <ComputerIcon />,
-      name: "Cisc 131",
-      title: "Introduction to Computer Science",
-      startDate: "September 7",
-      endDate: "December 20",
-      professor: "Owen Kanzler",
-      room: "ARC 690",
-    },
-    {
-      id: "2",
-      icon: <ComputerIcon />,
-      name: "Cisc 230",
-      title: "Introduction to Computer Science",
-      startDate: "September 7",
-      endDate: "December 20",
-      professor: "Owen Kanzler",
-      room: "ARC 790",
-    },
-    {
-      id: "3",
-      icon: <ComputerIcon />,
-      name: "Cisc 231",
-      title: "Introduction to Computer Science",
-      startDate: "September 7",
-      endDate: "December 20",
-      professor: "Owen Kanzler",
-      room: "ARC 890",
-    },
-    {
-      id: "4",
-      icon: <ComputerIcon />,
-      name: "Cisc 330",
-      title: "Introduction to Computer Science",
-      startDate: "September 7",
-      endDate: "December 20",
-      professor: "Owen Kanzler",
-      room: "ARC 990",
-    },
-  ]);
+  const [courses, setCourses] = useState<Array<CourseSchema>>([]);
 
   // State to manage the form visibility
   const [showForm, setShowForm] = useState(false);
@@ -67,9 +27,6 @@ export default function Courses() {
     room: "",
   });
 
-  // Auth global state hook
-  const appAuth = useAppAuth();
-
   // Function to handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,18 +34,9 @@ export default function Courses() {
     // Generate a random id for the new course
     const courseId = uuidv4();
 
-    // Add the new course to the courses array
-    setCourses((prevCourses) => [
-      ...prevCourses,
-      {
-        id: "",
-        icon: <ComputerIcon />,
-        ...newCourse,
-      },
-    ]);
 
     // Add the new course to the database for the user
-    const uid = appAuth.user?.uid;
+    const uid = AppAuth.getUser()?.uid;
     if(uid) {
       const courseData: CourseSchema = {
         id: courseId,
@@ -98,6 +46,11 @@ export default function Courses() {
         ...newCourse,
       }
       CoursesDB.addCourseForUser(uid, courseData);
+      // Add the new course to the courses array
+      setCourses((prevCourses) => [
+        ...prevCourses,
+        courseData
+      ]);
     }
 
     // Reset the form and hide it
@@ -113,6 +66,19 @@ export default function Courses() {
     setShowAddButton(true);
   };
 
+  useEffect(() => {
+    // Get the courses for the user
+    const uid = AppAuth.getUser()?.uid;
+    if(uid) {
+      UsersDB.getUserCourses(uid).then((courses) => {
+        console.log(courses);
+        if(courses) {
+          setCourses(courses);
+        }
+      });
+    }
+  }, []);
+
   return (
     <>
       <section className="courses-hero">
@@ -121,7 +87,7 @@ export default function Courses() {
           <div className="courses-grid">
             {courses.map((course) => (
               <Card key={course.id}>
-                {course.icon}
+                {/* {course.icon} */}
                 <h2><strong>{course.name}:</strong> {course.title}</h2>
                 <p>{course.startDate} - {course.endDate}</p>
                 <p>

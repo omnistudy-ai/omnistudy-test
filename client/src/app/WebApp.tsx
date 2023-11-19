@@ -16,7 +16,7 @@ import Navbar from "./components/nav/Navbar";
 import DocQA from "./components/DocQA";
 
 // Utility imports
-import { useAppAuth } from "../tools/Auth";
+import AppAuth from "../tools/Auth";
 
 export default function WebApp() {
 
@@ -24,14 +24,11 @@ export default function WebApp() {
     // If the user is not logged in, redirect them to the login page
     const navigate = useNavigate();
 
-    // Auth global state hook
-    const appAuth = useAppAuth();
-
     useEffect(() => {
         console.log("Checking if user is authorized: ");
-        console.log(appAuth.user);
-        console.log(appAuth.authorized);
-        if(appAuth.authorized === false) { 
+        console.log(AppAuth.getUser());
+        console.log(AppAuth.getAuthorized());
+        if(AppAuth.getAuthorized() === false) { 
             console.log("Redirecting to login page");
             navigate("/login"); 
         }

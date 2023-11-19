@@ -2,6 +2,7 @@ import { db } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import AssignmentsDB, { AssignmentSchema } from "./Assignments";
+import CoursesDB, { CourseSchema } from "./Courses";
 
 class UsersDatabase {
     /**
@@ -17,7 +18,7 @@ class UsersDatabase {
      * @param id - the id of the user
      * @returns the user object, or null if not found
      */
-    async getUserById(id: number): Promise<UserSchema | null> {
+    async getUserById(id: string): Promise<UserSchema | null> {
         const docRef = doc(db, "users", id.toString());
         const docSnap = await getDoc(docRef);
         if(docSnap.exists()) {
@@ -49,10 +50,17 @@ class UsersDatabase {
      * @param id - the id of the user
      * @returns the array of assignment ids of the user, or null if not found
      */
-    async getUserCourses(id: number): Promise<Array<number> | null> {
+    async getUserCourses(id: string): Promise<Array<CourseSchema> | null> {
         const userData = await this.getUserById(id);
-        if(userData)
-            return userData.courses;
+        if(userData) {
+            const courseData: Array<CourseSchema> = [];
+            for(let i = 0; i < userData.assignments.length; i++) {
+                const courseObject = await CoursesDB.getCourseById(userData.courses[i].toString());
+                if(courseObject)
+                    courseData.push(courseObject);
+            }
+            return courseData;
+        }
         else 
             return null;
     }
@@ -63,7 +71,7 @@ class UsersDatabase {
      * @param id 
      * @returns 
      */
-    async getUserAssignments(id: number): Promise<Array<AssignmentSchema> | null> {
+    async getUserAssignments(id: string): Promise<Array<AssignmentSchema> | null> {
         const userData = await this.getUserById(id);
         if(userData) {
             const assignmentData: Array<AssignmentSchema> = [];
