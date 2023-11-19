@@ -43,9 +43,15 @@ export default new CoursesDatabase();
 
 // ============ OBJECT TYPE DEFINITIONS ============ //
 
-type CourseSchema = {
+export type CourseSchema = {
     id: string, 
     name: string,
-    assignments: Array<number>
+    title: string,
+    startDate: string,
+    endDate: string,
+    professor: string,
+    room: string,
+    owner: string,
+    assignments: Array<number>,
     notes: Array<number>
 }

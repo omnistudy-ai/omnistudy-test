@@ -1,35 +1,46 @@
 import { User } from "firebase/auth";
+// import React from "react";
 
-// Singleton class to hold global auth state
-class Auth {
+// // Singleton class to hold global auth state
+// export default class AppAuth extends React.Component {
 
-    // class attributes
-    private user: User | null;
-    private authorized: boolean;
+//     // class attributes
+//     static user: User | null;
+//     static authorized: boolean;
 
-    // create a new Auth object
-    constructor() {
-        this.authorized = false;
-        this.user = null;
-    }
+//     state = {
+//         user: null,
+//         authorized: false
+//     }
 
-    // user get and set
-    public getUser() {
-        return this.user;
-    }
-    public setUser(user: User) {
-        this.user = user;
-    }
+//     // user get and set
+//     public static getUser() {
+//         return this.user;
+//     }
+//     public static setUser(user: User) {
+//         this.user = user;
+//     }
 
-    // authorized get and set
-    public getAuthorized() {
-        return this.authorized;
-    }
-    public setAuthorized(authorized: boolean) {
-        this.authorized = authorized;
-    }
-}
+//     // authorized get and set
+//     public static getAuthorized() {
+//         return this.authorized;
+//     }
+//     public static setAuthorized(authorized: boolean) {
+//         this.authorized = authorized;
+//     }
+// }
 
-export let AppAuth = new Auth();
 //// IMPORTANT: Only use this class as defined below
 // import { AppAuth } from "./tools/Auth";
+
+import createStore from "react-superstore";
+
+export const [useAppAuth, setAppAuth, getAppAuth] = createStore<AuthType>({
+    user: null,
+    authorized: false
+});
+
+type AuthType = {
+    user: User | null,
+    authorized: boolean
+}

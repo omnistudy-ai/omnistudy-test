@@ -14,17 +14,15 @@ function Navbar() {
             <ul className="sidebarList">
                 {NavbarData.map((val,key)=>{
                     return (
-                        <li 
+                        <Link 
                         key={ key } 
                         id={  window.location.pathname == val.link ? "active" : "" }
                         className="row" 
-                        onClick={() => { 
-                            window.location.pathname = val.link 
-                        }}
+                        to={ val.link }
                         >
                             <div id="icon" >{ val.icon }</div>
                             <div id="title" >{ val.title }</div>
-                        </li>
+                        </Link>
                     )
                 })}
             </ul>

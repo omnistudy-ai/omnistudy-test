@@ -4,7 +4,7 @@ import { auth } from '../../../tools/firebase'; // Adjust the import path as nee
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
 // Singleton app auth object
-import { AppAuth } from '../../../tools/Auth';
+import { setAppAuth } from '../../../tools/Auth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -15,10 +15,12 @@ export default function Login() {
       // This will sign in the user with the email and password provided
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       // Set the user as authorized
-      AppAuth.setAuthorized(true);
-      AppAuth.setUser(userCredential.user);
+      setAppAuth({
+        user: userCredential.user,
+        authorized: true
+      });
       // Navigate to your desired route after successful login
-      navigate('/dashboard');
+      navigate('/app');
     } catch (error) {
       console.error("Error signing in with email and password", error);
       // Handle errors here, such as displaying a notification to the user

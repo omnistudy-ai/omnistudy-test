@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../tools/firebase'; // Adjust the import path as needed
-import { AppAuth } from '../../../tools/Auth';
+import { setAppAuth } from '../../../tools/Auth';
 import { useNavigate } from "react-router-dom";
 import UsersDB from '../../../tools/db/Users'; // Adjust the import path as needed
 import "./Register.css";
@@ -36,8 +36,10 @@ const Register: React.FC = () => {
             };
 
             // Set the user as authorized
-            AppAuth.setAuthorized(true);
-            AppAuth.setUser(user);
+            setAppAuth({
+                user: user,
+                authorized: true
+            });
 
             // Use UsersDB to add the user to Firestore
             await UsersDB.addUser(newUser);

@@ -4,38 +4,50 @@ import Container from "../../../../web/components/UI/Container";
 import ComputerIcon from "@mui/icons-material/Computer";
 import PersonIcon from "@mui/icons-material/Person";
 import "./Courses.css";
+import { v4 as uuidv4 } from "uuid";
+
+import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
+import { useAppAuth } from "../../../../tools/Auth";
 
 export default function Courses() {
   const [courses, setCourses] = useState([
     {
-      id: 1,
+      id: "1",
       icon: <ComputerIcon />,
-      title: "Cisc 131",
-      date: "September 7 - December 20",
+      name: "Cisc 131",
+      title: "Introduction to Computer Science",
+      startDate: "September 7",
+      endDate: "December 20",
       professor: "Owen Kanzler",
       room: "ARC 690",
     },
     {
-      id: 2,
+      id: "2",
       icon: <ComputerIcon />,
-      title: "Cisc 230",
-      date: "September 7 - December 20",
+      name: "Cisc 230",
+      title: "Introduction to Computer Science",
+      startDate: "September 7",
+      endDate: "December 20",
       professor: "Owen Kanzler",
       room: "ARC 790",
     },
     {
-      id: 3,
+      id: "3",
       icon: <ComputerIcon />,
-      title: "Cisc 231",
-      date: "September 7 - December 20",
+      name: "Cisc 231",
+      title: "Introduction to Computer Science",
+      startDate: "September 7",
+      endDate: "December 20",
       professor: "Owen Kanzler",
       room: "ARC 890",
     },
     {
-      id: 4,
+      id: "4",
       icon: <ComputerIcon />,
-      title: "Cisc 330",
-      date: "September 7 - December 20",
+      name: "Cisc 330",
+      title: "Introduction to Computer Science",
+      startDate: "September 7",
+      endDate: "December 20",
       professor: "Owen Kanzler",
       room: "ARC 990",
     },
@@ -47,30 +59,53 @@ export default function Courses() {
 
   // State to manage form input
   const [newCourse, setNewCourse] = useState({
+    name: "",
     title: "",
-    date: "",
+    startDate: "",
+    endDate: "",
     professor: "",
     room: "",
   });
+
+  // Auth global state hook
+  const appAuth = useAppAuth();
 
   // Function to handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Generate a random id for the new course
+    const courseId = uuidv4();
+
     // Add the new course to the courses array
     setCourses((prevCourses) => [
       ...prevCourses,
       {
-        id: prevCourses.length + 1,
+        id: "",
         icon: <ComputerIcon />,
         ...newCourse,
       },
     ]);
 
+    // Add the new course to the database for the user
+    const uid = appAuth.user?.uid;
+    if(uid) {
+      const courseData: CourseSchema = {
+        id: courseId,
+        owner: uid,
+        assignments: [],
+        notes: [],
+        ...newCourse,
+      }
+      CoursesDB.addCourseForUser(uid, courseData);
+    }
+
     // Reset the form and hide it
     setNewCourse({
+      name: "",
       title: "",
-      date: "",
+      startDate: "",
+      endDate: "",
       professor: "",
       room: "",
     });
@@ -87,8 +122,8 @@ export default function Courses() {
             {courses.map((course) => (
               <Card key={course.id}>
                 {course.icon}
-                <h2>{course.title}</h2>
-                <p>{course.date}</p>
+                <h2><strong>{course.name}:</strong> {course.title}</h2>
+                <p>{course.startDate} - {course.endDate}</p>
                 <p>
                   <span>{course.professor}</span> {course.room}
                 </p>
@@ -111,6 +146,17 @@ export default function Courses() {
             <div className="form-container">
               <form onSubmit={handleSubmit}>
                 <label>
+                  Course Name:
+                  <input
+                    type="text"
+                    value={newCourse.name}
+                    onChange={(e) =>
+                      setNewCourse({ ...newCourse, name: e.target.value })
+                    }
+                    required
+                  />
+                </label>
+                <label>
                   Course Title:
                   <input
                     type="text"
@@ -122,12 +168,23 @@ export default function Courses() {
                   />
                 </label>
                 <label>
-                  Course Date:
+                  Start Date:
                   <input
                     type="text"
-                    value={newCourse.date}
+                    value={newCourse.startDate}
                     onChange={(e) =>
-                      setNewCourse({ ...newCourse, date: e.target.value })
+                      setNewCourse({ ...newCourse, startDate: e.target.value })
+                    }
+                    required
+                  />
+                </label>
+                <label>
+                  End Date:
+                  <input
+                    type="text"
+                    value={newCourse.endDate}
+                    onChange={(e) =>
+                      setNewCourse({ ...newCourse, endDate: e.target.value })
                     }
                     required
                   />
