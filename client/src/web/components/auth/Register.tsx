@@ -33,7 +33,9 @@ const Register: React.FC = () => {
                 courses: [], // Assuming new users do not have courses initially
                 assignments: [], // Assuming new users do not have assignments initially
             };
-    
+            AppAuth.setUser(user);
+            AppAuth.setAuthorized(true);
+
             navigate("/app");
         } catch (error) {
             console.error("Error with Google sign-in:", error);
