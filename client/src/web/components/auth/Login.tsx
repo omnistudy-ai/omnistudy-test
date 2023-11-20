@@ -1,23 +1,35 @@
-import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../../../tools/firebase'; // Adjust the import path as needed
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
-// Singleton app auth object
 import AppAuth from '../../../tools/Auth';
 
-export default function Login() {
+const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const loginWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      AppAuth.setUser(user);
+      AppAuth.setAuthorized(true);
+      navigate('/app');
+    } catch (error) {
+      console.error("Error with Google sign-in:", error);
+      // Handle errors here, such as displaying a notification to the user
+    }
+  };
+
   const handleLogin = async () => {
     try {
-      // This will sign in the user with the email and password provided
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      // Set the user as authorized
       AppAuth.setUser(userCredential.user);
       AppAuth.setAuthorized(true);
-      // Navigate to your desired route after successful login
       navigate('/app');
     } catch (error) {
       console.error("Error signing in with email and password", error);
@@ -29,7 +41,7 @@ export default function Login() {
     <div>
       <div className="login-box">
         <h2>Login</h2>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="user-box">
             <input 
               type="email" 
@@ -49,12 +61,12 @@ export default function Login() {
             <label>Password</label>
           </div>
           <a href="#!" onClick={handleLogin} className="animated-btn"> 
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
             Submit
           </a>
+          {/* Google Sign-In Button */}
+          <button onClick={loginWithGoogle} className="google-sign-in-btn">
+            Login with Google
+          </button>
           <div className="register-link">
             <p>Don't have an account? <a href={"/register"}>Register here</a></p>
           </div>
@@ -62,4 +74,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;

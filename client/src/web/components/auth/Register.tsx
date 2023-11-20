@@ -1,7 +1,7 @@
 // Register.tsx
 
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../../../tools/firebase'; // Adjust the import path as needed
 import AppAuth from '../../../tools/Auth';
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,31 @@ const Register: React.FC = () => {
     const [registerPassword, setRegisterPassword] = useState("");  
     const navigate = useNavigate();
 
+    const googleProvider = new GoogleAuthProvider();
+
+    const registerWithGoogle = async () => {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+                const newUser = {
+                id: user.uid,
+                firstName: user.displayName?.split(" ")[0], // Split the displayName to get the first name
+                lastName: user.displayName?.split(" ")[1], // Assuming the last name is the second part of the displayName
+                phoneNumber: user.phoneNumber,
+                email: user.email,
+                createdAt: new Date().toISOString(),
+                plan: "free",
+                courses: [], // Assuming new users do not have courses initially
+                assignments: [], // Assuming new users do not have assignments initially
+            };
+    
+            navigate("/app");
+        } catch (error) {
+            console.error("Error with Google sign-in:", error);
+            // Consider displaying this error to the user
+        }
+    };
+    
     const register = async () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
@@ -81,6 +106,10 @@ const Register: React.FC = () => {
                         Submit
                     </a>
                 </form>
+                {/* Google Sign-In Button */}
+                <button onClick={registerWithGoogle} className="google-sign-in-btn">
+                    Register with Google
+                </button>
             </div>
         </div>
     );

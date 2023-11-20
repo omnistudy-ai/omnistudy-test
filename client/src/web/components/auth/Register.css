@@ -137,3 +137,27 @@ body {
                 0 0 50px #00ADB5,
                 0 0 100px #00ADB5;
 }
+
+.google-sign-in-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #179C52;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.google-sign-in-btn:hover {
+  background-color: #20cb6d;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.google-sign-in-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(209, 69, 59, 0.5); /* A subtle focus outline */
+}
+
