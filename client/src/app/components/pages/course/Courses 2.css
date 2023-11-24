@@ -18,6 +18,7 @@
 }
 
 .courses-hero h1 {
+  color: #000000 !important;
   font-size: 3rem;
   font-weight: 400;
   margin: 1rem 0;

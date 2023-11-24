@@ -1,0 +1,101 @@
+.assignment-hero,
+.assignment-description,
+.assignment-notes {
+  margin: 0 0 0 15.6rem;
+  text-align: left;
+  background-color: #f5f5f5;
+  padding: 2rem;
+}
+
+.assignment-hero .container,
+.assignment-description .container {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  margin-left: 0;
+}
+
+.assignment-hero h2,
+.assignment-description h2,
+.assignment-notes h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.assignment-hero .assignment-details {
+  display: flex;
+  width: 90%;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid #a9a9a9;
+  border-top: 1px solid #a9a9a9;
+}
+
+.assignment-details p {
+  margin-right: 2rem;
+  font-weight: bold;
+}
+
+.assignment-details span {
+  font-weight: normal;
+}
+
+.assignment-description-heading {
+  display: flex;
+  justify-content: center;
+  background-color: #00adb5;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.assignment-description-heading h2 {
+  margin: 0;
+}
+
+.assignment-description-content {
+  padding: 1rem;
+  border-bottom: 1px solid #a9a9a9;
+}
+
+.assignment-description-content button {
+  color: #eeeeee;
+  text-decoration: none;
+  padding: 12px 24px;
+  transition: all 0.3s;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #00adb5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.assignment-description-content button:hover {
+  background-color: #00adb5;
+  color: #eeeeee;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #00adb5;
+}
+
+.assignment-description-content .btn-box {
+  margin-top: 1rem;
+}
+
+.assignment-notes .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.assignment-notes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.assignment-note {
+  border: 1px solid #00adb5;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
