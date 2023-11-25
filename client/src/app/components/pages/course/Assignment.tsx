@@ -1,7 +1,7 @@
 // Package imports
 import { useParams } from "react-router-dom";
-import Container from "../../../../web/components/UI/Container";
 
+import Container from "../../../../web/components/UI/Container";
 import "./Assignment.css";
 
 export default function Assignment() {

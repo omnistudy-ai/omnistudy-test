@@ -1,72 +1,65 @@
 .cards-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
-.timeIncreased-text{
-    color: #757575; 
-    margin-bottom: 0.35em;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.75rem; 
-    
+.timeIncreased-text {
+  color: #757575;
+  margin-bottom: 0.35em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
 }
-.prop1{
-    font-size: 24px;
-    background:linear-gradient(to right, #f5f5f5, #00adb5);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-.header-text{
-    font-size: 11px;
-    color: #f5f5f5;
-      font-weight: 400;
-
-
+.prop1 {
+  font-size: 24px;
+  background: linear-gradient(to right, #f5f5f5, #00adb5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.header-text-course{
-    font-size: 10px;
-    color: #f5f5f5;
-    font-weight: 400;
 
-
+.header-text {
+  font-size: 11px;
+  color: #f5f5f5;
+  font-weight: 400;
+}
+.header-text-course {
+  font-size: 10px;
+  color: #f5f5f5;
+  font-weight: 400;
 }
 
 .dashboard-card {
-    width: 260px; 
-    height: 160px; 
-    border: 1px solid #00adb5;
-    transition: all 0.5s;
-    background-color: #292e3482;
-  }
+  width: 260px;
+  height: 160px;
+  border: 1px solid #00adb5;
+  transition: all 0.5s;
+  background-color: #292e3482;
+}
 
-  .cards-container .card:hover {
-    transform: scale(1.1);
-    background-color: #292e34;
-    box-shadow: 0 0 15px #00adb5;
-  }
-
+.cards-container .card:hover {
+  transform: scale(1.1);
+  background-color: #292e34;
+  box-shadow: 0 0 15px #00adb5;
+}
 
 .cards-container {
-    width: 100%;
-    height: 100%;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  
-.GradesBar{
+  width: 100%;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.GradesBar {
   display: flex;
 
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
 }
-.grades-container{
+.grades-container {
   width: 600px;
 }
-h1 {
+/* h1 {
   color: #f5f5f5;
   background: linear-gradient(to right, #f5f5f5, #00adb5);
   background-clip: text;
@@ -75,4 +68,4 @@ h1 {
   margin-left: 250px;
   padding-bottom: 20px;
   padding-top: 20px;
-}
+} */
