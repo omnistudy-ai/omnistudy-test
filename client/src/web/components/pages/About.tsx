@@ -2,6 +2,7 @@ import "./About.css";
 import Navbar from "../nav/Navbar";
 import Container from "../UI/Container";
 import logo from "../../assets/OmniStudy-logo.png";
+import Footer from "../footer/Footer";
 
 export default function About() {
   return (
@@ -162,43 +163,7 @@ export default function About() {
           </div>
         </Container>
       </section>
-      <footer className="footer">
-        <Container>
-          <div className="footer-top">
-            <div className="footer-logo">
-              <img src={logo} alt="" />
-            </div>
-            <div className="footer-links">
-              <div className="footer-omnistudy-links">
-                <h3>OmniStudy</h3>
-                <a href="/">Pricing</a>
-                <a href="/">About Us</a>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-              </div>
-              <div className="footer-features">
-                <h3>Features</h3>
-                <a href="/">Calender</a>
-                <a href="/">Textbook Upload</a>
-                <a href="/">Listening</a>
-                <a href="/">Flashcards</a>
-                <a href="/">Summaries</a>
-              </div>
-              <div className="footer-socials">
-                <h3>Social</h3>
-                <a href="/">Instagram</a>
-                <a href="/">Facebook</a>
-                <a href="/">Twitter</a>
-              </div>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <h2>OmniStudy</h2>
-            <a href="/">Privacy Policy</a>
-            <a href="/">Terms & Conditions</a>
-          </div>
-        </Container>
-      </footer>
+      <Footer />
     </div>
   );
 }
