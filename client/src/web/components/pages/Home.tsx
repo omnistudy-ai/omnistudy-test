@@ -1,285 +1,304 @@
+import { useState } from "react";
 import "./Home.css";
 import Navbar from "../nav/Navbar";
 import Container from "../UI/Container";
-import heroImg from "../../assets/hero-img.png";
-import featureImg from "../../assets/feature-img.png";
-import missionImg from "../../assets/content-img.png";
 import logo from "../../assets/OmniStudy-logo.png";
-import statImg from "../../assets/stat-img.png";
+import TimelineIcon from "@mui/icons-material/Timeline";
+import DeviceHubIcon from "@mui/icons-material/DeviceHub";
+import CheckIcon from "@mui/icons-material/Check";
+import LockIcon from "@mui/icons-material/Lock";
+import CreateIcon from "@mui/icons-material/Create";
+import SpeedIcon from "@mui/icons-material/Speed";
+import HeadphonesIcon from "@mui/icons-material/Headphones";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import QuizIcon from "@mui/icons-material/Quiz";
+import StyleIcon from "@mui/icons-material/Style";
+import SummarizeIcon from "@mui/icons-material/Summarize";
 import Card from "../UI/Card";
+import Footer from "../footer/Footer";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+  number: any;
+}
 
 export default function Home() {
+  const faqData: FAQItem[] = [
+    {
+      number: "01",
+      question: "How do I set up my OmniStudy account?",
+      answer:
+        "Visit our website, click 'Sign Up,' and follow the simple steps to create your personalized account for a seamless start.",
+    },
+    {
+      number: "02",
+      question: "Can I use OmniStudy for any subject?",
+      answer:
+        "Absolutely! OmniStudy caters to a wide range of subjects, tailoring its features to your unique learning style and academic needs.",
+    },
+    {
+      number: "03",
+      question: "How does OmniStudy provide personalized study plans?",
+      answer:
+        "OmniStudy analyzes your learning style and preferences to curate customized study materials and schedules, maximizing your study efficiency.",
+    },
+    {
+      number: "04",
+      question: "Is OmniStudy compatible with different devices?",
+      answer:
+        "Yes, OmniStudy is designed for flexibility. Enjoy a consistent experience across various devices, ensuring accessibility and convenience in your study routine.",
+    },
+    {
+      number: "05",
+      question: "What kind of real-time feedback does OmniStudy offer?",
+      answer:
+        "OmniStudy provides instant feedback on your progress, highlighting strengths and areas for improvement. It adapts recommendations to enhance your learning journey continuously.",
+    },
+  ];
+
+  const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
+
+  const handleQuestionClick = (index: number) => {
+    setSelectedQuestion(selectedQuestion === index ? null : index);
+  };
+
   return (
     <div className="homepage">
       <Navbar />
       <section className="hero">
         <Container>
-          <div className="hero-grid">
-            <div className="hero-content">
-              <h1>
-                Welcome to <span>OmniStudy</span>
-              </h1>
-              <p>Your one-stop platform for all your educational needs.</p>
-              <a href="/register">Get Started</a>
-            </div>
-            <div className="hero-img">
-              <img src={heroImg} alt="" />
-            </div>
-          </div>
+          <h1>
+            Welcome to <span>OmniStudy</span>
+          </h1>
+          <p>
+            Your one-stop platform for all your educational needs. Discover
+            personalized companions, adaptive schedules, and real-time feedback
+            for an unparalleled learning experience. Elevate your studies now!
+          </p>
+          <a href="/register">Get Started</a>
         </Container>
       </section>
       <section className="stat">
         <Container>
-          <div className="stat-content">
-            <h2>Reduce Weekly Study Time By 25%</h2>
-            <div className="stat-grid">
-              <Card className="stat-item">
-                <div>
-                  <h4>Users</h4>
-                </div>
-                <div>
-                  <h3>1347</h3>
-                  <span>570 last month</span>
-                </div>
-              </Card>
-              <Card className="stat-item">
-                <div>
-                  <h4>Info</h4>
-                </div>
-                <div>
-                  <h3>10</h3>
-                  <span>2 Last Month</span>
-                </div>
-              </Card>
-              <Card>
-                <div className="stat-info">
-                  <div>
-                    <h4>Study Time Reduced</h4>
-                  </div>
-                  <div>
-                    <h3>25%</h3>
-                    <span>down 3% last month</span>
-                  </div>
-                </div>
-                <div className="stat-img">
-                  <img src={statImg} alt="" />
-                </div>
-              </Card>
+          <img src={logo} alt="" />
+          <h3>OmniStudy</h3>
+          <h2>Elevating Statistics to New Heights!</h2>
+          <p>
+            OmniStudy is A game-changer in education, reducing university
+            students' weekly study time by 25%. With a virtual study companion,
+            tailored materials, and real-time feedback, students study smarter,
+            not harder—achieving stellar results, freeing time for diverse
+            pursuits.
+          </p>
+          <div className="stat-grid">
+            <div className="stat-item">
+              <TimelineIcon className="stat-icon" />
+              <span>100% WORTH IT</span>
+              <p>
+                In just two weeks, our innovative approach at OmniStudy slashed
+                study times by 25%, transforming learning efficiency and
+                academic outcomes remarkably
+              </p>
             </div>
-            <div className="stat-text">
-              <Card>
-                <h3>What We Did</h3>
-                <p>
-                  Study Shows OmniStudy reduced universitys students weekly
-                  study time by 25%. By providing students with a virtual study
-                  companion, OmniStudy tailors study materials and schedules to
-                  their unique learning styles and needs. The AI's real-time
-                  feedback and adaptive learning recommendations have empowered
-                  students to study smarter, not harder. As a result, they now
-                  devote less time to studying, yet achieve better results,
-                  leaving them with more time for other pursuits while still
-                  excelling in their educational pursuits.
-                </p>
-              </Card>
-              <Card>
-                <h3>How We Did It</h3>
-                <p>
-                  Through strategic partnerships with educational institutions,
-                  we established a seamless rollout process. University
-                  administrators integrated our AI platform into their learning
-                  management systems, ensuring widespread accessibility. We
-                  conducted informative workshops and training sessions,
-                  equipping students with the skills to leverage OmniStudy
-                  effectively. Feedback channels were established to continually
-                  refine the platform, ensuring it met the unique needs of
-                  students at each campus. This collaborative effort led to a
-                  successful, wide-reaching implementation, benefitting students
-                  across multiple universities.
-                </p>
-              </Card>
+            <div className="stat-item">
+              <DeviceHubIcon className="stat-icon" />
+              <span>100% USER FRIENDLY</span>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                officiis reiciendis in tenetur, harum vero voluptatum dolores
+                nostrum neque fugit?
+              </p>
             </div>
-          </div>
-        </Container>
-      </section>
-      <section className="features">
-        <Container>
-          <h2>Features</h2>
-          <div className="feature-grid">
-            <Card className="feature-item">
-              <div className="feature-item-img">
-                <img src={featureImg} alt="" />
-              </div>
-              <h3>Quiz Generator</h3>
+            <div className="stat-item">
+              <CheckIcon className="stat-icon" />
+              <span>100% VERIFIED</span>
               <p>
-                Get a custom quiz that's created just for you, 
-                using the notes you've uploaded to test and expand 
-                your understanding in a personalized way.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+                architecto quidem obcaecati laboriosam ea eligendi repellendus
+                earum sit laudantium autem.
               </p>
-              <a href="/">Learn More</a>
-            </Card>
-            <Card className="feature-item">
-              <div className="feature-item-img">
-                <img src={featureImg} alt="" />
-              </div>
-              <h3>Flashcard Creator</h3>
+            </div>
+            <div className="stat-item">
+              <LockIcon className="stat-icon" />
+              <span>Secure & Flexible</span>
               <p>
-              Enjoy a personalized learning experience with a tailor-made
-              flashcard set, crafted from your own materials to help you 
-              study!
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+                eos reiciendis, minus dolor voluptatibus ratione corrupti autem
+                quam impedit accusamus.
               </p>
-              <a href="/">Learn More</a>
-            </Card>
-            <Card className="feature-item">
-              <div className="feature-item-img">
-                <img src={featureImg} alt="" />
-              </div>
-              <h3>Automatic Notes</h3>
+            </div>
+            <div className="stat-item">
+              <CreateIcon className="stat-icon" />
+              <span>#1 Educational Resource</span>
               <p>
-              Streamline your note-taking with OmniStudy automatic notes, an 
-              innovative feature to transcribe spoken words into structured notes.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi,
+                magnam adipisci? Tenetur, tempore. Facilis quasi architecto odio
+                pariatur aperiam minima?
               </p>
-              <a href="/">Learn More</a>
-            </Card>
+            </div>
+            <div className="stat-item">
+              <SpeedIcon className="stat-icon" />
+              <span>In Beta Testing</span>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consequatur voluptatibus atque architecto rem aperiam! Nisi ad
+                officiis commodi reiciendis ea?
+              </p>
+            </div>
           </div>
         </Container>
       </section>
       <section className="mission-statement">
         <Container>
-          <div className="mission-img">
-            <img src={missionImg} alt="" />
-          </div>
           <div className="mission-content">
             <h2>Our Mission</h2>
             <p>
-            At the heart of our mission is a dedication to revolutionizing the learning experience. 
-            We envision leveraging the power of technology to create unparalleled educational 
-            experiences that transcend traditional boundaries. Recognizing that learning is an 
-            ever-evolving journey, our platform is designed to facilitate effective and engaging 
-            education for everyone, anywhere.
+              At the heart of our mission is a dedication to revolutionizing the
+              learning experience. We envision leveraging the power of
+              technology to create unparalleled educational experiences that
+              transcend traditional boundaries. Recognizing that learning is an
+              ever-evolving journey, our platform is designed to facilitate
+              effective and engaging education for everyone, anywhere.
             </p>
           </div>
         </Container>
       </section>
-      <section className="content">
+      <section className="features">
         <Container>
-          <div className="content-content">
-            <h2>Lorem, ipsum.</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              repellendus voluptate voluptatum illum, dignissimos sint similique
-              asperiores laudantium autem odit natus cupiditate quos repellat ut
-              expedita aliquid obcaecati? Fuga, ipsa. Doloribus, quas minus?
-              Optio veniam rem corrupti culpa recusandae beatae harum, dolore
-              dicta provident iusto voluptatibus non sunt consequuntur id illum
-              iure consectetur! Cum reprehenderit doloribus deleniti, ab
-              aspernatur aliquam. Incidunt inventore neque accusamus recusandae
-              repellendus minima aut nemo eius voluptates voluptate magni eaque
-              animi, sequi quibusdam? Aliquid, dolores in sapiente architecto
-              labore nam quia ut, voluptates quaerat officiis corrupti! Nulla
-              sunt ex earum tempora quod quo, eveniet delectus ducimus
-              laudantium? Inventore sequi similique nobis, quos dolorem porro
-              qui quae quia sapiente nihil saepe ex dicta laudantium nulla. Rem,
-              aspernatur.
-            </p>
-          </div>
-          <div className="content-img">
-            <img src={missionImg} alt="" />
+          <img src={logo} alt="" />
+          <h3>Elevate Learning Everywhere</h3>
+          <h2>Unlock Your Learning Potential Now!</h2>
+          <p>
+            Dive into OmniStudy's curated collection, offering tailored study
+            companions, personalized schedules, adaptive learning, and real-time
+            feedback—your ultimate toolkit for success.
+          </p>
+          <div className="featured-grid">
+            <div className="featured-item">
+              <HeadphonesIcon className="featured-icon" />
+              <span>AI Listening</span>
+              <p>
+                Utilizes AI algorithms to record lectures and generate summary
+                notes that are searchable by topic.
+              </p>
+            </div>
+            <div className="featured-item">
+              <QuestionMarkIcon className="featured-icon" />
+              <span>Assignment Assistance</span>
+              <p>
+                Uses a data-driven approach to generate prompts and solutions
+                for assignments
+              </p>
+            </div>
+            <div className="featured-item">
+              <AutoStoriesIcon className="featured-icon" />
+              <span>Textbook Upload</span>
+              <p>
+                Enables users to upload full textbooks, from which AI engine can
+                scan through.
+              </p>
+            </div>
+            <div className="featured-item">
+              <QuizIcon className="featured-icon" />
+              <span>Quiz Generator</span>
+              <p>
+                Automatically creates quizzes based on the notes and textbooks
+                uploaded.
+              </p>
+            </div>
+            <div className="featured-item">
+              <StyleIcon className="featured-icon" />
+              <span>Flashcard Creator</span>
+              <p>
+                Automatically generates digital flashcards based on the user's
+                notes and textbooks.
+              </p>
+            </div>
+            <div className="featured-item">
+              <SummarizeIcon className="featured-icon" />
+              <span>AI Summaries</span>
+              <p>Provides condensed summaries of chapters or lecture notes.</p>
+            </div>
           </div>
         </Container>
       </section>
       <section className="testimonials">
         <Container>
-          <h2>Testimonials/Reviews</h2>
+          <h2>See What Others Had To Say</h2>
           <div className="testimonial-grid">
             <Card className="testimonial-item">
-              <div className="testimonial-img">
-                <img src={featureImg} alt="" />
-              </div>
-              <div className="testimonial-content">
-                <p>
-                The flashcard feature has revolutionized my study sessions; it's so 
-                intuitive and effective! I've retained more information this semester 
-                than ever before
-                </p>
-                <h3>- Jack Mikolai</h3>
-              </div>
+              <p>
+                "OmniStudy transformed my academic experience! With its
+                personalized approach, I studied smarter, not longer, achieving
+                remarkable results. Truly a game-changer!"
+              </p>
+              <span>
+                - Owen Kanzler - <br /> University of St. Thomas
+              </span>
             </Card>
             <Card className="testimonial-item">
-              <div className="testimonial-img">
-                <img src={featureImg} alt="" />
-              </div>
-              <div className="testimonial-content">
-                <p>
-                Their expert-curated study materials and practice quizzes have been invaluable. 
-                My understanding of complex subjects has improved dramatically
-                </p>
-                <h3>- Leif King</h3>
-              </div>
+              <p>
+                "Impressed by OmniStudy's impact! The real-time feedback and
+                tailored materials optimized my study routine, resulting in
+                improved grades. A must-have for students!"
+              </p>
+              <span>
+                - Olivia Williams - <br /> University of Minnesota
+              </span>
             </Card>
             <Card className="testimonial-item">
-              <div className="testimonial-img">
-                <img src={featureImg} alt="" />
-              </div>
-              <div className="testimonial-content">
-                <p>
-                OmniStudy has been a lifesaver during finals! The 24/7 homework help and study
-                resources provide the support I needed to excel!
-                </p>
-                <h3>- Nick Ramler</h3>
-              </div>
+              <p>
+                "OmniStudy redefined how I approach studies. The adaptive
+                learning recommendations enhanced my understanding, making
+                studying effective and enjoyable. Thank you!"
+              </p>
+              <span>
+                - Alex Rodriguez - <br /> University of Minnesota
+              </span>
             </Card>
             <Card className="testimonial-item">
-              <div className="testimonial-img">
-                <img src={featureImg} alt="" />
-              </div>
-              <div className="testimonial-content">
-                <p>
-                Thanks to the incredible study tools available, I've seen a huge improvement in 
-                my time management and exam scores. It's like having a personal academic coach!
-                </p>
-                <h3>- Cooper Marsherall</h3>
-              </div>
+              <p>
+                "As a busy student, OmniStudy was a lifesaver! The virtual
+                companion and personalized schedules made learning enjoyable and
+                efficient. Highly recommend!"
+              </p>
+              <span>
+                - Emily Thompson - <br /> University of Minnesota
+              </span>
             </Card>
           </div>
         </Container>
       </section>
-      <footer className="footer">
+      <section className="faq">
         <Container>
-          <div className="footer-top">
-            <div className="footer-logo">
-              <img src={logo} alt="" />
-            </div>
-            <div className="footer-links">
-              <div className="footer-omnistudy-links">
-                <h3>OmniStudy</h3>
-                <a href="/">Pricing</a>
-                <a href="/">About Us</a>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
+          <img src={logo} alt="" />
+          <h3>Capitalize on Opportunity</h3>
+          <h2>OmniStudy FAQ</h2>
+          <p>
+            Explore our FAQ section for comprehensive answers to common queries.
+            From setting up your account to maximizing study benefits, find
+            solutions that empower your OmniStudy experience effortlessly.
+          </p>
+          <div className="faq-questions">
+            {faqData.map((item, index) => (
+              <div
+                className="faq-question"
+                key={index}
+                onClick={() => handleQuestionClick(index)}
+              >
+                <div className="question-head">
+                  <span>{item.number}</span>
+                  <h4>{item.question}</h4>
+                </div>
+                {selectedQuestion === index && <p>{item.answer}</p>}
               </div>
-              <div className="footer-features">
-                <h3>Features</h3>
-                <a href="/">Calender</a>
-                <a href="/">Textbook Upload</a>
-                <a href="/">Listening</a>
-                <a href="/">Flashcards</a>
-                <a href="/">Summaries</a>
-              </div>
-              <div className="footer-socials">
-                <h3>Social</h3>
-                <a href="/">Instagram</a>
-                <a href="/">Facebook</a>
-                <a href="/">Twitter</a>
-              </div>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <h2>OmniStudy</h2>
-            <a href="/">Privacy Policy</a>
-            <a href="/">Terms & Conditions</a>
+            ))}
           </div>
         </Container>
-      </footer>
+      </section>
+      <Footer />
     </div>
   );
 }

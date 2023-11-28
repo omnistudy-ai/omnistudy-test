@@ -17,53 +17,52 @@ import DocQA from "./components/DocQA";
 
 // Utility imports
 import AppAuth from "../tools/Auth";
+import Footer from "../web/components/footer/Footer";
 
 export default function WebApp() {
+  // Ensure the user is logged in before displaying any of the routes below
+  // If the user is not logged in, redirect them to the login page
+  const navigate = useNavigate();
 
-    // Ensure the user is logged in before displaying any of the routes below
-    // If the user is not logged in, redirect them to the login page
-    const navigate = useNavigate();
+  useEffect(() => {
+    console.log("Checking if user is authorized: ");
+    console.log(AppAuth.getUser());
+    console.log(AppAuth.getAuthorized());
+    if (AppAuth.getAuthorized() === false) {
+      console.log("Redirecting to login page");
+      navigate("/login");
+    }
+  });
 
-    useEffect(() => {
-        console.log("Checking if user is authorized: ");
-        console.log(AppAuth.getUser());
-        console.log(AppAuth.getAuthorized());
-        if(AppAuth.getAuthorized() === false) { 
-            console.log("Redirecting to login page");
-            navigate("/login"); 
-        }
-    });
+  return (
+    <div className="web-app">
+      <Navbar></Navbar>
 
-    return(
-        <div className="web-app">
+      <Routes>
+        {/* Show the application dashboard */}
+        <Route path="/" element={<Dashboard />} />
 
-            <Navbar></Navbar>
+        {/* Display all the courses to the user */}
+        <Route path="/courses" element={<Courses />} />
 
-            <Routes>
-                {/* Show the application dashboard */}
-                <Route path="/" element={<Dashboard/>}/>
+        {/* Display information about a specific course to the user */}
+        <Route path="/courses/:cid" element={<Course />} />
 
-                {/* Display all the courses to the user */}
-                <Route path="/courses" element={<Courses/>}/>
+        {/* Display all assignments to the user */}
+        <Route path="/assignments" element={<Assignments />} />
 
-                {/* Display information about a specific course to the user */}
-                <Route path="/courses/:cid" element={<Course/>}/>
+        {/* Display information about an assignment for a specific course */}
+        <Route path="/courses/:cid/assignments/:aid" element={<Assignment />} />
 
-                {/* Display all assignments to the user */}
-                <Route path="/assignments" element={<Assignments/>}/>
+        {/* Display user and application settings */}
+        <Route path="/settings" element={<Settings />} />
 
-                {/* Display information about an assignment for a specific course */}
-                <Route path="/courses/:cid/assignments/:aid" element={<Assignment/>}/>
+        {/* Testing document question and answering */}
+        <Route path="/doc-qa" element={<DocQA />} />
 
-                {/* Display user and application settings */}
-                <Route path="/settings" element={<Settings/>}/>
-
-                {/* Testing document question and answering */}
-                <Route path="/doc-qa" element={<DocQA/>}/>
-
-                {/* Display a 404 error for all routes not listed above */}
-                <Route path="/*" element={<NotFound404/>}/>
-            </Routes>
-        </div>
-    );
+        {/* Display a 404 error for all routes not listed above */}
+        <Route path="/*" element={<NotFound404 />} />
+      </Routes>
+    </div>
+  );
 }

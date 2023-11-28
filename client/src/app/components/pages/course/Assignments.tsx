@@ -1,7 +1,3 @@
 export default function Assignments() {
-    return(
-        <div>
-            App Side - Assignments
-        </div>
-    );
+  return <div>App Side - Assignments</div>;
 }
