@@ -31,6 +31,8 @@ class CoursesDatabase {
      * @param user The user object to add to Firestore.
      */
     async addCourseForUser(uid: string, courseData: CourseSchema): Promise<void> {
+        console.log("Adding course to user: " + uid);
+        console.log(courseData);
         const courseRef = doc(db, "courses", courseData.id);
         await setDoc(courseRef, courseData);
         updateDoc(doc(db, "users", uid), {

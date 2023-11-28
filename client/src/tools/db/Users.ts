@@ -54,7 +54,7 @@ class UsersDatabase {
         const userData = await this.getUserById(id);
         if(userData) {
             const courseData: Array<CourseSchema> = [];
-            for(let i = 0; i < userData.assignments.length; i++) {
+            for(let i = 0; i < userData.courses.length; i++) {
                 const courseObject = await CoursesDB.getCourseById(userData.courses[i].toString());
                 if(courseObject)
                     courseData.push(courseObject);

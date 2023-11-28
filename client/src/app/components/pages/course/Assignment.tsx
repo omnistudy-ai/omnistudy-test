@@ -1,5 +1,7 @@
 // Package imports
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
 
 import Container from "../../../../web/components/UI/Container";
 import "./Assignment.css";
@@ -14,13 +16,28 @@ export default function Assignment() {
   // If it does not, redirect the user to the 404 page
   // const navigate = useNavigate();
 
+  const [courseData, setCourseData] = useState<CourseSchema | null>(null);
+
+  useEffect(() => {
+    // Make sure course ID is present
+    if(params.cid) {
+        // Get the course data
+        console.log(params.cid);
+        CoursesDB.getCourseById(params.cid).then((courseData) => {
+            // Check if the course exists, else redirect to 404
+            if(courseData) 
+                setCourseData(courseData);
+        });
+    }
+}, []); 
+
   return (
     <div>
       <>
         <section className="assignment-hero">
           <Container>
             <h2>
-              {params.cid}: {params.aid}
+              {courseData?.name ? courseData?.name : ""}: {params.aid}
             </h2>
             <div className="assignment-details">
               <p>

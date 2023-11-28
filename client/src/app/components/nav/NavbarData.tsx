@@ -16,17 +16,17 @@ export const NavbarData = [
     {
         title: "Course",
         icon: <CourseIcon />,
-        link: "/app/Courses"
+        link: "/app/courses"
     },    
     {
         title: "Assignments",
         icon: <AssignmentsIcon />,
-        link: "/app/Assignments"
+        link: "/app/assignments"
     },    
     {
         title: "Settings",
         icon: <SettingsIcon />,
-        link: "/app/Settings"
+        link: "/app/settings"
     },    
     {
         title: "Logout",

@@ -25,11 +25,7 @@ export default function WebApp() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Checking if user is authorized: ");
-    console.log(AppAuth.getUser());
-    console.log(AppAuth.getAuthorized());
     if (AppAuth.getAuthorized() === false) {
-      console.log("Redirecting to login page");
       navigate("/login");
     }
   });

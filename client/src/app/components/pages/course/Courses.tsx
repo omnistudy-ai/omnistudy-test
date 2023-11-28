@@ -28,15 +28,15 @@ export default function Courses() {
   });
 
   // Function to handle form submission
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
 
     // Generate a random id for the new course
     const courseId = uuidv4();
 
-
     // Add the new course to the database for the user
     const uid = AppAuth.getUser()?.uid;
+    console.log("uid: ", uid);
     if(uid) {
       const courseData: CourseSchema = {
         id: courseId,
@@ -83,10 +83,10 @@ export default function Courses() {
     <>
       <section className="courses-hero">
         <Container>
-          <h1>Upcoming Courses</h1>
+          <h1>Your Courses</h1>
           <div className="courses-grid">
             {courses.map((course) => (
-              <Card key={course.id}>
+              <Card key={course.id} link={course.id}>
                 {/* {course.icon} */}
                 <h2><strong>{course.name}:</strong> {course.title}</h2>
                 <p>{course.startDate} - {course.endDate}</p>
@@ -110,7 +110,7 @@ export default function Courses() {
           )}
           {showForm && (
             <div className="form-container">
-              <form onSubmit={handleSubmit}>
+              <form>
                 <label>
                   Course Name:
                   <input
@@ -177,7 +177,7 @@ export default function Courses() {
                     required
                   />
                 </label>
-                <button type="submit">Add Course</button>
+                <button type="submit" onClick={(e) => handleSubmit(e)}>Add Course</button>
               </form>
             </div>
           )}
