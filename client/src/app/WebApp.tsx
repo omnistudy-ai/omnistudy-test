@@ -9,6 +9,8 @@ import Assignments from "./components/pages/course/Assignments";
 import Course from "./components/pages/course/Course";
 import Courses from "./components/pages/course/Courses";
 import Settings from "./components/pages/misc/Settings";
+import SpeechToText from "./components/pages/features/SpeechToText";
+import NoteTaker from "./components/pages/features/NoteTaker";
 import NotFound404 from "./NotFound404";
 
 // Component imports
@@ -25,7 +27,7 @@ export default function WebApp() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (AppAuth.getAuthorized() === false) {
+    if (AppAuth.getAuth().authorized === false) {
       navigate("/login");
     }
   });
@@ -55,6 +57,12 @@ export default function WebApp() {
 
         {/* Testing document question and answering */}
         <Route path="/doc-qa" element={<DocQA />} />
+
+        {/* Testing speech to text */}
+        <Route path="/speech-to-text" element={<SpeechToText />} />
+
+        {/* Testing note taking */}
+        <Route path="/note-taker" element={<NoteTaker/>}></Route>
 
         {/* Display a 404 error for all routes not listed above */}
         <Route path="/*" element={<NotFound404 />} />

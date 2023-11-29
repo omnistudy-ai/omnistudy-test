@@ -1,0 +1,53 @@
+.recording-container {
+    padding: 25px 100px;
+    background: white;
+    width: fit-content;
+    position: relative;
+    left: 625px;
+    top: 0px;
+    cursor: pointer;
+    border-radius: 18px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    row-gap: 1.5em;
+}
+
+@keyframes record-outer {
+    0% { background: #c8f8fa; }
+    50% { background: #00adb5; }
+    100% { background: #c8f8fa; }
+}
+.recording-circle-outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    width: fit-content;
+    border-radius: 50%;
+}
+.recording-circle-outer.recording {
+    background: #00adb5;
+    animation-name: record-outer;
+    animation-duration: 1.75s;
+    animation-iteration-count: infinite;
+}
+
+.recording-circle-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50%;
+    background-color: #eee;
+}
+
+.recording-circle-inner .MuiSvgIcon-root {
+    font-size: 50px;
+    color: #999;
+}
+
+.recording-container .text {
+    color: #999;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

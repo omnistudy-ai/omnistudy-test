@@ -35,7 +35,7 @@ export default function Courses() {
     const courseId = uuidv4();
 
     // Add the new course to the database for the user
-    const uid = AppAuth.getUser()?.uid;
+    const uid = AppAuth.getAuth()?.user.uid;
     console.log("uid: ", uid);
     if(uid) {
       const courseData: CourseSchema = {
@@ -68,7 +68,7 @@ export default function Courses() {
 
   useEffect(() => {
     // Get the courses for the user
-    const uid = AppAuth.getUser()?.uid;
+    const uid = AppAuth.getAuth()?.user.uid;
     if(uid) {
       UsersDB.getUserCourses(uid).then((courses) => {
         console.log(courses);

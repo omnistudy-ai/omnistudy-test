@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 
 import { auth } from '../../../tools/firebase'; // Adjust the import path as needed
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
-import AppAuth from '../../../tools/Auth';
+import AppAuth, { SignInMethod } from '../../../tools/Auth';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -14,10 +14,9 @@ const Login: React.FC = () => {
 
   const loginWithGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
-      AppAuth.setUser(user);
-      AppAuth.setAuthorized(true);
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      const user = userCredential.user;
+      AppAuth.authorize(user, SignInMethod.Google);
       navigate('/app');
     } catch (error) {
       console.error("Error with Google sign-in:", error);
@@ -28,8 +27,8 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      AppAuth.setUser(userCredential.user);
-      AppAuth.setAuthorized(true);
+      const user = userCredential.user;
+      AppAuth.authorize(user, SignInMethod.Email);
       navigate('/app');
     } catch (error) {
       console.error("Error signing in with email and password", error);

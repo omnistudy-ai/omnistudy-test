@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../../../tools/firebase';
-import AppAuth from '../../../tools/Auth';
+import AppAuth, { SignInMethod } from '../../../tools/Auth';
 import { useNavigate } from "react-router-dom";
 import UsersDB from '../../../tools/db/Users';
 import "./Register.css";
@@ -31,22 +31,21 @@ const Register: React.FC = () => {
 
     const registerWithGoogle = async () => {
         try {
-            
             const result = await signInWithPopup(auth, googleProvider);
             const user = result.user;
-                const newUser = {
+            const newUser = {
                 id: user.uid,
-                firstName: user.displayName?.split(" ")[0], 
-                lastName: user.displayName?.split(" ")[1], 
-                phoneNumber: user.phoneNumber,
-                email: user.email,
-                createdAt: new Date().toISOString(),
-                plan: "free",
+                firstName: user.displayName?.split(" ")[0]!, 
+                lastName: user.displayName?.split(" ")[1]!, 
+                phoneNumber: user.phoneNumber!,
+                email: user.email!,
                 courses: [], 
                 assignments: [], 
+                createdAt: new Date().toISOString(),
+                plan: "free"
             };
-            AppAuth.setUser(user);
-            AppAuth.setAuthorized(true);
+            AppAuth.authorize(user, SignInMethod.Google);
+            await UsersDB.addUser(newUser);
     
             navigate("/app");
         } catch (error) {
@@ -87,9 +86,7 @@ const Register: React.FC = () => {
                 plan: "free"
             };
 
-            AppAuth.setUser(user);
-            AppAuth.setAuthorized(true);
-
+            AppAuth.authorize(user, SignInMethod.Email);
             await UsersDB.addUser(newUser);
 
             navigate("/app");
