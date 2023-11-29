@@ -12,6 +12,7 @@ During this semester, we will be utilizing Google and other third-party technolo
 * Backend Developers:
     * Alec DuVall (duval120@umn.edu)
     * Konrad Trestka (trest017@umn.edu)
+    * Braydon Higgins (higgi567@umn.edu)
 
 ## Project Features
 * Static Informational Website
