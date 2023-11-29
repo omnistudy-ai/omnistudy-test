@@ -1,7 +1,7 @@
 
 import BookOpenIcon from '@heroicons/react/24/solid/BookOpenIcon';
-import ArrowUpIcon from '@heroicons/react/24/solid/ArrowUpIcon';
-import ArrowDownIcon from '@heroicons/react/24/solid/ArrowDownIcon';
+// import ArrowUpIcon from '@heroicons/react/24/solid/ArrowUpIcon';
+// import ArrowDownIcon from '@heroicons/react/24/solid/ArrowDownIcon';
 import { Avatar, CardContent, Stack, SvgIcon, Typography } from '@mui/material';
 import Card from '../../../../web/components/UI/Card';
 import './DashboardCards.css';

@@ -19,7 +19,7 @@ import DocQA from "./components/DocQA";
 
 // Utility imports
 import AppAuth from "../tools/Auth";
-import Footer from "../web/components/footer/Footer";
+// import Footer from "../web/components/footer/Footer";
 
 export default function WebApp() {
   // Ensure the user is logged in before displaying any of the routes below

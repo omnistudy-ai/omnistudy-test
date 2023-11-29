@@ -1,5 +1,5 @@
 // this is NavbarData.tsx
-import HomeIcon from '@mui/icons-material/Home';
+// import HomeIcon from '@mui/icons-material/Home';
 import CourseIcon from '@mui/icons-material/School';
 import AssignmentsIcon from '@mui/icons-material/Grading';
 import SettingsIcon from '@mui/icons-material/Settings';

@@ -29,7 +29,7 @@ export default function Assignment() {
                 setCourseData(courseData);
         });
     }
-}, []); 
+}, [params.cid]); 
 
   return (
     <div>

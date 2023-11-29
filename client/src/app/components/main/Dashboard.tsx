@@ -2,8 +2,8 @@ import "./Dashboard.css";
 import CourseCard from "./Cards/CourseCard"
 import TaskProgress from "./Cards/TaskProgress";
 import { StudyTimeTracker } from "./Cards/StudyTimeTracker";
-import { GradesBar } from "./Cards/GradesBar";
-import { userGrades } from './Cards/GradesData';
+// import { GradesBar } from "./Cards/GradesBar";
+// import { userGrades } from './Cards/GradesData';
 
 
 

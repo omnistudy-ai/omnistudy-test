@@ -28,11 +28,11 @@ export default function Course() {
                 // Check if the course exists, else redirect to 404
                 if(courseData) 
                     setCourseData(courseData);
-                // else 
-                    // navigate("/404");
+                else 
+                    navigate("/404");
             });
         }
-    }, []); 
+    }, [navigate, params.cid]); 
 
     return(
         <div className="course-page">

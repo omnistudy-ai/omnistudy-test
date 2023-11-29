@@ -1,13 +1,13 @@
 // Navbar.tsx
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { NavbarData } from "./NavbarData";
 function Navbar() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleLoginClick = () => {
-        navigate("/login");
-    };
+    // const handleLoginClick = () => {
+    //     navigate("/login");
+    // };
 
     return (
         <div className="sidebar">
@@ -16,7 +16,7 @@ function Navbar() {
                     return (
                         <Link 
                         key={ key } 
-                        id={  window.location.pathname == val.link ? "active" : "" }
+                        id={  window.location.pathname === val.link ? "active" : "" }
                         className="row" 
                         to={ val.link }
                         >

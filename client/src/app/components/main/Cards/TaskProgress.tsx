@@ -14,14 +14,13 @@ import {
 import Card from '../../../../web/components/UI/Card';
 
 
-interface TaskProgress{
+interface ITaskProgress {
     progressBar: number;
 }
 
 
 
-const TaskProgress: React.FC<TaskProgress> = ({ progressBar}) => {
-
+const TaskProgress: React.FC<ITaskProgress> = ({ progressBar }) => {
 
   return (
     <div className='cards-container'>

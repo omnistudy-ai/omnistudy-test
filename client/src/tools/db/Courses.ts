@@ -41,7 +41,8 @@ class CoursesDatabase {
     }
 }
 
-export default new CoursesDatabase();
+const CoursesDB = new CoursesDatabase();
+export default CoursesDB;
 
 // ============ OBJECT TYPE DEFINITIONS ============ //
 

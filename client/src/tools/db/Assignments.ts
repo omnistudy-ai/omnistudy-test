@@ -27,7 +27,8 @@ class AssignmentsDatabase {
     }
 }
 
-export default new AssignmentsDatabase();
+const AssignmentsDB = new AssignmentsDatabase();
+export default AssignmentsDB;
 
 // ============ OBJECT TYPE DEFINITIONS ============ //
 

@@ -87,7 +87,8 @@ class UsersDatabase {
     }
 }
 
-export default new UsersDatabase();
+const UsersDB = new UsersDatabase();
+export default UsersDB;
 
 // ============ OBJECT TYPE DEFINITIONS ============ //
 
