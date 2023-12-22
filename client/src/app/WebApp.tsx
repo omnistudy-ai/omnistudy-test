@@ -14,6 +14,7 @@ import NoteTaker from "./components/pages/features/NoteTaker";
 import NotFound404 from "./NotFound404";
 
 // Component imports
+import NavbarNorth from "./components/nav/NavbarNorth";
 import Navbar from "./components/nav/Navbar";
 import DocQA from "./components/DocQA";
 
@@ -33,40 +34,43 @@ export default function WebApp() {
   });
 
   return (
-    <div className="web-app">
-      <Navbar></Navbar>
+    <div className="web-app flex flex-col relative">
 
-      <Routes>
-        {/* Show the application dashboard */}
-        <Route path="/" element={<Dashboard />} />
+      {/* Top navbar */}
+      <div className="w-full sticky top-0 left-0 z-50">
+        <NavbarNorth/>
+      </div>
 
-        {/* Display all the courses to the user */}
-        <Route path="/courses" element={<Courses />} />
+      <div className="app-content grid"
+        style={{ gridTemplateColumns: "250px 1fr" }}
+      >
+        <Navbar></Navbar>
+        <div className="app-content-without-navbar">
+          <Routes>
+            {/* Show the application dashboard */}
+            <Route path="/" element={<Dashboard />} />
+            {/* Display all the courses to the user */}
+            <Route path="/courses" element={<Courses />} />
+            {/* Display information about a specific course to the user */}
+            <Route path="/courses/:cid" element={<Course />} />
+            {/* Display all assignments to the user */}
+            <Route path="/assignments" element={<Assignments />} />
+            {/* Display information about an assignment for a specific course */}
+            <Route path="/courses/:cid/assignments/:aid" element={<Assignment />} />
+            {/* Display user and application settings */}
+            <Route path="/settings" element={<Settings />} />
+            {/* Testing document question and answering */}
+            <Route path="/doc-qa" element={<DocQA />} />
+            {/* Testing speech to text */}
+            <Route path="/speech-to-text" element={<SpeechToText />} />
+            {/* Testing note taking */}
+            <Route path="/note-taker" element={<NoteTaker/>}></Route>
+            {/* Display a 404 error for all routes not listed above */}
+            <Route path="/*" element={<NotFound404 />} />
+          </Routes>
+        </div>
+      </div>
 
-        {/* Display information about a specific course to the user */}
-        <Route path="/courses/:cid" element={<Course />} />
-
-        {/* Display all assignments to the user */}
-        <Route path="/assignments" element={<Assignments />} />
-
-        {/* Display information about an assignment for a specific course */}
-        <Route path="/courses/:cid/assignments/:aid" element={<Assignment />} />
-
-        {/* Display user and application settings */}
-        <Route path="/settings" element={<Settings />} />
-
-        {/* Testing document question and answering */}
-        <Route path="/doc-qa" element={<DocQA />} />
-
-        {/* Testing speech to text */}
-        <Route path="/speech-to-text" element={<SpeechToText />} />
-
-        {/* Testing note taking */}
-        <Route path="/note-taker" element={<NoteTaker/>}></Route>
-
-        {/* Display a 404 error for all routes not listed above */}
-        <Route path="/*" element={<NotFound404 />} />
-      </Routes>
     </div>
   );
 }

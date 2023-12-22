@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, query, collection, where, getDocs } from "firebase/firestore";
 
 class AssignmentsDatabase {
     /**
@@ -25,6 +25,29 @@ class AssignmentsDatabase {
         else 
             return null;
     }
+
+    /**
+     * Get all assignments for a given user.
+     * 
+     * Usage:
+     *  import AssignmentsDB from "./path/to/file"
+     *  const assignments = await AssignmentsDB.getAllAssignmentsForUser("1");
+     *  assignments.forEach(assignment => {
+     *     console.log(assignments.name);
+     *  });
+     * 
+     * @param uid - the id of the user
+     * @returns a list of exam objects, or an empty list if none were found
+     */
+    async getAllAssignmentsForUser(uid: string): Promise<Array<AssignmentSchema>> {
+        const q = query(collection(db, "assignments"), where("uid", "==", uid));
+        const querySnapshot = await getDocs(q);
+        const assignments: Array<AssignmentSchema> = [];
+        querySnapshot.forEach((doc) => {
+            assignments.push(doc.data() as AssignmentSchema);
+        });
+        return assignments;
+    }
 }
 
 const AssignmentsDB = new AssignmentsDatabase();
@@ -33,7 +56,9 @@ export default AssignmentsDB;
 // ============ OBJECT TYPE DEFINITIONS ============ //
 
 export type AssignmentSchema = {
-    aid: number,
+    aid: string,
     aname: string,
-    cid: number
+    cid: string,
+    uid: string,
+    cname: string,
 }
