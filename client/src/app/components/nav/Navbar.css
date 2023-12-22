@@ -9,6 +9,7 @@
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6);
   font-family: sans-serif;
   position: fixed;
+  z-index: 1000;
 }
 .sidebarList {
   width: 100%;

@@ -73,6 +73,11 @@
   font-weight: bold;
 }
 
+.course-link {
+  text-decoration: none;
+  color: black;
+}
+
 /* form */
 
 .btn-box {

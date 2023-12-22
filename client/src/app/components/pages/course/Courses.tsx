@@ -86,14 +86,16 @@ export default function Courses() {
           <h1>Your Courses</h1>
           <div className="courses-grid">
             {courses.map((course) => (
-              <Card key={course.id} link={course.id}>
-                {/* {course.icon} */}
-                <h2><strong>{course.name}:</strong> {course.title}</h2>
-                <p>{course.startDate} - {course.endDate}</p>
-                <p>
-                  <span>{course.professor}</span> {course.room}
-                </p>
-              </Card>
+              <a className="course-link" href={`/app/courses/${course.id}`}>
+                <Card key={course.id}>
+                  {/* {course.icon} */}
+                  <h2><strong>{course.name}:</strong> {course.title}</h2>
+                  <p>{course.startDate} - {course.endDate}</p>
+                  <p>
+                    <span>{course.professor}</span> {course.room}
+                  </p>
+                </Card>
+              </a>
             ))}
           </div>
           {showAddButton && (

@@ -3,6 +3,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import AssignmentsDB, { AssignmentSchema } from "./Assignments";
 import CoursesDB, { CourseSchema } from "./Courses";
+import { SignInMethod } from "../Auth";
 
 class UsersDatabase {
     /**
@@ -34,7 +35,7 @@ class UsersDatabase {
      * @param user The user object to add to Firestore.
      */
     async addUser(user: UserSchema): Promise<void> {
-        const userRef = doc(db, "users", user.id.toString());
+        const userRef = doc(db, "users", user.uid.toString());
         await setDoc(userRef, user);
     }
     
@@ -64,27 +65,6 @@ class UsersDatabase {
         else 
             return null;
     }
-
-    /**
-     * Get the course data of a user by their ID.
-     * 
-     * @param id 
-     * @returns 
-     */
-    async getUserAssignments(id: string): Promise<Array<AssignmentSchema> | null> {
-        const userData = await this.getUserById(id);
-        if(userData) {
-            const assignmentData: Array<AssignmentSchema> = [];
-            for(let i = 0; i < userData.assignments.length; i++) {
-                const assignmentObject = await AssignmentsDB.getAssignmentById(userData.assignments[i]);
-                if(assignmentObject)
-                    assignmentData.push(assignmentObject);
-            }
-            return assignmentData;
-        }
-        else 
-            return null;
-    }
 }
 
 const UsersDB = new UsersDatabase();
@@ -92,12 +72,18 @@ export default UsersDB;
 
 // ============ OBJECT TYPE DEFINITIONS ============ //
 
-type UserSchema = {
-    id: string, 
+export type UserSchema = {
+    uid: string, 
+    name: string,
     firstName: string,
     lastName: string,
-    phoneNumber: string,
     email: string,
-    courses: Array<number>,
-    assignments: Array<number>
+    phoneNumber: string,
+    createdAt: string,
+    lastLogin: string,
+    lastLoginMethod: SignInMethod,
+    ubid: string,
+    plan: string,
+    courses: Array<string>,
+    storagePath: string
 }

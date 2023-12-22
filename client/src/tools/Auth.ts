@@ -1,4 +1,8 @@
 import { User } from "firebase/auth";
+import UsersDB, { UserSchema } from "./db/Users";
+import { v4 as uuidv4 } from "uuid";
+import UserBillingsDB from "./db/UserBillings";
+import { initUserStorage } from "./storage";
 
 // Singleton class to hold global auth state
 class Auth {
@@ -53,6 +57,48 @@ class Auth {
             }
         }
     }
+
+    // register new user
+    public register(user: User, formData: RegisterFormData, signInMethod: SignInMethod) {
+        // authorize the user in local storage
+        this.authorize(user, signInMethod);
+
+        // parse name depending on sign in method
+        let firstName: string, lastName: string;
+        if(signInMethod === SignInMethod.Email) {
+            firstName = formData.firstName;
+            lastName = formData.lastName;
+        }
+        else {
+            const name = user.displayName!.split(" ");
+            firstName = name[0];
+            lastName = name[1];
+        }
+
+        // create billing profile document for user
+        const ubid: string = uuidv4();
+        UserBillingsDB.initDefaultUserBilling(ubid, user.uid, firstName, lastName);
+        // setup storage bucket for user
+        initUserStorage(user.uid);
+        
+        // create user document in firestore
+        const userData: UserSchema = {
+            uid: user.uid,
+            name: `${firstName} ${lastName}`,
+            firstName: firstName,
+            lastName: lastName,
+            email: user.email!,
+            phoneNumber: user.phoneNumber != null && user.phoneNumber != "" ? user.phoneNumber : formData.phoneNumber,
+            createdAt: (new Date()).toUTCString(),
+            lastLogin: (new Date()).toUTCString(),
+            lastLoginMethod: signInMethod,
+            ubid: ubid,
+            plan: "free",
+            courses: [],
+            storagePath: `users/${user.uid}`
+        }
+        UsersDB.addUser(userData);
+    }
 }
 
 const AppAuth = new Auth();
@@ -65,4 +111,10 @@ export default AppAuth;
 export enum SignInMethod {
     Email = "auth-email",
     Google = "auth-google"
+}
+
+type RegisterFormData = {
+    firstName: string,
+    lastName: string,
+    phoneNumber: string
 }

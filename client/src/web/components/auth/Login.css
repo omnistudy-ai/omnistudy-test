@@ -2,13 +2,13 @@ html {
   height: 100%;
 }
 
-body {
+/* body {
   background: linear-gradient(to right, #00ADB5, #edffed);
   height: 100%;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
+} */
 
 .login-box {
   position: absolute;

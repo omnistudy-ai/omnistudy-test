@@ -11,7 +11,7 @@ import Pricing from "./components/pages/Pricing";
 
 export default function WebStatic() {
     return(
-        <div>
+        <div className="h-full">
             <Routes>
                 {/* Show the homepage of the website */}
                 <Route path="/" element={<Home/>}></Route>
