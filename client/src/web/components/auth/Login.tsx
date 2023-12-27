@@ -39,7 +39,7 @@ const Login: React.FC = () => {
   return (
     <div>
       <div className="login-box">
-        <h2>Login</h2>
+        <h2>Login to OmniStudy</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="user-box">
             <input 
