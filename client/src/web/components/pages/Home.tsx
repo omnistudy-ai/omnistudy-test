@@ -99,52 +99,52 @@ export default function Home() {
               <p>
                 In just two weeks, our innovative approach at OmniStudy slashed
                 study times by 25%, transforming learning efficiency and
-                academic outcomes remarkably
+                academic outcomes remarkably.
               </p>
             </div>
             <div className="stat-item">
               <DeviceHubIcon className="stat-icon" />
               <span>100% USER FRIENDLY</span>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                officiis reiciendis in tenetur, harum vero voluptatum dolores
-                nostrum neque fugit?
+               Experience a seamless interface designed with the user's journey in mind. 
+               Intuitive navigation and personalized settings mean you spend less time 
+               figuring things out and more time achieving your goals.
               </p>
             </div>
             <div className="stat-item">
               <CheckIcon className="stat-icon" />
               <span>100% VERIFIED</span>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                architecto quidem obcaecati laboriosam ea eligendi repellendus
-                earum sit laudantium autem.
+              Trust in a platform that's been rigorously tested. Our community of experts 
+              ensures that all content is up-to-date and reflects the latest industry 
+              standards. Your success is built on verified knowledge.
               </p>
             </div>
             <div className="stat-item">
               <LockIcon className="stat-icon" />
               <span>Secure & Flexible</span>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
-                eos reiciendis, minus dolor voluptatibus ratione corrupti autem
-                quam impedit accusamus.
+              Your data's integrity is our top priority. Enjoy the flexibility of a system 
+              that adapts to your needs while employing state-of-the-art security measures 
+              to keep your information safe.
               </p>
             </div>
             <div className="stat-item">
               <CreateIcon className="stat-icon" />
               <span>#1 Educational Resource</span>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi,
-                magnam adipisci? Tenetur, tempore. Facilis quasi architecto odio
-                pariatur aperiam minima?
+              Rated as the top resource by educators worldwide, our platform offers an expansive 
+              library of materials tailored to foster growth in various fields. Discover why we're 
+              the first choice for learning.
               </p>
             </div>
             <div className="stat-item">
               <SpeedIcon className="stat-icon" />
               <span>In Beta Testing</span>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequatur voluptatibus atque architecto rem aperiam! Nisi ad
-                officiis commodi reiciendis ea?
+              Be part of shaping the future of education. Our beta program invites you to test new 
+              features and provide feedback. Your insights are valuable in crafting an 
+              unparalleled learning experience.
               </p>
             </div>
           </div>
