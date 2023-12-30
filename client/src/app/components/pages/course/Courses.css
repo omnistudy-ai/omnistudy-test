@@ -235,3 +235,11 @@ form button:hover {
   margin: 0.5rem 0;
   font-size: 1rem;
 }
+
+/* Courses modal styling */
+.date-picker [type="button"].text-sm {
+  color: rgb(68 64 60);
+}
+.date-picker [type="button"].text-sm:hover {
+  background-color: rgb(245 245 244);
+}

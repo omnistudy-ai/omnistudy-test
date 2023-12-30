@@ -5,7 +5,6 @@ import './NotFound404.css';
 const NotFound404 = () => {
     return (
         <div className="not-found-container">
-            <Navbar />
             <div className="header">
                 <p>404</p>
             </div> 

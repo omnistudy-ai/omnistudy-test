@@ -5,12 +5,17 @@ import PersonIcon from "@mui/icons-material/Person";
 import "./Courses.css";
 import { v4 as uuidv4 } from "uuid";
 
+import CoursesModal from "./CoursesModal";
 import UsersDB from "../../../../tools/db/Users";
 import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
 import AssignmentsDB, { AssignmentSchema } from "../../../../tools/db/Assignments";
 import ExamsDB, { ExamSchema } from "../../../../tools/db/Exams";
 import AppAuth from "../../../../tools/Auth";
 import CourseCard from "./CourseCard";
+
+import { 
+  TERipple
+} from "tw-elements-react";
 
 export default function Courses() {
 
@@ -96,10 +101,21 @@ export default function Courses() {
 
   return (
     <div className="courses-content top-0 left-0 max-w-full">
+
+      <CoursesModal show={showForm} setShow={setShowForm} />
+
       {/* Header title and button */}
       <div className="text-left border-b-[1px] border-stone-300 px-5 py-4 bg-stone-100 flex items-center">
         <span className="text-4xl font-bold mr-auto text-stone-600">Your Courses</span>
-        <button className="bg-cyan-500 px-3 py-2 text-sm rounded-md text-stone-100 font-bold hover:bg-cyan-600 duration-200">Add New Course</button>
+        
+        <TERipple rippleColor="white">
+          <button 
+            className="bg-cyan-500 px-3 py-2 text-sm rounded-md text-stone-100 font-bold hover:bg-cyan-600 duration-200"
+            onClick={() => setShowForm(!showForm)}
+          >
+            Add New Course
+          </button>
+        </TERipple>
       </div>
 
       {/* Courses cards container */}
@@ -140,7 +156,7 @@ export default function Courses() {
 
         {/* Upcoming exams */}
         <div>
-          <div className="upcoming-exams bg-white rounded-xl">
+          <div className="upcoming-exams bg-white rounded-xl shadow">
             <div className="header flex px-5 py-3 justify-center items-center">
               <span className="mr-auto font-bold text-xl">Upcoming Exams</span>
               <button className="text-cyan-500 hover:text-cyan-600 duration-200"><a href="/app/exams">View All</a></button>
@@ -152,95 +168,6 @@ export default function Courses() {
 
       </div>
 
-      <section className="courses-hero">
-        <Container>
-          {showAddButton && (
-            <div className="btn-box">
-              <button
-                onClick={() => {
-                  setShowForm(true);
-                  setShowAddButton(false);
-                }}
-              >
-                Add New Course
-              </button>
-            </div>
-          )}
-          {showForm && (
-            <div className="form-container">
-              <form>
-                <label>
-                  Course Name:
-                  <input
-                    type="text"
-                    value={newCourse.name}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, name: e.target.value })
-                    }
-                    required
-                  />
-                </label>
-                <label>
-                  Course Title:
-                  <input
-                    type="text"
-                    value={newCourse.title}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, title: e.target.value })
-                    }
-                    required
-                  />
-                </label>
-                <label>
-                  Start Date:
-                  <input
-                    type="text"
-                    value={newCourse.startDate}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, startDate: e.target.value })
-                    }
-                    required
-                  />
-                </label>
-                <label>
-                  End Date:
-                  <input
-                    type="text"
-                    value={newCourse.endDate}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, endDate: e.target.value })
-                    }
-                    required
-                  />
-                </label>
-                <label>
-                  Professor:
-                  <input
-                    type="text"
-                    value={newCourse.professor}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, professor: e.target.value })
-                    }
-                    required
-                  />
-                </label>
-                <label>
-                  Room:
-                  <input
-                    type="text"
-                    value={newCourse.room}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, room: e.target.value })
-                    }
-                    required
-                  />
-                </label>
-                <button type="submit" onClick={(e) => handleSubmit(e)}>Add Course</button>
-              </form>
-            </div>
-          )}
-        </Container>
-      </section>
       <section className="courses-lower-grid">
         <section className="timetable">
           <Container>

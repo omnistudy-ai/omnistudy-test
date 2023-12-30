@@ -61,4 +61,5 @@ export type AssignmentSchema = {
     cid: string,
     uid: string,
     cname: string,
+    dueDate: string
 }
