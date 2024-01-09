@@ -1,0 +1,20 @@
+.main-container{
+    /* background: radial-gradient(ellipse at bottom, #00adb5cf, black); */
+    height: 100vh;
+
+}
+.mainCard{
+    margin-left: 250px;
+    width: 100%;
+    height: 100%;
+}
+
+.assignCard{
+    height: 400px;
+}
+.notesCard{
+height: 50vh;
+}
+h1{
+    text-align: left;
+}

@@ -5,9 +5,9 @@
   width: 250px;
   height: 100vh;
   background-color: #222831;
-  overflow-x: hidden;
+
   overflow-y: hidden;
-  position: absolute;
+  position: fixed;
   box-shadow: 4px 0 15px rgba(0,0,0,.6);
   font-family: sans-serif;
   
