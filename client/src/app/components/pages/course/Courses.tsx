@@ -39,7 +39,6 @@ export default function Courses() {
       // Get assignments for the user
       AssignmentsDB.getAllAssignmentsForUser(uid).then((assignments) => {
         setAssignments(assignments);
-        console.log(assignments);
       });
       // Get exams for the user
       ExamsDB.getAllExamsForUser(uid).then((exams) => {
@@ -51,7 +50,7 @@ export default function Courses() {
   return (
     <div className="courses-content top-0 left-0 max-w-full">
 
-      <CoursesModal show={showForm} setShow={setShowForm} />
+      <CoursesModal show={showForm} setShow={setShowForm} courses={courses} setCourses={setCourses} />
 
       {/* Header title and button */}
       <div className="text-left border-b-[1px] border-stone-300 px-5 py-4 bg-stone-100 flex items-center">
@@ -89,7 +88,7 @@ export default function Courses() {
             </div>
             <div id="upcoming-assignments" className="assignments flex flex-col gap-y-4 px-5 pb-4 pt-0">
               {assignments.map((assignment: AssignmentSchema) => {
-                return <a href={`/assignments/${assignment.aid}`}>
+                return <a href={`/app/courses/${assignment.cid}/assignments/${assignment.aid}`}>
                   <div className="flex flex-row items-center justify-center text-left gap-y-3">
                     <div className="text mr-auto">
                       <span className="text-stone-500">{assignment.aname}</span><br/>
@@ -117,7 +116,7 @@ export default function Courses() {
 
       </div>
 
-      <section className="courses-lower-grid">
+      {/* <section className="courses-lower-grid">
         <section className="timetable">
           <Container>
             <h2>Timetable</h2>
@@ -234,7 +233,7 @@ export default function Courses() {
             </div>
           </div>
         </section>
-      </section>
+      </section> */}
     </div>
   );
 }

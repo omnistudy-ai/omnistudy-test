@@ -11,7 +11,7 @@ import Datepicker from "tailwind-datepicker-react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import CourseModalEvent from "./CourseModalEvent";
-import CoursesDB from "../../../../tools/db/Courses";
+import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
 import AppAuth from "../../../../tools/Auth";
 import EventsDB from "../../../../tools/db/Events";
 
@@ -32,7 +32,6 @@ function CoursesModal(props: CoursesModalProps) {
     const [showEndDate, setShowEndDate] = useState(false);
 
     const [showScheduleDropdown, setShowScheduleDropdown] = useState(false);
-
     const [scheduleEvents, setScheduleEvents] = useState<Array<any>>([]);
 
     function newEventHandler(e: React.MouseEvent) {
@@ -73,10 +72,13 @@ function CoursesModal(props: CoursesModalProps) {
                 endDate: endDate,
                 events: [],
                 assignments: [],
-                notes: []
+                notes: [],
+                thumbnail: "",
+                color: ""
             };
 
             // Add the course to the database
+            props.setCourses([...props.courses, courseData]);
             CoursesDB.addCourseForUser(uid, courseData);
 
             // Add all the events to the database
@@ -279,10 +281,12 @@ export default CoursesModal;
 type CoursesModalProps = {
     show: boolean;
     setShow: (show: boolean) => void;
+    courses: Array<CourseSchema>;
+    setCourses: (courses: Array<CourseSchema>) => void;
 }
 
 // Datepicker styling options
-const datepickerOptions = {
+export const datepickerOptions = {
     todayBtn: false,
     clearBtn: false,
     datepickerClassNames: "date-picker",

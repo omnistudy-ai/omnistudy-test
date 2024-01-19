@@ -2,10 +2,12 @@
 import AssignmentsDB, { AssignmentSchema } from "../../../../tools/db/Assignments";
 import { useState, useEffect } from "react";
 import AppAuth from "../../../../tools/Auth";
+import AssignmentsModal from "./AssignmentsModal";
 
 function Assignments() {
 
   const [assignments, setAssignments] = useState<AssignmentSchema[]>([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const uid = AppAuth.getAuth()?.user.uid;
@@ -21,10 +23,17 @@ function Assignments() {
   return(
     <div className="assignments-page courses-content top-0 left-0 max-w-full">
 
+      <AssignmentsModal show={showForm} setShow={setShowForm} assignments={assignments} setAssignments={setAssignments} />
+
       {/* Header title and button */}
       <div className="text-left border-b-[1px] border-stone-300 px-5 py-4 bg-stone-100 flex items-center">
-        <span className="text-4xl font-bold mr-auto text-stone-600">Assignments</span>
-        <button className="bg-cyan-500 px-3 py-2 text-sm rounded-md text-stone-100 font-bold hover:bg-cyan-600 duration-200">Add New</button>
+        <span className="text-4xl font-bold mr-auto text-stone-600">Your Assignments</span>
+        <button 
+          className="bg-cyan-500 px-3 py-2 text-sm rounded-md text-stone-100 font-bold hover:bg-cyan-600 duration-200"
+          onClick={() => setShowForm(!showForm)}
+        >
+          Add New
+        </button>
       </div>
 
       {/* Top row under header with numbers cards */}

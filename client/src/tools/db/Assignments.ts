@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { doc, getDoc, query, collection, where, getDocs } from "firebase/firestore";
+import { doc, getDoc, query, collection, where, getDocs, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
 class AssignmentsDatabase {
     /**
@@ -48,6 +48,19 @@ class AssignmentsDatabase {
         });
         return assignments;
     }
+
+    /**
+     * Add a new assignment to Firestore under a specific course.
+     * @param cid The course id to add to
+     * @param assignmentData The assignment data to add
+     */
+     async addAssignment(cid: string, assignmentData: AssignmentSchema): Promise<void> {
+        const assignmentRef = doc(db, "assignments", assignmentData.aid);
+        await setDoc(assignmentRef, assignmentData);
+        updateDoc(doc(db, "courses", cid), {
+            assignments: arrayUnion(assignmentData.aid)
+        });
+    }
 }
 
 const AssignmentsDB = new AssignmentsDatabase();
@@ -60,6 +73,9 @@ export type AssignmentSchema = {
     aname: string,
     cid: string,
     uid: string,
+    cnumber: string,
     cname: string,
-    dueDate: string
+    dueDate: Date,
+    dueTime: string,
+    notes: string
 }
