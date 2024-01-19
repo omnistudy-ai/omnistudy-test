@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { CourseSchema } from "../../../../tools/db/Courses";
 
 function CourseCard(props: CourseCardProps) {
 
     const [titleText, setTitleText] = useState<string>("");
+    const dateRangeString = `${props.course.startDate.toLocaleString('default', { month: "short", day: "2-digit", year: "numeric" })} - ${props.course.endDate.toLocaleString('default', { month: "short", day: "2-digit", year: "numeric" })}`;
 
     useEffect(() => {
-        const joinedString = props.course.name + ": " + props.course.title;
+        const joinedString = props.course.number + ": " + props.course.title;
         setTitleText(joinedString.length > 22 ? joinedString.substring(0, 22) + "..." : joinedString);
     }, []);
 
@@ -16,7 +18,7 @@ function CourseCard(props: CourseCardProps) {
                 <div className="text-wrapper p-3">
                     <span className="text-md font-bold block text-cyan-400">{titleText}</span>
                     <span className="block text-sm text-stone-400">{props.course.professor}</span>
-                    <span className="block text-sm text-stone-400">({props.course.startDate}) - ({props.course.endDate})</span>
+                    <span className="block text-sm text-stone-400">({dateRangeString})</span>
                 </div>
             </div>
         </a>
@@ -25,15 +27,7 @@ function CourseCard(props: CourseCardProps) {
 
 export default CourseCard;
 
-// ------------ TYPE DEFINITIONS ------------ 
+// ------------- TYPE DEFINITIONS ------------- //
 type CourseCardProps = {
-    course: {
-        id: string,
-        name: string,
-        title: string,
-        startDate: string,
-        endDate: string,
-        professor: string,
-        room: string,
-    }
+    course: CourseSchema
 }

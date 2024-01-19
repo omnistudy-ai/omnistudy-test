@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
+import AssignmentsDB, { AssignmentSchema } from "../../../../tools/db/Assignments";
 
 import Container from "../../../../web/components/UI/Container";
 import "./Assignment.css";
@@ -17,6 +18,7 @@ export default function Assignment() {
   // const navigate = useNavigate();
 
   const [courseData, setCourseData] = useState<CourseSchema | null>(null);
+  const [assignmentData, setAssignmentData] = useState<AssignmentSchema | null>(null);
 
   useEffect(() => {
     // Make sure course ID is present
@@ -25,8 +27,17 @@ export default function Assignment() {
         console.log(params.cid);
         CoursesDB.getCourseById(params.cid).then((courseData) => {
             // Check if the course exists, else redirect to 404
-            if(courseData) 
+            if(courseData) {
                 setCourseData(courseData);
+
+                // Get assignment data
+                AssignmentsDB.getAssignmentById(params.aid!).then((assignmentData) => {
+                    // Check if the assignment exists, else redirect to 404
+                    if(assignmentData) {
+                        setAssignmentData(assignmentData);
+                    }
+                });
+            }
         });
     }
 }, [params.cid]); 
@@ -37,7 +48,7 @@ export default function Assignment() {
         <section className="assignment-hero">
           <Container>
             <h2>
-              {courseData?.name ? courseData?.name : ""}: {params.aid}
+              {courseData?.number ? courseData?.number : ""}: {assignmentData ? assignmentData.aname : ""}
             </h2>
             <div className="assignment-details">
               <p>

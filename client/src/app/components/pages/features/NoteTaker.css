@@ -1,5 +1,4 @@
 .note-taker {
-    margin-left: 250px;
     background: whitesmoke;
     height: 100%;
 }
@@ -22,6 +21,7 @@
 .note-taker .content {
     display: grid;
     height: 100%;
+    position: relative;
 }
 .note-taker .content.horizontal {
     grid-template-columns: 50% 50%;

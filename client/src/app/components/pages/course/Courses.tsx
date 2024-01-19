@@ -3,7 +3,6 @@ import Container from "../../../../web/components/UI/Container";
 import ComputerIcon from "@mui/icons-material/Computer";
 import PersonIcon from "@mui/icons-material/Person";
 import "./Courses.css";
-import { v4 as uuidv4 } from "uuid";
 
 import CoursesModal from "./CoursesModal";
 import UsersDB from "../../../../tools/db/Users";
@@ -28,56 +27,6 @@ export default function Courses() {
 
   // State to manage the form visibility
   const [showForm, setShowForm] = useState(false);
-  const [showAddButton, setShowAddButton] = useState(true);
-
-  // State to manage form input
-  const [newCourse, setNewCourse] = useState({
-    name: "",
-    title: "",
-    startDate: "",
-    endDate: "",
-    professor: "",
-    room: "",
-  });
-
-  // Function to handle form submission
-  const handleSubmit = (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    // Generate a random id for the new course
-    const courseId = uuidv4();
-
-    // Add the new course to the database for the user
-    const uid = AppAuth.getAuth()?.user.uid;
-    console.log("uid: ", uid);
-    if(uid) {
-      const courseData: CourseSchema = {
-        id: courseId,
-        owner: uid,
-        assignments: [],
-        notes: [],
-        ...newCourse,
-      }
-      CoursesDB.addCourseForUser(uid, courseData);
-      // Add the new course to the courses array
-      setCourses((prevCourses) => [
-        ...prevCourses,
-        courseData
-      ]);
-    }
-
-    // Reset the form and hide it
-    setNewCourse({
-      name: "",
-      title: "",
-      startDate: "",
-      endDate: "",
-      professor: "",
-      room: "",
-    });
-    setShowForm(false);
-    setShowAddButton(true);
-  };
 
   useEffect(() => {
     // Confirm the user is logged in before getting data

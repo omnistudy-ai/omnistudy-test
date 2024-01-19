@@ -1,6 +1,7 @@
 .sidebar {
   top: 0px;
   width: 250px;
+  position: sticky;
   height: 100vh;
   background-color: rgb(87 83 78);
   overflow: hidden;

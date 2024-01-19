@@ -30,7 +30,7 @@ class UsersDatabase {
             return null;
     }
 
-        /**
+    /**
      * Add a new user to Firestore.
      * @param user The user object to add to Firestore.
      */

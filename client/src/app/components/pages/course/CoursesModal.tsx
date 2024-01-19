@@ -9,34 +9,91 @@ import {
 } from "tw-elements-react";
 import Datepicker from "tailwind-datepicker-react";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import CourseModalEvent from "./CourseModalEvent";
+import CoursesDB from "../../../../tools/db/Courses";
+import AppAuth from "../../../../tools/Auth";
+import EventsDB from "../../../../tools/db/Events";
 
 function CoursesModal(props: CoursesModalProps) {
 
-    const datepickerOptions = {
-        todayBtn: false,
-        clearBtn: false,
-        datepickerClassNames: "date-picker",
-        theme: {
-            background: "",
-            todayBtn: "",
-            clearBtn: "",
-            icons: "",
-            text: "text-neutral-800 dark:text-neutral-200",
-            disabledText: "",
-            input: "bg-stone-100 dark:bg-stone-100 text-black",
-            inputIcon: "",
-            selected: "bg-cyan-600"
-        }
-    };
+    // Keep track of form inputs
+    const [courseNumber, setCourseNumber] = useState("");
+    const [courseTitle, setCourseTitle] = useState("");
+    const [professor, setProfessor] = useState("");
+    const [roomNumber, setRoomNumber] = useState("");
+
+    // Keep track of start date and datepicker visibility
     const [startDate, setStartDate] = useState(new Date());
     const [showStartDate, setShowStartDate] = useState(false);
+
+    // Keep track of end date and datepicker visibility
     const [endDate, setEndDate] = useState(new Date());
     const [showEndDate, setShowEndDate] = useState(false);
 
     const [showScheduleDropdown, setShowScheduleDropdown] = useState(false);
 
     const [scheduleEvents, setScheduleEvents] = useState<Array<any>>([]);
-    const eventDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    function newEventHandler(e: React.MouseEvent) {
+        setScheduleEvents([...scheduleEvents, { 
+            id: uuidv4(),
+            rule: "repeat",
+            days: [], 
+            date: new Date(),
+            startTime: "08:00", 
+            endTime: "09:00"
+        }]);
+    }
+
+    function courseModalSubmitHandler() {
+
+        console.log(scheduleEvents);
+        // const allEvents = EventsDB.generateEventsTimeline(startDate, endDate, scheduleEvents);
+        // console.log("ALL EVENTS");
+        // console.log(allEvents);
+
+        // Check authentication
+        const authData = AppAuth.getAuth();
+        const uid = authData.user.uid;
+        if(uid !== "") {
+
+            // Generate a course id
+            const cid = uuidv4();
+
+            // Generate the course data
+            const courseData = {
+                id: cid,
+                uid: uid, // get uid
+                number: courseNumber,
+                title: courseTitle,
+                professor: professor,
+                room: roomNumber,
+                startDate: startDate,
+                endDate: endDate,
+                events: [],
+                assignments: [],
+                notes: []
+            };
+
+            // Add the course to the database
+            CoursesDB.addCourseForUser(uid, courseData);
+
+            // Add all the events to the database
+            const allTimelineEvents = EventsDB.generateEventsTimeline(startDate, endDate, scheduleEvents);
+            console.log("ALL TIMELINE EVENTS");
+            console.log(allTimelineEvents);
+            for(let i = 0; i < allTimelineEvents.length; i++) {
+                const event = allTimelineEvents[i];
+                console.log("Adding event to db");
+                console.log(event);
+                EventsDB.addEventForCourse(cid, event);
+            }
+
+            // Close and reset the form
+            props.setShow(false);
+        }
+    }
 
     return(
         <TEModal show={props.show} setShow={props.setShow}>
@@ -81,6 +138,7 @@ function CoursesModal(props: CoursesModalProps) {
                             type="text" 
                             className="text-sm border-1 border-gray-300 bg-stone-100 rounded-md"
                             placeholder="CSci 2021"
+                            onChange={(e) => setCourseNumber(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col text-left w-full">
@@ -89,6 +147,7 @@ function CoursesModal(props: CoursesModalProps) {
                             type="text" 
                             className="text-sm border-1 border-gray-300 bg-stone-100 rounded-md"
                             placeholder="Machine Architecture and Organization"
+                            onChange={(e) => setCourseTitle(e.target.value)}
                         />
                     </div>
                 </div>
@@ -101,6 +160,7 @@ function CoursesModal(props: CoursesModalProps) {
                             type="text" 
                             className="text-sm border-1 border-gray-300 bg-stone-100 rounded-md focus:"
                             placeholder="Antonia Zhai"
+                            onChange={(e) => setProfessor(e.target.value)}
                         />
                     </div>
                     <div className="flex flex-col text-left w-full">
@@ -109,6 +169,7 @@ function CoursesModal(props: CoursesModalProps) {
                             type="text" 
                             className="text-sm border-1 border-gray-300 bg-stone-100 rounded-md"
                             placeholder="Smith 331"
+                            onChange={(e) => setRoomNumber(e.target.value)}
                         />
                     </div>
                 </div>
@@ -148,21 +209,18 @@ function CoursesModal(props: CoursesModalProps) {
                             >
                                 <span>Schedule</span>
                                 <svg data-accordion-icon className={`w-3 h-3 shrink-0 ${showScheduleDropdown ? "" : "rotate-180"}`} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5 5 1 1 5"/>
                                 </svg>
                             </button>
                         </h2>
                         {showScheduleDropdown && <div id="accordion-collapse-body-1" aria-labelledby="accordion-collapse-heading-1">
                             <div className="p-2 border-gray-200">
+
+                                {/* New event and clear buttons */}
                                 <div className="flex flex-row">
                                     <p
                                         className="mr-auto text-left text-sm text-cyan-600 cursor-pointer hover:underline"
-                                        onClick={(e) => {
-                                            if(scheduleEvents.length < 7)
-                                                setScheduleEvents([...scheduleEvents, { days: [], startTime: "", endTime: "" }]);
-                                            if(scheduleEvents.length >= 6)
-                                                (e.target as HTMLElement).classList.add("!text-gray-300")
-                                        }}
+                                        onClick={newEventHandler}
                                     >
                                         + New Event
                                     </p>
@@ -173,46 +231,16 @@ function CoursesModal(props: CoursesModalProps) {
                                         Clear
                                     </p>
                                 </div>
-                                {scheduleEvents.map((event) => {
-                                    return <div className="flex flex-col gap-2 mr-auto p-2 border border-gray-300 mt-2 shadow rounded-lg">
-                                        {/* Days selector */}
-                                        <div className="grid grid-cols-7">
-                                            {eventDays.map((day) => {
-                                                return <span
-                                                    className={`border border-gray-300 cursor-pointer hover:bg-cyan-500 duration-150 ${day in event.days ? "bg-cyan-500" : ""}`}
-                                                    onClick={(e) => {
-                                                        (e.target as HTMLElement).classList.toggle("bg-cyan-500");
-                                                        if (!(day in event.days))
-                                                            event.days.push((e.target as HTMLElement).innerHTML);
-                                                        setScheduleEvents([...scheduleEvents]);
-                                                        console.log(event.days);
-                                                    }}
-                                                >{day}</span>
-                                            })}
-                                        </div>
 
-                                        {/* Start and end time */}
-                                        <div className="flex flex-row w-full gap-x-4">
-                                            <div className="flex flex-col w-full">
-                                                <label className="text-left text-sm ml-1">Start Time</label>
-                                                <input 
-                                                    type="text" 
-                                                    className="text-sm border-1 border-gray-300 bg-stone-100 rounded-md"
-                                                    placeholder="12:00 PM"
-                                                    onChange={(e) => event.startTime = (e.target as HTMLInputElement).value}
-                                                />
-                                            </div>
-                                            <div className="flex flex-col w-full">
-                                                <label className="text-left text-sm ml-1">End Time</label>
-                                                <input 
-                                                    type="text" 
-                                                    className="text-sm border-1 border-gray-300 bg-stone-100 rounded-md"
-                                                    placeholder="12:00 PM"
-                                                    onChange={(e) => event.startTime = (e.target as HTMLInputElement).value}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
+                                {/* Render all events */}
+                                {scheduleEvents.map((event, i) => {
+                                    return <CourseModalEvent
+                                        key={event.id}
+                                        datepickerOptions={datepickerOptions}
+                                        event={event}
+                                        scheduleEvents={scheduleEvents}
+                                        setScheduleEvents={setScheduleEvents}
+                                    />
                                 })}
                             </div>
                         </div>}
@@ -233,6 +261,7 @@ function CoursesModal(props: CoursesModalProps) {
               <TERipple rippleColor="light">
                 <button
                   className="ml-1 inline-block rounded bg-cyan-600 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-cyan-700 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-cyan-700 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-cyan-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                  onClick={() => courseModalSubmitHandler()}
                 >
                   Add course
                 </button>
@@ -251,3 +280,21 @@ type CoursesModalProps = {
     show: boolean;
     setShow: (show: boolean) => void;
 }
+
+// Datepicker styling options
+const datepickerOptions = {
+    todayBtn: false,
+    clearBtn: false,
+    datepickerClassNames: "date-picker",
+    theme: {
+        background: "",
+        todayBtn: "",
+        clearBtn: "",
+        icons: "",
+        text: "text-neutral-800 dark:text-neutral-200",
+        disabledText: "",
+        input: "bg-stone-100 dark:bg-stone-100 text-black",
+        inputIcon: "",
+        selected: "bg-cyan-600"
+    }
+};

@@ -25,6 +25,9 @@ import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import EastIcon from '@mui/icons-material/East';
 import SouthIcon from '@mui/icons-material/South';
+import ArticleIcon from '@mui/icons-material/Article';
+import NumbersIcon from '@mui/icons-material/Numbers';
+import MicIcon from '@mui/icons-material/Mic';
 
 import React, { useEffect, useState } from "react";
 
@@ -36,6 +39,8 @@ export default function NoteTaker() {
     const [typeFs, setTypeFs] = useState<boolean>(false);
     const [renderFs, setRenderFs] = useState<boolean>(false);
     const doc = new jsPDF();
+
+    const [inputMethod, setInputMethod] = useState<string>("doc");
 
     /**
      * Update notes state: updates editor and render
@@ -132,14 +137,24 @@ export default function NoteTaker() {
             </div>
             <div className="content horizontal">
                 <div className="type">
-                    <span className="fullscreen" onClick={(e) => enterFullscreen(e)}>
-                        {typeFs ? <FullscreenExitIcon/> : <FullscreenIcon/>}
-                    </span>
-                    <CodeMirror
-                        value={notes}
-                        theme={vscodeDark}
-                        onChange={(value) => update(value)}
-                    />
+                    <div className="flex flex-row bg-stone-600 p-4 gap-x-2">
+                        <ArticleIcon className="text-white cursor-pointer hover:text-stone-400 transition" />
+                        <NumbersIcon className="text-white cursor-pointer hover:text-stone-400 transition" />
+                        <MicIcon className="text-white cursor-pointer hover:text-stone-400 transition" />
+                    </div>
+                    <div className="h-full relative"> 
+                        <span className="fullscreen" onClick={(e) => enterFullscreen(e)}>
+                            {typeFs ? <FullscreenExitIcon/> : <FullscreenIcon/>}
+                        </span>
+                        {inputMethod == "" && <div className="flex justify-center items-center h-full text-2xl text-gray-400">
+                            Select an input method
+                        </div>}
+                        {inputMethod == "markdown" && <CodeMirror
+                            value={notes}
+                            theme={vscodeDark}
+                            onChange={(value) => update(value)}
+                        />}
+                    </div>
                 </div>
                 <div className="render">
                     <span className="fullscreen" onClick={(e) => enterFullscreen(e)}>

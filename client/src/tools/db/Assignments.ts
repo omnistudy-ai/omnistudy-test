@@ -15,8 +15,8 @@ class AssignmentsDatabase {
      * @param id - the id of the assignment
      * @returns the assignment object, or null if not found
      */
-    async getAssignmentById(id: number): Promise<AssignmentSchema | null> {
-        const docRef = doc(db, "assignments", id.toString());
+    async getAssignmentById(id: string): Promise<AssignmentSchema | null> {
+        const docRef = doc(db, "assignments", id);
         const docSnap = await getDoc(docRef);
         if(docSnap.exists()) {
             const data = await docSnap.data();

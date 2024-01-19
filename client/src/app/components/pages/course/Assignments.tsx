@@ -16,7 +16,7 @@ function Assignments() {
         console.log(assignments);
       });
     }
-  });
+  }, []);
 
   return(
     <div className="assignments-page courses-content top-0 left-0 max-w-full">

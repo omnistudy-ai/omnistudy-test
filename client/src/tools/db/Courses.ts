@@ -20,6 +20,8 @@ class CoursesDatabase {
         const docSnap = await getDoc(docRef);
         if(docSnap.exists()) {
             const data = await docSnap.data();
+            data.startDate = data.startDate.toDate();
+            data.endDate = data.endDate.toDate();
             return data as CourseSchema;
         }
         else 
@@ -48,13 +50,14 @@ export default CoursesDB;
 
 export type CourseSchema = {
     id: string, 
-    name: string,
+    number: string,
     title: string,
-    startDate: string,
-    endDate: string,
     professor: string,
     room: string,
-    owner: string,
+    startDate: Date,
+    endDate: Date,
+    uid: string,
+    events: Array<string>,
     assignments: Array<number>,
     notes: Array<number>
 }

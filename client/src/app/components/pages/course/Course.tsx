@@ -37,7 +37,7 @@ export default function Course() {
     return(
         <div className="course-page">
             <div className="header text-left">
-                <h2 className="text text-left">Course {courseData?.name} - {courseData?.title}</h2>
+                <h2 className="text text-left">Course {courseData?.number} - {courseData?.title}</h2>
             </div>
         </div>
     )
