@@ -1,0 +1,11 @@
+.course-page {
+    padding: 1.5em;
+    background-color: whitesmoke;
+}
+
+.course-page .header {
+    text-align: left;
+}
+.course-page .header h2 {
+    margin: 0;
+}

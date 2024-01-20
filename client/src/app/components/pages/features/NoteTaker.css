@@ -1,0 +1,70 @@
+.note-taker {
+    background: whitesmoke;
+    height: 100%;
+}
+
+.note-taker .heading {
+    padding: 20px 40px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+.note-taker .heading h1 {
+    font-size: 34px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin: 0;
+    margin-right: auto;
+}
+
+.note-taker .content {
+    display: grid;
+    height: 100%;
+    position: relative;
+}
+.note-taker .content.horizontal {
+    grid-template-columns: 50% 50%;
+}
+.note-taker .content.horizontal.fullscreen {
+    grid-template-columns: 100%;
+}
+.note-taker .content.vertical {
+    grid-template-rows: 1fr 1fr;
+}
+.note-taker .content.vertical.fullscreen {
+    grid-template-rows: 100%;
+}
+
+.note-taker .content .MuiSvgIcon-root[data-testid="FullscreenIcon"], 
+.note-taker .content .MuiSvgIcon-root[data-testid="FullscreenExitIcon"] {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: white;
+    z-index: 10;
+    background-color: #777;
+    padding: 1px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.note-taker .content .type {
+    position: relative;
+    border-right: 1px solid #eee;
+    /* height: 100%; */
+    text-align: left;
+    background-color: #1e1e1e;
+    overflow: scroll;
+}
+
+.note-taker .content .render {
+    position: relative;
+    width: 100%;
+    background: #eee;
+    text-align: left;
+    padding: 10px;
+}
+.note-taker .content .render > h1, p {
+    margin-top: 0;
+}

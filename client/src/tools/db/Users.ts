@@ -2,6 +2,8 @@ import { db } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import AssignmentsDB, { AssignmentSchema } from "./Assignments";
+import CoursesDB, { CourseSchema } from "./Courses";
+import { SignInMethod } from "../Auth";
 
 class UsersDatabase {
     /**
@@ -17,7 +19,7 @@ class UsersDatabase {
      * @param id - the id of the user
      * @returns the user object, or null if not found
      */
-    async getUserById(id: number): Promise<UserSchema | null> {
+    async getUserById(id: string): Promise<UserSchema | null> {
         const docRef = doc(db, "users", id.toString());
         const docSnap = await getDoc(docRef);
         if(docSnap.exists()) {
@@ -28,12 +30,12 @@ class UsersDatabase {
             return null;
     }
 
-        /**
+    /**
      * Add a new user to Firestore.
      * @param user The user object to add to Firestore.
      */
     async addUser(user: UserSchema): Promise<void> {
-        const userRef = doc(db, "users", user.id.toString());
+        const userRef = doc(db, "users", user.uid.toString());
         await setDoc(userRef, user);
     }
     
@@ -49,46 +51,39 @@ class UsersDatabase {
      * @param id - the id of the user
      * @returns the array of assignment ids of the user, or null if not found
      */
-    async getUserCourses(id: number): Promise<Array<number> | null> {
-        const userData = await this.getUserById(id);
-        if(userData)
-            return userData.courses;
-        else 
-            return null;
-    }
-
-    /**
-     * Get the course data of a user by their ID.
-     * 
-     * @param id 
-     * @returns 
-     */
-    async getUserAssignments(id: number): Promise<Array<AssignmentSchema> | null> {
+    async getUserCourses(id: string): Promise<Array<CourseSchema> | null> {
         const userData = await this.getUserById(id);
         if(userData) {
-            const assignmentData: Array<AssignmentSchema> = [];
-            for(let i = 0; i < userData.assignments.length; i++) {
-                const assignmentObject = await AssignmentsDB.getAssignmentById(userData.assignments[i]);
-                if(assignmentObject)
-                    assignmentData.push(assignmentObject);
+            const courseData: Array<CourseSchema> = [];
+            for(let i = 0; i < userData.courses.length; i++) {
+                const courseObject = await CoursesDB.getCourseById(userData.courses[i].toString());
+                if(courseObject)
+                    courseData.push(courseObject);
             }
-            return assignmentData;
+            return courseData;
         }
         else 
             return null;
     }
 }
 
-export default new UsersDatabase();
+const UsersDB = new UsersDatabase();
+export default UsersDB;
 
 // ============ OBJECT TYPE DEFINITIONS ============ //
 
-type UserSchema = {
-    id: string, 
+export type UserSchema = {
+    uid: string, 
+    name: string,
     firstName: string,
     lastName: string,
-    phoneNumber: string,
     email: string,
-    courses: Array<number>,
-    assignments: Array<number>
+    phoneNumber: string,
+    createdAt: string,
+    lastLogin: string,
+    lastLoginMethod: SignInMethod,
+    ubid: string,
+    plan: string,
+    courses: Array<string>,
+    storagePath: string
 }

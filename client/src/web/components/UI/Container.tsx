@@ -4,6 +4,7 @@ import "./Container.css";
 interface ContainerProps {
   className?: string;
   children: ReactNode;
+  link?: string;
 }
 
 export default function Container(props: ContainerProps) {

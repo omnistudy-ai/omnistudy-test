@@ -1,16 +1,10 @@
-import { useState } from "react";
 import "./About.css";
 import Navbar from "../nav/Navbar";
 import Container from "../UI/Container";
 import logo from "../../assets/OmniStudy-logo.png";
+import Footer from "../footer/Footer";
 
 export default function About() {
-  const [viewMore, setViewMore] = useState(false);
-
-  const viewMoreHandler = () => {
-    setViewMore(!viewMore);
-  };
-
   return (
     <div className="About">
       <Navbar />
@@ -38,182 +32,138 @@ export default function About() {
 
       <section className="project-goals">
         <Container>
-          <div className="goals-grid">
-            <div className="goals-img">
-              <h3>"OmniStudy, Knowledge's Infinite Navigator."</h3>
-            </div>
-            <div className="goals-content">
-              <h2>Our Goals</h2>
-              <p>
-                <span>Quality Education for All:</span> We’re leveraging the
-                collaborative spirit and technological experiences to create a
-                learning environment where quality education is a must for all.
-                Our platform is a testament to this, giving personalized
-                educational journeys for all!
-              </p>
-              <p>
-                <span>Economic Growth Through Learning:</span> With the goal of
-                aligning education with the evolving job market, our platform
-                ensures that learners are equipped with the latest skills and
-                knowledge. Our platform empowers students alike to be ahead of
-                the curve, leading to an easy transition from academic pursuits
-                to real careers.
-              </p>
-              <p>
-                <span>Innovation in Education Infrastructure:</span> At
-                OmniStudy, we are at the forefront of educational innovation.
-                Our site is not just a tool but a sign of progress, showing
-                cutting edge solutions that refine how knowledge is consumed.
-              </p>
-            </div>
+          <img src={logo} alt="" />
+          <h3>One Step at a Time</h3>
+          <h2>Our Goals For the Future</h2>
+          <div className="project-goals-content">
+            <h4>Empowering Efficient Learning</h4>
+            <p>
+              OmniStudy's core objective is to empower students through
+              personalized study tools, adaptive schedules, and real-time
+              feedback. By fostering a smarter approach to learning, our goal is
+              to streamline the educational experience, maximizing efficiency
+              and ensuring academic success.
+            </p>
           </div>
-          <div className="goals-img2">
-            <h3>
-              "AI's Brilliance: Igniting Minds, Shaping Futures, Empowering
-              Educational Horizons."
-            </h3>
+          <div className="project-goals-content">
+            <h4>Fostering Academic Confidence</h4>
+            <p>
+              At OmniStudy, we aim to go beyond traditional methods. Our
+              innovative features and adaptive learning strategies are designed
+              to not only improve academic results but also to cultivate a
+              profound sense of mastery and confidence in students. We are
+              committed to empowering students on their educational journey.
+            </p>
+          </div>
+          <div className="project-goals-content">
+            <h4>Enhancing Work-Life Balance</h4>
+            <p>
+              OmniStudy understands the importance of a balanced lifestyle. Our
+              vision goes beyond academic success; we aim to reduce study times
+              without compromising results, providing students with more time
+              for personal pursuits and a well-rounded life. OmniStudy seeks to
+              create an environment where students thrive academically while
+              enjoying the freedom to explore and develop holistically.
+            </p>
           </div>
         </Container>
       </section>
 
       <section className="team">
         <Container>
-          <h2>Team</h2>
-          <div className="team-leader">
-            <img src="../blue-vape.png" alt="About the project manager" />
-            <h3>Jamison Grudem</h3>
-            <span>Founder, CEO</span>
-            <p>
-              The man behind it all! Jamison Grudem, best described as a
-              relentless innovator, known for his extraordinary visons. He
-              navigates the realms of unknown, mystifying everyone in his path.
-              Grudem, is the architect of this educational experience that
-              captivates and inspires all.
-            </p>
-          </div>
-          {viewMore && (
-            <div className="team-members">
-              <div className="frontend">
-                <div className="team-member">
-                  <h3>Owen Kanzler</h3>
-                  <span>frontend</span>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis eveniet sequi beatae voluptatum minus esse
-                    dolorum error dolore delectus atque.
-                  </p>
-                </div>
-                <div className="team-member">
-                  <h3>Noah Schlorf</h3>
-                  <span>frontend</span>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis eveniet sequi beatae voluptatum minus esse
-                    dolorum error dolore delectus atque.
-                  </p>
-                </div>
-                <div className="team-member">
-                  <h3>Abbaas Muhamud</h3>
-                  <span>frontend</span>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis eveniet sequi beatae voluptatum minus esse
-                    dolorum error dolore delectus atque.
-                  </p>
-                </div>
-              </div>
-              <div className="backend">
-                <div className="team-member">
-                  <h3>Alec Duval</h3>
-                  <span>backend</span>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis eveniet sequi beatae voluptatum minus esse
-                    dolorum error dolore delectus atque.
-                  </p>
-                </div>
-                <div className="team-member">
-                  <h3>Konrad Trestka</h3>
-                  <span>backend</span>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis eveniet sequi beatae voluptatum minus esse
-                    dolorum error dolore delectus atque.
-                  </p>
-                </div>
+          <h2>The Omnistudy Team</h2>
+          <div className="team-grid">
+            <div className="team-member">
+              <div className="team-member-picture"></div>
+              <div className="team-member-content">
+                <h4>Jamison Grudem</h4>
+                <span>Founder, CEO</span>
+                <span>University of Minnesota</span>
               </div>
             </div>
-          )}
-          <button onClick={viewMoreHandler}>
-            {!viewMore ? "View The Team" : "Hide The Team"}
-          </button>
+            <div className="team-member">
+              <div className="team-member-picture"></div>
+              <div className="team-member-content">
+                <h4>Owen Kanzler</h4>
+                <span>Frontend</span>
+                <span>University of St. Thomas</span>
+              </div>
+            </div>
+            <div className="team-member">
+              <div className="team-member-picture"></div>
+              <div className="team-member-content">
+                <h4>Noah Schlorf</h4>
+                <span>Frontend</span>
+                <span>University of Minnesota</span>
+              </div>
+            </div>
+            <div className="team-member">
+              <div className="team-member-picture"></div>
+              <div className="team-member-content">
+                <h4>Abbaas Muhamud</h4>
+                <span>Frontend</span>
+                <span>University of Minnesota</span>
+              </div>
+            </div>
+            <div className="team-member">
+              <div className="team-member-picture"></div>
+              <div className="team-member-content">
+                <h4>Alec Duval</h4>
+                <span>Backend</span>
+                <span>University of Minnesota</span>
+              </div>
+            </div>
+            <div className="team-member">
+              <div className="team-member-picture"></div>
+              <div className="team-member-content">
+                <h4>Konrad Trestka</h4>
+                <span>Backend</span>
+                <span>University of Minnesota</span>
+              </div>
+            </div>
+            <div className="team-member">
+              <div className="team-member-picture"></div>
+              <div className="team-member-content">
+                <h4>Brady</h4>
+                <span>IDK</span>
+                <span>University of Minnesota</span>
+              </div>
+            </div>
+          </div>
         </Container>
       </section>
 
       <section className="going-forward">
         <Container>
-          <h2>Going Forward</h2>
-          <div className="going-forward-content">
-            <p>
-              OmniStudy, our groundbreaking AI, is poised for an exciting
-              journey ahead as we chart a course towards scalability and
-              potential acquisition by Chegg for a remarkable one billion
-              dollars. With a steadfast commitment to revolutionizing the
-              educational landscape, OmniStudy has demonstrated unparalleled
-              capabilities in enhancing learning experiences. Our strategic
-              vision involves harnessing cutting-edge technologies to further
-              refine and expand the platform's capabilities, ensuring seamless
-              integration with diverse educational environments. As we forge
-              ahead, we envisage an enriched collaboration with Chegg, a
-              prominent player in the education technology sector. The synergy
-              between OmniStudy's advanced AI algorithms and Chegg's expansive
-              reach promises to redefine the edtech landscape. This momentous
-              venture signifies not just a financial milestone but a commitment
-              to empowering students globally. Through this union, we aim to
-              provide a comprehensive, AI-driven educational solution that
-              transcends conventional boundaries, fostering a future where
-              learning knows no limits.
-            </p>
+          <div className="going-forward-grid">
+            <div className="going-forward-img"></div>
+            <div className="going-forward-content">
+              <h2>Going Forward</h2>
+              <p>
+                OmniStudy, our groundbreaking AI, is poised for an exciting
+                journey ahead as we chart a course towards scalability and
+                potential acquisition by Chegg for a remarkable one billion
+                dollars. With a steadfast commitment to revolutionizing the
+                educational landscape, OmniStudy has demonstrated unparalleled
+                capabilities in enhancing learning experiences. Our strategic
+                vision involves harnessing cutting-edge technologies to further
+                refine and expand the platform's capabilities, ensuring seamless
+                integration with diverse educational environments. As we forge
+                ahead, we envisage an enriched collaboration with Chegg, a
+                prominent player in the education technology sector. The synergy
+                between OmniStudy's advanced AI algorithms and Chegg's expansive
+                reach promises to redefine the edtech landscape. This momentous
+                venture signifies not just a financial milestone but a
+                commitment to empowering students globally. Through this union,
+                we aim to provide a comprehensive, AI-driven educational
+                solution that transcends conventional boundaries, fostering a
+                future where learning knows no limits.
+              </p>
+            </div>
           </div>
         </Container>
       </section>
-      <footer className="footer">
-        <Container>
-          <div className="footer-top">
-            <div className="footer-logo">
-              <img src={logo} alt="" />
-            </div>
-            <div className="footer-links">
-              <div className="footer-omnistudy-links">
-                <h3>OmniStudy</h3>
-                <a href="/">Pricing</a>
-                <a href="/">About Us</a>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-              </div>
-              <div className="footer-features">
-                <h3>Features</h3>
-                <a href="/">Calender</a>
-                <a href="/">Textbook Upload</a>
-                <a href="/">Listening</a>
-                <a href="/">Flashcards</a>
-                <a href="/">Summaries</a>
-              </div>
-              <div className="footer-socials">
-                <h3>Social</h3>
-                <a href="/">Instagram</a>
-                <a href="/">Facebook</a>
-                <a href="/">Twitter</a>
-              </div>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <h2>OmniStudy</h2>
-            <a href="/">Privacy Policy</a>
-            <a href="/">Terms & Conditions</a>
-          </div>
-        </Container>
-      </footer>
+      <Footer />
     </div>
   );
 }
