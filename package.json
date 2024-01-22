@@ -1,5 +1,18 @@
 {
   "dependencies": {
-    "tw-elements": "^1.1.0"
+    "@uiw/codemirror-theme-vscode": "^4.21.21",
+    "@uiw/react-codemirror": "^4.21.21",
+    "highlight.js": "^11.9.0",
+    "jspdf": "^2.5.1",
+    "katex": "^0.16.9",
+    "react-markdown": "^9.0.1",
+    "react-speech-recognition": "^3.10.0",
+    "rehype-katex": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^6.0.0",
+    "tailwind-datepicker-react": "^1.4.3",
+    "tw-elements": "^1.1.0",
+    "tw-elements-react": "^1.0.0-alpha2",
+    "typescript": "^5.3.3"
   }
 }
