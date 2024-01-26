@@ -7,6 +7,9 @@ yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
 
+# Virtual Environment
+venv/
+
 # Firebase cache
 .firebase/
 
