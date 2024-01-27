@@ -12,6 +12,7 @@ export default function Assignment() {
   // cid: course ID
   // aid: assignment ID
   const params = useParams<ParamsType>();
+  const [progress, setProgress] = useState(0);
 
   // TODO: Check to see if the assignment exists for the user
   // If it does not, redirect the user to the 404 page
@@ -20,6 +21,19 @@ export default function Assignment() {
   const [courseData, setCourseData] = useState<CourseSchema | null>(null);
   const [assignmentData, setAssignmentData] = useState<AssignmentSchema | null>(null);
 
+  interface ProgressBarProps {
+    progress: number;
+  }
+  
+  function ProgressBar({ progress }: ProgressBarProps) {
+    return (
+      <div className="progress-container">
+        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+      </div>
+    );
+  }
+  
+  
   useEffect(() => {
     // Make sure course ID is present
     if(params.cid) {
@@ -42,14 +56,34 @@ export default function Assignment() {
     }
 }, [params.cid]); 
 
-  return (
-    <div className="courses-content top-0 left-0 max-w-full">
-      {/* Header title and button */}
-      <div className="text-left border-b-[1px] border-stone-300 px-5 py-4 bg-stone-100 flex items-center">
-        <span className="text-4xl font-bold mr-auto text-stone-600">{courseData?.number}: {assignmentData?.aname}</span>
+const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setProgress(parseInt(event.target.value, 10));
+};
+
+return (
+  <div className="courses-content top-0 left-0 max-w-full w-full">
+    <div className="text-left px-5 py-4 bg-stone-100 flex items-center justify-between w-full">
+      <span className="text-4xl font-bold text-stone-600">
+        {courseData?.number}: {assignmentData?.aname}
+      </span>
+      <div className="w-full"> {/* Ensure this div takes the full width */}
+        <div className="progress-label">
+          <span>Progress: {progress}%</span> {/* Displaying the progress text and percentage */}
+        </div>
+        <ProgressBar progress={progress} />
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value={progress}
+          className="slider w-full"
+          id="progressSlider"
+          onChange={handleSliderChange}
+        />
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 // --------- OBJECT TYPE DEFINITIONS --------- //

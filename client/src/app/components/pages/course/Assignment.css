@@ -98,3 +98,16 @@
   padding: 0.5rem;
   border-radius: 10px;
 }
+
+.progress-container {
+  width: 100%;
+  border-radius: 5px;
+  
+}
+
+.progress-label {
+  margin-bottom: 10px; 
+  font-size: 1.25rem; 
+  text-align: center; 
+  font-weight: bold; 
+}
