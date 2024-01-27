@@ -65,3 +65,30 @@ export async function removeCourseThumbnail(uid: string, cid: string) {
 
     return deletePromise;
 }
+
+/**
+ * Upload a document for an assignment
+ * 
+ * @param aid The id of the assignment
+ * @param file The file to upload
+ */
+export function uploadAssignmentDocument(aid: string, file: File) {
+    const assignmentRef = ref(storage, `assignments/${aid}/${file.name}`);
+    uploadBytes(assignmentRef, file).then((snapshot) => {
+        console.log("Uploaded assignment document!");
+    }).catch((error) => {
+        console.log(error);
+    })
+}
+
+/**
+ * Get all documents for an assignment
+ *
+ * @param aid The assignment id
+ * @returns an array of [TODO: create Document type]
+ */
+export function getAssignmentDocuments(aid: string) {
+    const assignmentRef = ref(storage, `assignments/${aid}`);
+    // TODO: Finish implementing this code, query database
+    return assignmentRef;
+}

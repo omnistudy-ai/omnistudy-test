@@ -55,7 +55,7 @@
     /* height: 100%; */
     text-align: left;
     background-color: #1e1e1e;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .note-taker .content .render {
@@ -67,4 +67,29 @@
 }
 .note-taker .content .render > h1, p {
     margin-top: 0;
+}
+
+@keyframes record-outer {
+    0% { background: transparent; }
+    50% { background: #00adb5; }
+    100% { background: transparent; }
+}
+#mic-ring.recording {
+    background: #00adb5;
+    animation-name: record-outer;
+    animation-duration: 1.75s;
+    animation-iteration-count: infinite;
+}
+
+.render-content h1, .render-content h2, .render-content h3, 
+.render-content h4, .render-content h5, .render-content h6 {
+    font-weight: bold;
+}
+.render-content h1 {
+    font-size: 26px;
+}
+.render-content ul, .render-content ol {
+    list-style-type: disc;
+    margin: unset;
+    padding: unset;
 }

@@ -2,9 +2,9 @@
   top: 0px;
   width: 250px;
   position: sticky;
-  height: 100vh;
   background-color: rgb(87 83 78);
   overflow: hidden;
+  height: 100%;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6);
   font-family: sans-serif;
   z-index: 40;
