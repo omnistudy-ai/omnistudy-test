@@ -85,7 +85,6 @@ export default function Assignment() {
         <input type="file" onChange={handleFileChange} multiple />
         <button onClick={handleFileUpload}>Upload Files</button>
       </div>
-      {/* Additional content and JSX can go here */}
     </div>
   );
 }
