@@ -1,6 +1,8 @@
 #env + system imports
 from dotenv import load_dotenv
 import os
+import sys
+import json
 #pincone
 import pinecone  
 from haystack.document_stores import PineconeDocumentStore
@@ -17,7 +19,7 @@ class QA:
         self.search_pipe=None
         self.QA_pipeline=None
         self.search_pipe=None
-    def init_document_store(self,index_name):
+    def init_document_store(self,index_name,namespace):
         #Initialize the pinecone index
         pinecone.init(      
         api_key=self.pinecone_api_key,      
@@ -28,6 +30,7 @@ class QA:
         self.document_store = PineconeDocumentStore(
         api_key=self.pinecone_api_key,
         pinecone_index=index,
+        namespace=namespace
         similarity="cosine",
         embedding_dim=768
         )
@@ -77,11 +80,19 @@ class QA:
 
         return tokenizer.batch_decode(generated_answers_encoded, skip_special_tokens=True,clean_up_tokenization_spaces=True)
     
-    def init_QA(self,index_name):
+    def init_QA(self,index_name,namespace):
         self.Assign_API_Keys()
-        self.init_document_store(index_name)
+        self.init_document_store(index_name,namespace=namespace)
         self.init_retriever()
         
+if __name__ == "__main__":
+    input_data = json.loads(sys.stdin.read())
+    input = input_data.get('input')
+    textbook = input_data.get('textbook')
+    Bart = QA()
+    Bart.init_QA(index_name='omnistudy',namespace=textbook)
+    answer = Bart.run(query=input)
+    print(json.dumps({'answer': answer}))
 
 
 

@@ -15,11 +15,13 @@ class FileUpload:
         self.document_store = None  
         self.docs = None  
     def access_key(self):
-        # load env elements (api key)
-        load_dotenv(override=True)
+        #Load environment variables from .env file
+        # (overide = true) just forces a reload on the .env file in case api key changes
+        dotenv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..','..','..', 'client', '.env')
+        load_dotenv(dotenv_path,override=True)
         # Access the API key
         self.pinecone_api_key = os.getenv("PINECONE_API_KEY")
-        self.huggingface_api_token = os.getenv("HUGGING_FACE_API_TOKEN")
+        self.huggingface_api_token = os.getenv("HUGGING_FACE_API_TOKEN")   
 
         # Check user access to api_keys
         if self.pinecone_api_key is None or self.huggingface_api_token is None:
@@ -63,7 +65,7 @@ class FileUpload:
         )
     def is_file_path_real(file_path):
         return os.path.exists(file_path)
-    def embed_retriever(self):
+    def embed_retriever(self,namespace):
         #Embed data
         batch_size = 256
         total_doc_count = len(self.docs)
@@ -76,11 +78,11 @@ class FileUpload:
                 embeds = self.retriever.embed_documents(embedded_Docs)
                 for i, doc in enumerate(embedded_Docs):
                     doc.embedding = embeds[i]
-                self.document_store.write_documents(embedded_Docs)
+                self.document_store.write_documents(embedded_Docs,namespace=namespace)
                 embedded_Docs.clear()
             if counter == total_doc_count:
                 break
-    def upload(self,path):
+    def upload(self,path,textbook_name):
         if not self.is_file_path_real(path):
            raise ValueError("Invalid Path to File")
         if not self.access_key():
@@ -92,10 +94,8 @@ class FileUpload:
         self.init_retriever()
         print("Retriever initialization completed.")
         print("Begin retriever embedding, this will take some time")
-        self.embed_retriever()
+        self.embed_retriever(namespace=textbook_name)
         print("Finished! The Pinecone Index should be usable")
-
-
 
     
 if __name__=="__main__":
