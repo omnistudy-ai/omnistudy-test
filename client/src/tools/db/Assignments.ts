@@ -29,6 +29,24 @@ class AssignmentsDatabase {
         return assignments;
     }
 
+       /**
+     * Get all assignments for a given course.
+     */
+       async getAllAssignmentsForCourse(courseId: string): Promise<Array<AssignmentSchema>> {
+        try {
+            const q = query(collection(db, "assignments"), where("cid", "==", courseId));
+            const querySnapshot = await getDocs(q);
+            const assignments: Array<AssignmentSchema> = [];
+            querySnapshot.forEach((doc) => {
+                assignments.push(doc.data() as AssignmentSchema);
+            });
+            return assignments;
+        } catch (error) {
+            console.error("Error fetching assignments: ", error);
+            throw error; // or handle it as you see fit
+        }
+    }
+
     /**
      * Add a new assignment to Firestore under a specific course.
      */
@@ -53,6 +71,8 @@ class AssignmentsDatabase {
             fileUrl: fileUrl
         });
     }
+
+    
 }
 
 const AssignmentsDB = new AssignmentsDatabase();
