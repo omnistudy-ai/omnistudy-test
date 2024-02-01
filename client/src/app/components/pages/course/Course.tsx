@@ -4,8 +4,13 @@ import { useParams } from "react-router-dom";
 import "./Course.css";
 import { useNavigate } from "react-router-dom";
 
+
+
+
+
 // Utility imports
 import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
+import CourseNotes from "./CourseNotes";
 
 export default function Course() {
 
@@ -34,12 +39,16 @@ export default function Course() {
         }
     }, [navigate, params.cid]); 
 
+
     return(
         <div className="course-page">
             <div className="header text-left">
                 <h2 className="text text-left">Course {courseData?.number} - {courseData?.title}</h2>
             </div>
-        </div>
+            {/* List out all uploaded notes and most recently uploaded first */}
+            <CourseNotes />
+    </div>
+       
     )
 }
 
