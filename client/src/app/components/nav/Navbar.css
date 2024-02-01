@@ -2,6 +2,7 @@
   top: 0px;
   width: 250px;
   position: sticky;
+<<<<<<< HEAD
   height: 100vh;
 <<<<<<< HEAD
   background-color: #222831;
@@ -10,8 +11,11 @@
   position: fixed;
   box-shadow: 4px 0 15px rgba(0,0,0,.6);
 =======
+=======
+>>>>>>> 65cb923338dbea7c231445a4ddeb4c1b35672533
   background-color: rgb(87 83 78);
   overflow: hidden;
+  height: 100%;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6);
 >>>>>>> main
   font-family: sans-serif;

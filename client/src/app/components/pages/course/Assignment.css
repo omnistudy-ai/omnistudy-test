@@ -98,3 +98,40 @@
   padding: 0.5rem;
   border-radius: 10px;
 }
+
+.progress-container {
+  width: 100%;
+  border-radius: 5px;
+  
+}
+
+.progress-label {
+  margin-bottom: 10px; 
+  font-size: 1.25rem; 
+  text-align: center; 
+  font-weight: bold; 
+}
+
+.file-upload-section {
+  margin: 20px;
+  text-align: center;
+}
+
+.file-upload-section input[type="file"] {
+  margin: 10px 0;
+}
+
+.file-upload-section button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-upload-section button:hover {
+  background-color: #45a049;
+}
+

@@ -36,14 +36,14 @@ export default function WebApp() {
   });
 
   return (
-    <div className="web-app flex flex-col relative">
+    <div className="web-app flex flex-col relative overflow-hidden h-full">
 
       {/* Top navbar */}
-      <div className="w-full sticky top-0 left-0 z-50">
+      <div className="w-full top-0 left-0 z-50">
         <NavbarNorth/>
       </div>
 
-      <div className="app-content grid"
+      <div className="app-content grid overflow-y-scroll h-full"
         style={{ gridTemplateColumns: "250px 1fr" }}
       >
         <Navbar></Navbar>

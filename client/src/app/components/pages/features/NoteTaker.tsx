@@ -4,6 +4,9 @@ import "./NoteTaker.css";
 import CodeMirror from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 
+// Speech recognition support imports
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
+
 // Save as PDF support imports
 import { jsPDF } from "jspdf";
 import "jspdf/dist/polyfills.es.js";
@@ -40,7 +43,7 @@ export default function NoteTaker() {
     const [renderFs, setRenderFs] = useState<boolean>(false);
     const doc = new jsPDF();
 
-    const [inputMethod, setInputMethod] = useState<string>("doc");
+    const [inputMethod, setInputMethod] = useState<string>("");
 
     /**
      * Update notes state: updates editor and render
@@ -115,10 +118,40 @@ export default function NoteTaker() {
         });
     }
 
+    function getRenderText() {
+        if(inputMethod === "markdown") {
+            return notes;
+        }
+        else if(inputMethod === "transcribe") {
+            return transcript;
+        }
+        else {
+            return "";
+        }
+    
+    }
+
     useEffect(() => {
         hljs.registerLanguage('javascript', javascript);
         hljs.registerLanguage('cpp', cpp);
     }, []);
+
+    const {
+        transcript,
+        listening, 
+        resetTranscript,
+        browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+
+    const startListening = () => SpeechRecognition.startListening({ continuous: true });
+
+    function toggleRecording() {
+        if(listening) {
+            SpeechRecognition.stopListening();
+        } else {
+            startListening();
+        }
+    }
 
     return (
         <div className="note-taker">
@@ -138,9 +171,18 @@ export default function NoteTaker() {
             <div className="content horizontal">
                 <div className="type">
                     <div className="flex flex-row bg-stone-600 p-4 gap-x-2">
-                        <ArticleIcon className="text-white cursor-pointer hover:text-stone-400 transition" />
-                        <NumbersIcon className="text-white cursor-pointer hover:text-stone-400 transition" />
-                        <MicIcon className="text-white cursor-pointer hover:text-stone-400 transition" />
+                        <ArticleIcon 
+                            className="text-white cursor-pointer hover:text-stone-400 transition" 
+                            onClick={(e) => setInputMethod("doc")}
+                        />
+                        <NumbersIcon 
+                            className="text-white cursor-pointer hover:text-stone-400 transition" 
+                            onClick={(e) => setInputMethod("markdown")}
+                        />
+                        <MicIcon 
+                            className="text-white cursor-pointer hover:text-stone-400 transition" 
+                            onClick={(e) => setInputMethod("transcribe")}
+                        />
                     </div>
                     <div className="h-full relative"> 
                         <span className="fullscreen" onClick={(e) => enterFullscreen(e)}>
@@ -154,6 +196,23 @@ export default function NoteTaker() {
                             theme={vscodeDark}
                             onChange={(value) => update(value)}
                         />}
+                        {inputMethod === "transcribe" && <div
+                            className="flex flex-col justify-center items-center h-full"
+                        >   
+                            <div className="pb-4 flex flex-col text-center">
+                                <span className="text-3xl text-gray-400">Transcribe Live Audio</span>
+                                <span className="text-xl text-gray-500">Click Below To {listening ? "Stop" : "Start"} Recording</span>
+                            </div>
+                            <div 
+                                id="mic-ring" 
+                                className={`bg-white p-1 rounded-[50%] cursor-pointer ${listening ? "recording" : ""}`} 
+                                onClick={toggleRecording}
+                            >
+                                <div className="p-4 bg-stone-900 rounded-[50%] shadow-md">
+                                    <MicIcon className="text-white !text-[70px]" />
+                                </div>
+                            </div>
+                        </div>}
                     </div>
                 </div>
                 <div className="render">
@@ -161,7 +220,8 @@ export default function NoteTaker() {
                         {renderFs ? <FullscreenExitIcon/> : <FullscreenIcon/>}
                     </span>
                     <Markdown
-                        children={notes}
+                        className="render-content"
+                        children={getRenderText()}
                         remarkPlugins={[ remarkMath, remarkGfm ]}
                         rehypePlugins={[ rehypeKatex ]}
                         skipHtml={false}
