@@ -20,7 +20,7 @@ function Footer() {
               <h3>Useful Links</h3>
               <div className="footer-links">
                 <Link to="/">Home</Link>
-                <Link to="/Pricing">Pricing</Link>
+                {/* <Link to="/Pricing">Pricing</Link> */}
                 <Link to="/About">About</Link>
                 <Link to="/login">Login</Link>
               </div>
@@ -34,7 +34,7 @@ function Footer() {
             </div>
             <div className="footer-grid-item">
               <h3>Social</h3>
-              <div className="footer-links">
+              <div className="footer-links footer-socials">
                 <a href="/">
                   <InstagramIcon />
                 </a>

@@ -4,10 +4,34 @@
 }
 
 section {
-  padding: 2rem;
+  padding: 4rem 1rem;
 }
 
-.hero {
+.homepage h1 {
+  font-size: 64px;
+}
+
+.homepage h2 {
+  font-size: 48px;
+}
+
+.homepage h3 {
+  font-size: 34px;
+}
+
+.homepage h4 {
+  font-size: 24px;
+}
+
+.homepage h5 {
+  font-size: 20px;
+}
+
+.homepage h6 {
+  font-size: 18px;
+}
+
+/* .hero {
   height: 75vh;
   background-image: url("../../assets/omnistudy-hero.png");
   background-size: cover;
@@ -63,11 +87,11 @@ section {
   background-color: #00adb5;
   color: #f5f5f5;
   box-shadow: 0 0 15px #00adb5;
-}
+} */
 
 /* Statistic */
 
-.stat {
+/* .stat {
   border-bottom: 2px solid #a9a9a9;
 }
 
@@ -76,13 +100,6 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.stat img,
-.features img,
-.faq img {
-  width: 50px;
-  height: 50px;
 }
 
 .stat h2,
@@ -147,11 +164,17 @@ section {
 .stat-item span {
   font-weight: bold;
   font-size: 1.2rem;
-}
+} */
+
+/* .features img, */
+/* .faq img {
+  width: 50px;
+  height: 50px;
+} */
 
 /* Mission */
 
-.mission-statement {
+/* .mission-statement {
   background-image: url("../../assets/os-backgroundphoto.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -175,11 +198,11 @@ section {
 
 .mission-statement p {
   max-width: 850px;
-}
+} */
 
 /* Featured */
 
-.features {
+/* .features {
   border-bottom: 2px solid #a9a9a9;
 }
 
@@ -217,11 +240,11 @@ section {
 
 .featured-item:hover .featured-icon {
   color: #00adb5;
-}
+} */
 
 /* Testimonial */
 
-.testimonials {
+/* .testimonials {
   background-image: url("../../assets/os-backgroundphoto.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -249,11 +272,11 @@ section {
 
 .testimonial-item p {
   text-align: left;
-}
+} */
 
 /* FAQ */
 
-.faq {
+/* .faq {
   border-bottom: 2px solid #a9a9a9;
 }
 
@@ -304,18 +327,64 @@ section {
   -webkit-text-fill-color: transparent;
   font-size: 2rem;
   margin-right: 2rem;
-}
+} */
 
 /* Media */
 
-@media (max-width: 640px) {
-  .navbar .container {
-    flex-direction: column;
+@media (max-width: 1024px) {
+  .homepage h1 {
+    font-size: 48px;
+  }
+
+  .homepage h2 {
+    font-size: 34px;
+  }
+
+  .homepage h3 {
+    font-size: 24px;
+  }
+
+  .homepage h4 {
+    font-size: 20px;
+  }
+
+  .homepage h5 {
+    font-size: 18px;
+  }
+
+  .homepage h6 {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 768px) {
-  .hero {
-    height: 300px;
+  .homepage h1 {
+    font-size: 34px;
+  }
+
+  .homepage h2 {
+    font-size: 24px;
+  }
+
+  .homepage h3 {
+    font-size: 20px;
+  }
+
+  .homepage h4 {
+    font-size: 18px;
+  }
+
+  .homepage h5 {
+    font-size: 16px;
+  }
+
+  .homepage h6 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar .container {
+    flex-direction: column;
   }
 }
