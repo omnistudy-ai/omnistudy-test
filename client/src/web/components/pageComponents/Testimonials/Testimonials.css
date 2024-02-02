@@ -69,3 +69,13 @@
     margin: 0;
   }
 }
+
+@media (max-width: 425px) {
+  .testimonial-top {
+    flex-direction: column;
+  }
+
+  .testimonial-text {
+    gap: 0;
+  }
+}

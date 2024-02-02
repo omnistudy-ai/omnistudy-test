@@ -2,21 +2,39 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/OmniStudy-logo.png";
 import Container from "../UI/Container";
-import EncryptButton from "../UI/EncryptedButton";
 import { motion } from "framer-motion";
+import Hamburger from "./Hamburger/Hamburger";
+import { useState, useEffect } from "react";
 
 function Navbar() {
   const navigate = useNavigate();
+  const [navbarColor, setNavbarColor] = useState(false);
 
   const handleLoginClick = () => {
     navigate("/login");
   };
 
+  const navbarColorHandler = () => {
+    if (window.scrollY > 110) {
+      setNavbarColor(true);
+    } else {
+      setNavbarColor(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", navbarColorHandler);
+
+    return () => {
+      window.removeEventListener("scroll", navbarColorHandler);
+    };
+  }, []);
+
   return (
-    <header className="navbar">
+    <header className={navbarColor ? "navbar active" : "navbar"}>
       <Container>
         <div className="navbar-logo">
-          <img src={logo} alt="" />
+          <img src={logo} alt="Omnistudy" loading="lazy" />
         </div>
         <nav>
           <ul>
@@ -41,6 +59,7 @@ function Navbar() {
               </motion.button>
             </li>
           </ul>
+          <Hamburger />
         </nav>
       </Container>
     </header>
