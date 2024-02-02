@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import AssignmentsDB, { AssignmentSchema } from "../../../../tools/db/Assignments";
+import { Timestamp } from "firebase/firestore";
+
 
 type PropsType = {
   courseId: string;
@@ -7,60 +9,47 @@ type PropsType = {
 
 const UpcomingAssignments = ({ courseId }: PropsType) => {
   const [assignments, setAssignments] = useState<AssignmentSchema[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!courseId) {
-      console.error("Course ID is not provided.");
-      setError("Course ID is not provided.");
-      return;
-    }
-
     AssignmentsDB.getAllAssignmentsForCourse(courseId)
       .then((data) => {
-        console.log("Fetched Data: ", data);
-        if (data.length === 0) {
-          console.log(`No assignments found for course ID: ${courseId}`);
-          setError("No assignments found for this course.");
-          return;
-        }
+        console.log("Fetched Data: ", data); // Log the fetched data
 
-        const upcomingAssignments = data.filter(assignment => {
-          const dueDate = new Date(assignment.dueDate);
-          return dueDate > new Date() && !isNaN(dueDate.getTime()); // Ensure dueDate is valid
-        });
-
-        if (upcomingAssignments.length === 0) {
-          console.log(`No upcoming assignments found for course ID: ${courseId}`);
-          setError("No upcoming assignments.");
-        } else {
-          setAssignments(upcomingAssignments);
-        }
+        // Update the state with the fetched data
+        setAssignments(data);
       })
-      .catch(err => {
-        console.error("Failed to fetch assignments: ", err);
-        setError("Failed to fetch assignments.");
+      .catch(error => {
+        console.error("Failed to fetch assignments: ", error);
       });
   }, [courseId]);
 
   return (
     <div className="p-4 max-w-full">
       <h2 className="text-2xl font-semibold mb-4">Upcoming Assignments</h2>
-      {error ? (
-        <p className="text-sm text-red-500">{error}</p>
-      ) : assignments.length > 0 ? (
-        <div className="space-y-3">
-          {assignments.map((assignment) => (
-            <div key={assignment.aid} className="bg-white shadow-md rounded-md p-4">
-              <h3 className="text-lg font-bold">{assignment.aname}</h3>
-              <p className="text-sm text-gray-600">Due: {new Date(assignment.dueDate).toLocaleDateString()}</p>
-              {/* Add more details or actions for each assignment */}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="text-sm text-gray-500">Fetching assignments...</p>
-      )}
+      <div className="space-y-3">
+        {assignments.map((assignment) => (
+          <div key={assignment.aid} className="bg-white shadow-md rounded-md p-4">
+            <h3 className="text-lg font-bold">{assignment.aname}</h3>
+            <p className="text-sm text-gray-600">Course: {assignment.cname}</p>
+            <p className="text-sm text-gray-600">
+              Due: {
+                assignment.dueDate
+                  ? (assignment.dueDate instanceof Timestamp
+                    ? assignment.dueDate.toDate().toLocaleDateString() // Convert Firestore Timestamp to Date and format
+                       : new Date(assignment.dueDate).toLocaleDateString()) 
+                          : 'No due date'
+              }
+            </p>
+
+            <p className="text-sm text-gray-600">Due Time: {assignment.dueTime}</p>
+            {assignment.notes && assignment.notes.trim() !== '' && (
+              <p className="text-sm text-gray-600">Notes: {assignment.notes}</p>
+               )}
+          </div>
+        ))}
+
+        {assignments.length === 0 && <p className="text-sm text-gray-500">No upcoming assignments.</p>}
+      </div>
     </div>
   );
 };
