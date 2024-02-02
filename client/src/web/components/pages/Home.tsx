@@ -1,73 +1,39 @@
-import { useState } from "react";
 import "./Home.css";
 import Navbar from "../nav/Navbar";
-import Container from "../UI/Container";
-import logo from "../../assets/OmniStudy-logo.png";
-import TimelineIcon from "@mui/icons-material/Timeline";
-import DeviceHubIcon from "@mui/icons-material/DeviceHub";
-import CheckIcon from "@mui/icons-material/Check";
-import LockIcon from "@mui/icons-material/Lock";
-import CreateIcon from "@mui/icons-material/Create";
-import SpeedIcon from "@mui/icons-material/Speed";
-import HeadphonesIcon from "@mui/icons-material/Headphones";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import AutoStoriesIcon from "@mui/icons-material/AutoStories";
-import QuizIcon from "@mui/icons-material/Quiz";
-import StyleIcon from "@mui/icons-material/Style";
-import SummarizeIcon from "@mui/icons-material/Summarize";
-import Card from "../UI/Card";
+// import Container from "../UI/Container";
+// import logo from "../../assets/OmniStudy-logo.png";
+// import TimelineIcon from "@mui/icons-material/Timeline";
+// import DeviceHubIcon from "@mui/icons-material/DeviceHub";
+// import CheckIcon from "@mui/icons-material/Check";
+// import LockIcon from "@mui/icons-material/Lock";
+// import CreateIcon from "@mui/icons-material/Create";
+// import SpeedIcon from "@mui/icons-material/Speed";
+// import HeadphonesIcon from "@mui/icons-material/Headphones";
+// import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+// import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+// import QuizIcon from "@mui/icons-material/Quiz";
+// import StyleIcon from "@mui/icons-material/Style";
+// import SummarizeIcon from "@mui/icons-material/Summarize";
+// import Card from "../UI/Card";
 import Footer from "../footer/Footer";
-
-interface FAQItem {
-  question: string;
-  answer: string;
-  number: any;
-}
+import Hero from "../pageComponents/Hero/Hero";
+import HomeStat from "../pageComponents/HomeStat/HomeStat";
+import HomeMission from "../pageComponents/HomeMission/HomeMission";
+import HomeFeatured from "../pageComponents/HomeFeatured/HomeFeatured";
+import Testimonials from "../pageComponents/Testimonials/Testimonials";
+import Faq from "../pageComponents/Faq/Faq";
 
 export default function Home() {
-  const faqData: FAQItem[] = [
-    {
-      number: "01",
-      question: "How do I set up my OmniStudy account?",
-      answer:
-        "Visit our website, click 'Sign Up,' and follow the simple steps to create your personalized account for a seamless start.",
-    },
-    {
-      number: "02",
-      question: "Can I use OmniStudy for any subject?",
-      answer:
-        "Absolutely! OmniStudy caters to a wide range of subjects, tailoring its features to your unique learning style and academic needs.",
-    },
-    {
-      number: "03",
-      question: "How does OmniStudy provide personalized study plans?",
-      answer:
-        "OmniStudy analyzes your learning style and preferences to curate customized study materials and schedules, maximizing your study efficiency.",
-    },
-    {
-      number: "04",
-      question: "Is OmniStudy compatible with different devices?",
-      answer:
-        "Yes, OmniStudy is designed for flexibility. Enjoy a consistent experience across various devices, ensuring accessibility and convenience in your study routine.",
-    },
-    {
-      number: "05",
-      question: "What kind of real-time feedback does OmniStudy offer?",
-      answer:
-        "OmniStudy provides instant feedback on your progress, highlighting strengths and areas for improvement. It adapts recommendations to enhance your learning journey continuously.",
-    },
-  ];
-
-  const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
-
-  const handleQuestionClick = (index: number) => {
-    setSelectedQuestion(selectedQuestion === index ? null : index);
-  };
-
   return (
     <div className="homepage">
       <Navbar />
-      <section className="hero">
+      <Hero />
+      <HomeStat />
+      <HomeFeatured />
+      <HomeMission />
+      <Testimonials />
+      <Faq />
+      {/* <section className="hero">
         <Container>
           <h1>
             Welcome to <span>OmniStudy</span>
@@ -79,8 +45,8 @@ export default function Home() {
           </p>
           <a href="/register">Get Started</a>
         </Container>
-      </section>
-      <section className="stat">
+      </section> */}
+      {/* <section className="stat">
         <Container>
           <img src={logo} alt="" />
           <h3>OmniStudy</h3>
@@ -106,51 +72,56 @@ export default function Home() {
               <DeviceHubIcon className="stat-icon" />
               <span>100% USER FRIENDLY</span>
               <p>
-               Experience a seamless interface designed with the user's journey in mind. 
-               Intuitive navigation and personalized settings mean you spend less time 
-               figuring things out and more time achieving your goals.
+                Experience a seamless interface designed with the user's journey
+                in mind. Intuitive navigation and personalized settings mean you
+                spend less time figuring things out and more time achieving your
+                goals.
               </p>
             </div>
             <div className="stat-item">
               <CheckIcon className="stat-icon" />
               <span>100% VERIFIED</span>
               <p>
-              Trust in a platform that's been rigorously tested. Our community of experts 
-              ensures that all content is up-to-date and reflects the latest industry 
-              standards. Your success is built on verified knowledge.
+                Trust in a platform that's been rigorously tested. Our community
+                of experts ensures that all content is up-to-date and reflects
+                the latest industry standards. Your success is built on verified
+                knowledge.
               </p>
             </div>
             <div className="stat-item">
               <LockIcon className="stat-icon" />
               <span>Secure & Flexible</span>
               <p>
-              Your data's integrity is our top priority. Enjoy the flexibility of a system 
-              that adapts to your needs while employing state-of-the-art security measures 
-              to keep your information safe.
+                Your data's integrity is our top priority. Enjoy the flexibility
+                of a system that adapts to your needs while employing
+                state-of-the-art security measures to keep your information
+                safe.
               </p>
             </div>
             <div className="stat-item">
               <CreateIcon className="stat-icon" />
               <span>#1 Educational Resource</span>
               <p>
-              Rated as the top resource by educators worldwide, our platform offers an expansive 
-              library of materials tailored to foster growth in various fields. Discover why we're 
-              the first choice for learning.
+                Rated as the top resource by educators worldwide, our platform
+                offers an expansive library of materials tailored to foster
+                growth in various fields. Discover why we're the first choice
+                for learning.
               </p>
             </div>
             <div className="stat-item">
               <SpeedIcon className="stat-icon" />
               <span>In Beta Testing</span>
               <p>
-              Be part of shaping the future of education. Our beta program invites you to test new 
-              features and provide feedback. Your insights are valuable in crafting an 
-              unparalleled learning experience.
+                Be part of shaping the future of education. Our beta program
+                invites you to test new features and provide feedback. Your
+                insights are valuable in crafting an unparalleled learning
+                experience.
               </p>
             </div>
           </div>
         </Container>
-      </section>
-      <section className="mission-statement">
+      </section> */}
+      {/* <section className="mission-statement">
         <Container>
           <div className="mission-content">
             <h2>Our Mission</h2>
@@ -164,8 +135,8 @@ export default function Home() {
             </p>
           </div>
         </Container>
-      </section>
-      <section className="features">
+      </section> */}
+      {/* <section className="features">
         <Container>
           <img src={logo} alt="" />
           <h3>Elevate Learning Everywhere</h3>
@@ -223,8 +194,8 @@ export default function Home() {
             </div>
           </div>
         </Container>
-      </section>
-      <section className="testimonials">
+      </section> */}
+      {/* <section className="testimonials">
         <Container>
           <h2>See What Others Had To Say</h2>
           <div className="testimonial-grid">
@@ -270,8 +241,8 @@ export default function Home() {
             </Card>
           </div>
         </Container>
-      </section>
-      <section className="faq">
+      </section> */}
+      {/* <section className="faq">
         <Container>
           <img src={logo} alt="" />
           <h3>Capitalize on Opportunity</h3>
@@ -297,7 +268,7 @@ export default function Home() {
             ))}
           </div>
         </Container>
-      </section>
+      </section> */}
       <Footer />
     </div>
   );

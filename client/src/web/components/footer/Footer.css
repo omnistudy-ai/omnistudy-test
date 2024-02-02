@@ -59,3 +59,26 @@
   margin-top: 1rem;
   color: #a9a9a9;
 }
+
+@media (max-width: 768px) {
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1rem;
+  }
+
+  .footer-logo {
+    grid-column: 1 / span 2;
+  }
+
+  .footer-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-socials {
+    flex-direction: row;
+  }
+}
