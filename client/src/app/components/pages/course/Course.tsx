@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 // Utility imports
 import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
-import CourseNotes from "./CourseNotes";
-import UpcomingAssignments from "./upcomingAssignmentCard";
+import CourseNotes from "./IndividualCoursePg/CourseNotes";
+import UpcomingAssignments from "./IndividualCoursePg/upcomingAssignmentCard";
 
 export default function Course() {
 

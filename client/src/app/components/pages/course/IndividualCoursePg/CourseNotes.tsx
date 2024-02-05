@@ -74,7 +74,7 @@ const FlexBetween: React.FC<FlexBetweenProps> = ({ children, ...props }) => (
                 <FlexBetween mb={4}>
                     <Box>
                     <h4 className="text-xl font-semibold mb-2">{courseData?.number} Notes</h4>
-      <p className="text-gray-600 mb-4 italic pl-2">Recently Saved notes</p>
+      <p className="text-gray-600 mb-4 italic pl-2">Recently `Saved notes</p>
                     </Box>
                 </FlexBetween>
                 <MoreVert className="text-black absolute top-3 right-3" onClick={(e) => moreHandler(e)}></MoreVert>
