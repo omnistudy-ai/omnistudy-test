@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import CoursesDB, { CourseSchema } from "../../../../tools/db/Courses";
 import CourseNotes from "./IndividualCoursePg/CourseNotes";
 import UpcomingAssignments from "./IndividualCoursePg/upcomingAssignmentCard";
+import NextEvent from "./IndividualCoursePg/NextEvent";
+
 
 export default function Course() {
 
@@ -49,6 +51,7 @@ export default function Course() {
             {/* List out all uploaded notes and most recently uploaded first */}
             <CourseNotes />
             <UpcomingAssignments courseId={params.cid || ''} />
+            <NextEvent courseId={params.cid || ''} />
     </div>
        
     )

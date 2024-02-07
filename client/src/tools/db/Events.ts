@@ -1,6 +1,7 @@
 import { db } from "../firebase";
-import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, arrayUnion, query, collection, where, getDocs } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+import { CourseSchema } from "./Courses";
 
 class EventsDatabase {
     /**
@@ -26,6 +27,16 @@ class EventsDatabase {
         }
         else 
             return null;
+    }
+
+    async getEventForCourse(courseId: string): Promise<Array<EventSchema>>{
+        const q = query(collection(db, "events"), where("cid", "==", courseId));
+        const querySnapshot = await getDocs(q);
+        const events: Array<EventSchema> = [];
+        querySnapshot.forEach((doc) => {
+            events.push(doc.data() as EventSchema);
+        })
+        return events;
     }
 
     /**

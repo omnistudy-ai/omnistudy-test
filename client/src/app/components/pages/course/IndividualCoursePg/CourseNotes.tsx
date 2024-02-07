@@ -64,8 +64,12 @@ const FlexBetween: React.FC<FlexBetweenProps> = ({ children, ...props }) => (
 );
 
 
+
+
     return(
-            
+            <>
+                  <div className="text-left border-b-[1px] border-stone-300 px-5 py-4 bg-stone-100 flex items-center">
+        <span className="text-4xl font-bold mr-auto text-stone-600">Your Notes</span> </div>
             <Card sx={{
                 padding: 3,
                 pb:0,
@@ -73,9 +77,10 @@ const FlexBetween: React.FC<FlexBetweenProps> = ({ children, ...props }) => (
             }}>
                 <FlexBetween mb={4}>
                     <Box>
-                    <h4 className="text-xl font-semibold mb-2">{courseData?.number} Notes</h4>
-      <p className="text-gray-600 mb-4 italic pl-2">Recently `Saved notes</p>
+                    <h4 className="text-xl font-semibold mb-2">Recently Opened Notes</h4>
+
                     </Box>
+                    {/* notes.map */}
                 </FlexBetween>
                 <MoreVert className="text-black absolute top-3 right-3" onClick={(e) => moreHandler(e)}></MoreVert>
 
@@ -119,6 +124,17 @@ const FlexBetween: React.FC<FlexBetweenProps> = ({ children, ...props }) => (
 
                 </h1>
             </Card>
+            {/* <Card sx={{
+                padding: 3,
+                pb: 0,
+                position: 'relative'
+            }}
+            >
+
+            </Card> */}
+                
+
+            </>
             
         
         

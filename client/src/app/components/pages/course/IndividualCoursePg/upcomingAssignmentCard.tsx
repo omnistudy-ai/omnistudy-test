@@ -26,13 +26,13 @@ export const UpcomingAssignments = ({ courseId }: PropsType) => {
 
   return (
     <div className="p-4 max-w-full">
-      <h2 className="fl-xtext-2xl font-semibold mb-4">Upcoming Assignments</h2>
+      <h2 className="text-xl font-semibold mb-2">Upcoming Assignments</h2>
       <div className="space-y-3">
         {assignments.map((assignment) => (
-          <div key={assignment.aid} className=" bg-white shadow-md rounded-md p-4">
+          <div key={assignment.aid} className="flex flex-row justify-between py-1 ml-50 bg-white shadow-md rounded-md p-4">
             <h3 className="text-lg font-bold">{assignment.aname}</h3>
-            <p className="text-sm text-gray-600">Course: {assignment.cname}</p>
-            <p className="text-sm text-gray-600">
+
+            <p className="text-sm text-gray-600 pl-50">
               Due: {
                 assignment.dueDate
                   ? (assignment.dueDate instanceof Timestamp
@@ -43,7 +43,7 @@ export const UpcomingAssignments = ({ courseId }: PropsType) => {
             </p>
 
             <p className="text-sm text-gray-600">Due Time: {assignment.dueTime}</p>
-            {assignment.notes && assignment.notes.trim() !== '' && (
+            {assignment.notes && assignment.notes.length < 20 && assignment.notes.trim() !== '' && (
               <p className="text-sm text-gray-600">Notes: {assignment.notes}</p>
                )}
           </div>
