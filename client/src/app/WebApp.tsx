@@ -23,6 +23,7 @@ import DocQA from "./components/DocQA";
 import AppAuth from "../tools/Auth";
 // import Footer from "../web/components/footer/Footer";
 import "./WebApp.css";
+import Exams from "./components/pages/course/Exams";
 
 export default function WebApp() {
   // Ensure the user is logged in before displaying any of the routes below
@@ -59,6 +60,8 @@ export default function WebApp() {
             <Route path="/assignments" element={<Assignments />} />
             {/* Display information about an assignment for a specific course */}
             <Route path="/courses/:cid/assignments/:aid" element={<Assignment />} />
+            {/* Display all exams to the user */}
+            <Route path="/exams" element={<Exams />} />
             {/* Display the user's schedule */}
             <Route path="/schedule" element={<Schedule/>} />
             {/* Display user and application settings */}

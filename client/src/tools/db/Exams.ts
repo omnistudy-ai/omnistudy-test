@@ -1,5 +1,5 @@
 import { db } from "../firebase";
-import { collection, doc, getDoc, query, where, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc,setDoc, query, where, getDocs, updateDoc, arrayUnion } from "firebase/firestore";
 
 class ExamsDatabase {
     /**
@@ -47,6 +47,17 @@ class ExamsDatabase {
             exams.push(doc.data() as ExamSchema);
         });
         return exams;
+    }
+
+    /**
+     * Add a new exam to Firestore under a specific course.
+     */
+    async addExam(cid: string, examData: ExamSchema): Promise<void> {
+        const examRef = doc(db, "exams", examData.eid);
+        await setDoc(examRef, examData);
+        await updateDoc(doc(db, "exams", cid), {
+            exams: arrayUnion(examData.eid)
+        })
     }
 }
 
