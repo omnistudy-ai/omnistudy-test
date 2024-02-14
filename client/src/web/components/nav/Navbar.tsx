@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/OmniStudy-logo.png";
 import Container from "../UI/Container";
+import EncryptButton from "../UI/EncryptedButton";
+import { motion } from "framer-motion";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -17,10 +19,28 @@ function Navbar() {
           <img src={logo} alt="" />
         </div>
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/Pricing">Pricing</Link>
-          <Link to="/About">About Us</Link>
-          <button onClick={handleLoginClick}>Login</button>
+          <ul>
+            <li>
+              <Link to="/" aria-label="Home">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" aria-label="About Us">
+                About Us
+              </Link>
+            </li>
+            {/* <Link to="/Pricing">Pricing</Link> */}
+            <li>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleLoginClick}
+              >
+                Login
+              </motion.button>
+            </li>
+          </ul>
         </nav>
       </Container>
     </header>
