@@ -34,6 +34,7 @@ class QA:
         similarity="cosine",
         embedding_dim=768
         )
+
     def Assign_API_Keys(self):
         #Load environment variables from .env file
         # (overide = true) just forces a reload on the .env file in case api key changes
@@ -69,6 +70,29 @@ class QA:
         attention_mask=model_input["attention_mask"],
         min_length=64,
         max_length=256,
+        do_sample=False, 
+        early_stopping=True,
+        num_beams=8,
+        temperature=1.0,
+        eos_token_id=tokenizer.eos_token_id,
+        no_repeat_ngram_size=3,
+        num_return_sequences=1
+        )
+
+        return tokenizer.batch_decode(generated_answers_encoded, skip_special_tokens=True,clean_up_tokenization_spaces=True)
+    def run_for_Summ(self,text,query):
+        model_name = "vblagoje/bart_lfqa"
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+        conditioned_doc = "<P> " + text[0] + " <P> "
+        query_and_docs = "question: {} context: {}".format(query, conditioned_doc)
+        model_input = tokenizer(query_and_docs, truncation=True, padding=True, return_tensors="pt")
+
+        generated_answers_encoded = model.generate(
+        input_ids=model_input["input_ids"],
+        attention_mask=model_input["attention_mask"],
+        min_length=10,
+        max_length=45,
         do_sample=False, 
         early_stopping=True,
         num_beams=8,
