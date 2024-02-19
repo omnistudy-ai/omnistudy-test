@@ -98,6 +98,10 @@
 } */
 
 @media (max-width: 640px) {
+  .hero {
+    height: auto;
+  }
+
   .hero .container {
     display: flex;
   }

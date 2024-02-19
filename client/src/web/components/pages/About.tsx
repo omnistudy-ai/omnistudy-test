@@ -1,15 +1,25 @@
 import "./About.css";
 import Navbar from "../nav/Navbar";
-import Container from "../UI/Container";
-import logo from "../../assets/OmniStudy-logo.png";
+// import Container from "../UI/Container";
+// import logo from "../../assets/OmniStudy-logo.png";
 import Footer from "../footer/Footer";
+import AboutHero from "../pageComponents/AboutHero/AboutHero";
+import Overview from "../pageComponents/Overview/Overview";
+import Goals from "../pageComponents/Goals/Goals";
+import GoingForward from "../pageComponents/GoingForward/GoingForward";
+import Team from "../pageComponents/Team/Team";
 
 export default function About() {
   return (
     <div className="About">
       <Navbar />
+      <AboutHero />
+      <Overview />
+      <Goals />
+      <GoingForward />
+      <Team />
 
-      <section className="about-hero">
+      {/* <section className="about-hero">
         <Container>
           <h1>Project Overview</h1>
           <p>
@@ -28,9 +38,9 @@ export default function About() {
             unparalleled learning experience.
           </p>
         </Container>
-      </section>
+      </section> */}
 
-      <section className="project-goals">
+      {/* <section className="project-goals">
         <Container>
           <img src={logo} alt="" />
           <h3>One Step at a Time</h3>
@@ -67,9 +77,9 @@ export default function About() {
             </p>
           </div>
         </Container>
-      </section>
+      </section> */}
 
-      <section className="team">
+      {/* <section className="team">
         <Container>
           <h2>The Omnistudy Team</h2>
           <div className="team-grid">
@@ -131,9 +141,9 @@ export default function About() {
             </div>
           </div>
         </Container>
-      </section>
+      </section> */}
 
-      <section className="going-forward">
+      {/* <section className="going-forward">
         <Container>
           <div className="going-forward-grid">
             <div className="going-forward-img"></div>
@@ -162,7 +172,7 @@ export default function About() {
             </div>
           </div>
         </Container>
-      </section>
+      </section> */}
       <Footer />
     </div>
   );

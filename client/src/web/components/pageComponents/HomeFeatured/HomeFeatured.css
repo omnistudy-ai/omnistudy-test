@@ -81,3 +81,13 @@
     height: 230px;
   }
 }
+
+@media (max-width: 640px) {
+  .featured-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .featured-item {
+    height: auto;
+  }
+}

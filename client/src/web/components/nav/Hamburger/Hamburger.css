@@ -1,0 +1,127 @@
+.navbar-small {
+  display: none;
+}
+
+.hamburger-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.nav-modal {
+  background-color: #f5f5f5;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.navbar-small-content {
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+
+.navbar-small-content img {
+  height: 100px;
+  width: auto;
+}
+
+.navbar-small-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-small-links a {
+  text-decoration: none;
+  transition: 0.3s;
+  position: relative;
+}
+
+.navbar-small-lower-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-small-lower-links a {
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.navbar-small-lower-links a:hover {
+  color: #00adb5;
+}
+
+.hamburger {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.hamburger:hover .line-bottom {
+  width: 30px;
+}
+
+.line-top,
+.line-bottom {
+  margin-left: auto;
+  position: absolute;
+  display: block;
+  height: 2px;
+  border-radius: 10px;
+  background-color: #000;
+  left: 0;
+  right: 0;
+  transform: rotate(0deg);
+  transition: all 0.4s;
+}
+
+.line-top {
+  width: 30px;
+  top: 0.95rem;
+}
+
+.line-bottom {
+  width: 25px;
+  bottom: 0.95rem;
+}
+
+.line-top.spin {
+  top: 1.2rem;
+  transform: rotate(135deg);
+  width: 30px;
+}
+
+.line-bottom.spin {
+  bottom: 1.2rem;
+  transform: rotate(-135deg);
+  width: 30px;
+}
+
+@media (max-width: 640px) {
+  .navbar-small {
+    display: block;
+  }
+
+  .hamburger {
+    margin-right: 1rem;
+  }
+}

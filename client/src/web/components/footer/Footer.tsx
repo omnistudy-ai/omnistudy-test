@@ -17,7 +17,7 @@ function Footer() {
               <img src={logo} alt="Omnistudy logo" />
             </div>
             <div className="footer-grid-item">
-              <h3>Useful Links</h3>
+              <h6>Useful Links</h6>
               <div className="footer-links">
                 <Link to="/">Home</Link>
                 {/* <Link to="/Pricing">Pricing</Link> */}
@@ -26,14 +26,14 @@ function Footer() {
               </div>
             </div>
             <div className="footer-grid-item">
-              <h3>Support</h3>
+              <h6>Support</h6>
               <div className="footer-links">
                 <Link to="/Contact">Contact</Link>
                 <a href="mailto:help@omnistudy.ai">Email</a>
               </div>
             </div>
             <div className="footer-grid-item">
-              <h3>Social</h3>
+              <h6>Social</h6>
               <div className="footer-links footer-socials">
                 <a href="/">
                   <InstagramIcon />
@@ -50,7 +50,7 @@ function Footer() {
               </div>
             </div>
             <div className="footer-grid-item">
-              <h3>Policies</h3>
+              <h6>Policies</h6>
               <div className="footer-links">
                 <Link to="/">Terms & Conditions</Link>
                 <Link to="/">Privacy Policy</Link>

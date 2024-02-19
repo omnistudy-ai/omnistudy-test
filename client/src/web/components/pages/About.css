@@ -1,4 +1,28 @@
-.about-hero {
+.About h1 {
+  font-size: 64px;
+}
+
+.About h2 {
+  font-size: 48px;
+}
+
+.About h3 {
+  font-size: 34px;
+}
+
+.About h4 {
+  font-size: 24px;
+}
+
+.About h5 {
+  font-size: 20px;
+}
+
+.About h6 {
+  font-size: 18px;
+}
+
+/* .about-hero {
   height: 75vh;
   padding: 2rem;
   background-image: url("../../assets/about-hero.png");
@@ -25,11 +49,11 @@
 .about-hero p {
   margin-bottom: 1rem;
   max-width: 850px;
-}
+} */
 
 /* Goals */
 
-.project-goals {
+/* .project-goals {
   background-color: #f5f5f5;
   border-bottom: 2px solid #a9a9a9;
 }
@@ -70,11 +94,11 @@
 
 .project-goals-content h4 {
   font-weight: bold;
-}
+} */
 
 /* Team */
 
-.team {
+/* .team {
   border-bottom: 2px solid #a9a9a9;
   background-image: url("../../assets/os-backgroundphoto.png");
   background-size: cover;
@@ -128,11 +152,11 @@
 .team-member-content span {
   color: #5a5a5a;
   font-size: 0.9rem;
-}
+} */
 
 /* Going Forward */
 
-.going-forward {
+/* .going-forward {
   background-color: #f5f5f5;
   border-bottom: 2px solid #a9a9a9;
 }
@@ -159,4 +183,4 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+} */
