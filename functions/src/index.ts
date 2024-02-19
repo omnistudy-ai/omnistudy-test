@@ -30,7 +30,8 @@ app.post('/callPythonFunction', async (req, res) => {
     //     return;
     // }
     // const user = userData.data();
-    
+    //check if user has access to a textbook
+    // assumes we're updating user info when they upload a textbook
 
     const pythonScriptPath = path.join(__dirname, 'AI', `${scriptName}.py`);
     //declare script name as one of the below names
@@ -50,7 +51,8 @@ app.post('/callPythonFunction', async (req, res) => {
 
     const output = JSON.parse(result.stdout.trim());
     const answer = output.answer;
-    console.log(answer);
+    //Return JSON response to front end
+    res.status(200).json({ answer: answer });
 
 });
 
