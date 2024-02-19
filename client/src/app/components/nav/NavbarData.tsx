@@ -6,6 +6,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ScheduleIcon from '@mui/icons-material/Schedule';
+import EventIcon from '@mui/icons-material/Event';
+import ClassIcon from '@mui/icons-material/Class';
 
 
 export const NavbarData = [
@@ -24,6 +26,16 @@ export const NavbarData = [
         icon: <AssignmentsIcon />,
         link: "/app/assignments"
     },    
+    {
+        title: "Exams",
+        icon: <ClassIcon />,
+        link: "/app/exams"
+    },
+    // {
+    //     title: "Events",
+    //     icon: <EventIcon />,
+    //     link: "/app/events"
+    // },
     {
         title: "Schedule",
         icon: <ScheduleIcon />,
