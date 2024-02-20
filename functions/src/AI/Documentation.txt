@@ -1,0 +1,5 @@
+Script        |       Return Type
+AI_QA                    string
+Process_PDF               None
+Question_Gen     (string question : string answer)
+Summarize                [strings]
