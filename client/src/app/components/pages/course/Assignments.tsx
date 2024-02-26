@@ -54,7 +54,7 @@ function Assignments() {
             <span className="text-2xl font-bold">Overdue</span>
           </div>
           <div className="card-body">
-            <span className="text-6xl font-bold">{assignments.filter((assignment) => new Date(assignment.dueDate) < new Date()).length}</span>
+            <span className="text-6xl font-bold">{assignments.filter((assignment) => new Date(assignment.dueDate * 1000) < new Date()).length}</span>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ function Assignments() {
             return <a href={`/app/courses/${assignment.cid}/assignments/${assignment.aid}`}>
               <div className="flex flex-row items-center justify-center text-left gap-y-3 border-b p-3 rounded-t-lg hover:bg-stone-50">
                 <div className="text mr-auto">
-                  {new Date(assignment.dueDate) < new Date() ? <span className="font-mono gap-1 text-sm mb-2 p-2 shadow bg-stone-100 text-red-500 flex w-fit justify-center items-center rounded-lg">
+                  {new Date(assignment.dueDate * 1000) < new Date() ? <span className="font-mono gap-1 text-sm mb-2 p-2 shadow bg-stone-100 text-red-500 flex w-fit justify-center items-center rounded-lg">
                     <img 
                       src="/warning.png"
                       height="18px"
@@ -78,7 +78,7 @@ function Assignments() {
                   <span className="text-stone-500">{assignment.aname}</span><br/>
                   <span className="text-xs text-stone-400">{assignment.cname.slice(0, 34)}...</span>
                 </div>
-                <div className="progress text-stone-500">100%</div>
+                <div className="progress text-stone-500">{assignment.progress}%</div>
               </div>
             </a>
           })}

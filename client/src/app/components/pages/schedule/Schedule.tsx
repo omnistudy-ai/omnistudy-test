@@ -120,14 +120,10 @@ function Schedule() {
             {/* Text page header */}
             <div className="text-left border-b-[1px] border-stone-300 px-5 py-4 bg-stone-100 flex items-center">
                 <span className="text-4xl font-bold mr-auto text-stone-600">Schedule</span>
-                <select>
-                    <option value="month">Month</option>
-                    <option value="week" selected>Week</option>
-                </select>
             </div>
 
             {/* Calendar pagination selector */}
-            <div className="flex justify-center align-center gap-x-5 p-4 border-b border-stone-300">
+            <div className="flex justify-center align-center gap-x-5 p-4 border-b border-stone-300 hidden">
                 {/* Left arrow button */}
                 <button>Prev</button>
 

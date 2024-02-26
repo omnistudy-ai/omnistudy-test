@@ -42,7 +42,7 @@ const Login: React.FC = () => {
             const user = result.user;
 
             AppAuth.authorize(user, SignInMethod.Google);
-            navigate("/app");
+            navigate("/app/courses");
         } catch (error) {
             console.error("Error with Google sign-in:", error);
         }
@@ -64,7 +64,7 @@ const Login: React.FC = () => {
             const user = userCredential.user;
 
             AppAuth.authorize(user, SignInMethod.Email);
-            navigate("/app");
+            navigate("/app/courses");
         } catch (error) {
             console.error("Error registering new user:", error);
         }

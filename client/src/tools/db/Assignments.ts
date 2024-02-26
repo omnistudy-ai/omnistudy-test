@@ -61,18 +61,27 @@ class AssignmentsDatabase {
     /**
      * Upload a file and update the assignment with its URL.
      */
-    async uploadFileAndUpdateAssignment(assignmentId: string, file: File): Promise<void> {
+    async uploadFileAndUpdateAssignment(assignmentId: string, file: File): Promise<string> {
         const storageRef = ref(storage, `assignments/${assignmentId}/${file.name}`);
         const snapshot = await uploadBytes(storageRef, file);
         const fileUrl = await getDownloadURL(snapshot.ref);
 
         const assignmentRef = doc(db, "assignments", assignmentId);
         await updateDoc(assignmentRef, {
-            fileUrl: fileUrl
+            documents: arrayUnion(fileUrl)
         });
+        return fileUrl;
     }
 
-    
+    /**
+     * Update the progress of an assignment.
+     */
+    async updateAssignmentProgress(aid: string, progress: number): Promise<void> {
+        const assignmentRef = doc(db, "assignments", aid);
+        await updateDoc(assignmentRef, {
+            progress: progress
+        });
+    }
 }
 
 const AssignmentsDB = new AssignmentsDatabase();
@@ -87,8 +96,9 @@ export type AssignmentSchema = {
     uid: string,
     cnumber: string,
     cname: string,
-    dueDate: Date,
+    dueDate: number,
     dueTime: string,
     notes: string,
-    fileUrl?: string  // Optional field for file URL
+    progress: number,
+    documents: string[]  // files
 };

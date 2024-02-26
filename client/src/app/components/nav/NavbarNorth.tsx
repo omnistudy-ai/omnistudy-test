@@ -1,33 +1,42 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import { Collapse, Dropdown, initTE, } from "tw-elements";
+import AppAuth from "../../../tools/Auth";
 
 function NavbarNorth() {
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         initTE({ Collapse, Dropdown });
     }, []);
+
+    function logoutHandler() {
+        AppAuth.deauthorize();
+        navigate("/login");
+    }
 
     return(
     <>
         <nav className="flex-no-wrap relative flex w-full items-center justify-between bg-[#FBFBFB] py-2 shadow-md shadow-black/5 dark:bg-cyan-500 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4 z-50">
             <div className="flex w-full flex-wrap items-center justify-between px-3">
                 <div
-                    className="!visible hidden flex-grow basis-[100%] justify-center items-center lg:!flex lg:basis-auto"
+                    className="!visible hidden flex-grow basis-[100%] justify-start items-center lg:!flex lg:basis-auto"
                     id="navbarSupportedContent1"
                     data-te-collapse-item
                 >
-                <a
-                    className="flex justify-center items-center p-2 text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0"
-                    href="/app"
-                >
-                    <img
-                        src="/logo_blue.png"
-                        style={{ height: "30px" }}
-                        alt="TE Logo"
-                        loading="lazy" 
-                    />
-                </a>
-                <ul
+                    <a
+                        className="flex justify-center items-center p-2 text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0"
+                        href="/app/courses"
+                    >
+                        <img
+                            src="/logo_blue.png"
+                            style={{ height: "30px" }}
+                            alt="TE Logo"
+                            loading="lazy" 
+                        />
+                    </a>
+                {/* <ul
                     className="list-style-none mr-auto flex flex-row pl-0 lg:flex-row"
                     data-te-navbar-nav-ref>
                     <li className="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
@@ -52,31 +61,13 @@ function NavbarNorth() {
                         data-te-nav-link-ref
                         >Projects</a>
                     </li>
-                </ul>
+                </ul> */}
                 </div>
 
 
                 <div className="relative flex items-center">
-
-                {/* Cart icon */}
-                {/* <a
-                    className="mr-4 text-neutral-600 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                    href="#">
-                    <span className="[&>svg]:w-5">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="h-5 w-5">
-                        <path
-                        d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
-                    </svg>
-                    </span>
-                </a> */}
-
-
                 <div
-                    className="relative"
+                    className="relative hidden"
                     data-te-dropdown-ref
                     data-te-dropdown-alignment="end">
 
@@ -159,7 +150,7 @@ function NavbarNorth() {
                     aria-labelledby="dropdownMenuButton2"
                     data-te-dropdown-menu-ref>
 
-                    <li>
+                    {/* <li>
                         <a
                             className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
                             href="#"
@@ -172,14 +163,15 @@ function NavbarNorth() {
                             href="#"
                             data-te-dropdown-item-ref
                         >Another action</a>
-                    </li>
+                    </li> */}
                     <li>
                         <a
                             className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30"
                             href="#"
                             data-te-dropdown-item-ref
+                            onClick={logoutHandler}
                         >
-                            Something else here
+                            Logout
                         </a>
                     </li>
                     </ul>

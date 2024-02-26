@@ -1,0 +1,113 @@
+#env + system imports
+import os
+# from dotenv import load_dotenv
+#pincone
+import pinecone
+from haystack.document_stores import PineconeDocumentStore
+from haystack.nodes import PDFToTextConverter, PreProcessor, EmbeddingRetriever
+
+class FileUpload:
+    def __init__(self):
+        self.pinecone_api_key = None
+        self.huggingface_api_token = None
+        self.document_store = None  
+        self.docs = None  
+    def access_key(self):
+        #Load environment variables from .env file
+        # (overide = true) just forces a reload on the .env file in case api key changes
+        # dotenv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..','..','..', 'client', '.env')
+        # load_dotenv(dotenv_path,override=True)
+        # Access the API key
+        self.pinecone_api_key = "d8412dc6-f006-4fc7-b055-e389b2ca80a1"
+        # self.huggingface_api_token = os.getenv("HUGGING_FACE_API_TOKEN")   
+
+        # Check user access to api_keys
+        if self.pinecone_api_key is None or self.huggingface_api_token is None:
+            return False
+        else:
+            return True
+    def init_index(self):
+        # Initialize the pinecone index
+        index_name='omnistudy'
+        pinecone.init(      
+            api_key=self.pinecone_api_key,      
+            environment='gcp-starter'      
+        )      
+        self.index = pinecone.Index(index_name=index_name)
+
+        # Initialize the haystack document store object
+        self.document_store = PineconeDocumentStore(
+            api_key=self.pinecone_api_key,
+            pinecone_index=self.index,
+            similarity="cosine",
+            embedding_dim=768
+        )
+    def preprocess_text(self,path):
+        converter = PDFToTextConverter(remove_numeric_tables=True, valid_languages=["en"])
+        doc_pdf = converter.convert(file_path=path, meta=None)[0]
+        preprocessor = PreProcessor(
+            clean_empty_lines=True,
+            clean_whitespace=True,
+            clean_header_footer=False,
+            split_by="word",
+            split_length=500,
+            split_respect_sentence_boundary=True,    #prevents sentences from being cut off
+        )
+        self.docs = preprocessor.process([doc_pdf])
+    def init_retriever(self):
+        self.retriever = EmbeddingRetriever(
+            document_store=self.document_store,
+            embedding_model="flax-sentence-embeddings/all_datasets_v3_mpnet-base",
+            model_format="sentence_transformers",
+            top_k=2
+        )
+    def is_file_path_real(file_path):
+        return os.path.exists(file_path)
+    def embed_retriever(self,namespace):
+        #Embed data
+        batch_size = 64
+        total_doc_count = len(self.docs)
+        counter = 0
+        embedded_Docs = []
+        for doc in self.docs:
+            embedded_Docs.append(doc)
+            counter += 1
+            if counter % batch_size == 0 or counter == total_doc_count:
+                embeds = self.retriever.embed_documents(embedded_Docs)
+                for i, doc in enumerate(embedded_Docs):
+                    doc.embedding = embeds[i]
+                self.document_store.write_documents(embedded_Docs,namespace=namespace)
+                embedded_Docs.clear()
+            if counter == total_doc_count:
+                break
+    def upload(self,path,textbook_name):
+        if not self.is_file_path_real(path):
+           raise ValueError("Invalid Path to File")
+        if not self.access_key():
+           raise ValueError("Invalid Access to API Key")
+        self.init_index()
+        print("Initialization of index completed.")
+        self.preprocess_text(path)
+        print("Text preprocessing completed.")
+        self.init_retriever()
+        print("Retriever initialization completed.")
+        print("Begin retriever embedding, this will take some time")
+        self.embed_retriever(namespace=textbook_name)
+        print("Finished! The Pinecone Index should be usable")
+
+    
+if __name__=="__main__":
+    # Freeze support is reccommended for multiprocessing
+    # from multiprocessing import freeze_support
+    # freeze_support()
+
+    import json
+    import sys
+    input_data = json.loads(sys.stdin.read())
+    file_path = input_data.get('input')
+    textbook = input_data.get('textbook')
+    # create a FileUpload object
+    uploader = FileUpload()
+    # use the upload method to upload your file to Pinecone
+    uploader.upload(file_path,textbook_name=textbook)
+    

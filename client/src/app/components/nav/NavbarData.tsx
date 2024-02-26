@@ -12,11 +12,6 @@ import ClassIcon from '@mui/icons-material/Class';
 
 export const NavbarData = [
     {
-        title: "Dashboard",
-        icon: <DashboardIcon />,
-        link: "/app"
-    },
-    {
         title: "Course",
         icon: <CourseIcon />,
         link: "/app/courses"
@@ -26,11 +21,6 @@ export const NavbarData = [
         icon: <AssignmentsIcon />,
         link: "/app/assignments"
     },    
-    {
-        title: "Exams",
-        icon: <ClassIcon />,
-        link: "/app/exams"
-    },
     // {
     //     title: "Events",
     //     icon: <EventIcon />,
@@ -40,15 +30,5 @@ export const NavbarData = [
         title: "Schedule",
         icon: <ScheduleIcon />,
         link: "/app/schedule"
-    },
-    {
-        title: "Settings",
-        icon: <SettingsIcon />,
-        link: "/app/settings"
-    },    
-    {
-        title: "Logout",
-        icon: <LogoutIcon />,
-        link: "/"
     },
 ]

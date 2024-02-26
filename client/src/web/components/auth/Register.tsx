@@ -65,7 +65,7 @@ const Register: React.FC = () => {
             }
 
             AppAuth.register(user, formData, SignInMethod.Google);
-            navigate("/app");
+            navigate("/app/courses");
         } catch (error) {
             console.error("Error with Google sign-in:", error);
         }
@@ -103,7 +103,7 @@ const Register: React.FC = () => {
             }
 
             AppAuth.register(user, formData, SignInMethod.Email);
-            navigate("/app");
+            navigate("/app/courses");
         } catch (error) {
             console.error("Error registering new user:", error);
         }

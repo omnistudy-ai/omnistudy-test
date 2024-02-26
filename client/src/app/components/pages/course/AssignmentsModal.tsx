@@ -44,6 +44,11 @@ function AssignmentsModal(props: AssignmentsModalProps) {
             // Generate a course id
             const aid = uuidv4();
 
+            console.log("due Date:");
+            console.log(dueDate);
+            console.log("dd mseconds:")
+            console.log(dueDate.getTime());
+
             // Generate the assignment data
             const assignmentData = {
                 aid: aid,
@@ -51,10 +56,12 @@ function AssignmentsModal(props: AssignmentsModalProps) {
                 cid: assignmentCourse.id,
                 uid: uid,
                 cname: assignmentCourse.title,
-                dueDate: dueDate,
+                dueDate: dueDate.getTime(),
                 dueTime: dueTime,
                 notes: notes,
-                cnumber: assignmentCourse.number
+                cnumber: assignmentCourse.number,
+                progress: 0,
+                documents: []
             };
 
             // Add the course to the database

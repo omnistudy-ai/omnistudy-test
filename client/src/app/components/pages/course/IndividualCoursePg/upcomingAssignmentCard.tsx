@@ -33,13 +33,7 @@ export const UpcomingAssignments = ({ courseId }: PropsType) => {
             <h3 className="text-lg font-bold">{assignment.aname}</h3>
 
             <p className="text-sm text-gray-600 pl-50">
-              Due: {
-                assignment.dueDate
-                  ? (assignment.dueDate instanceof Timestamp
-                    ? assignment.dueDate.toDate().toLocaleDateString() // Convert Firestore Timestamp to Date and format
-                       : new Date(assignment.dueDate).toLocaleDateString()) 
-                          : 'No due date'
-              }
+              Due: {new Date(assignment.dueDate).toLocaleDateString()}
             </p>
 
             <p className="text-sm text-gray-600">Due Time: {assignment.dueTime}</p>

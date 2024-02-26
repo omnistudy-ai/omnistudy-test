@@ -94,7 +94,7 @@ export default function Courses() {
                       <span className="text-stone-500">{assignment.aname}</span><br/>
                       <span className="text-xs text-stone-400">{assignment.cname.slice(0, 34)}...</span>
                     </div>
-                    <div className="progress text-stone-500">100%</div>
+                    <div className="progress text-stone-500">{assignment.progress}%</div>
                   </div>
                 </a>
               })}
