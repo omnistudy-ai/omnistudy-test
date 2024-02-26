@@ -1,6 +1,6 @@
 import Container from "../../UI/Container";
 import "./Team.css";
-import member from "../../../assets/blue-vape.png";
+import member from "../../../assets/OmniStudy-logo.png";
 
 interface teamMember {
   image: any;
