@@ -36,6 +36,11 @@ function AssignmentsModal(props: AssignmentsModalProps) {
     }, []);
 
     function assignmentModalSubmitHandler() {
+        // User has to input assignment name and course
+        if (assignmentName.trim() === "" || assignmentCourse.id === "") {
+            alert("Please enter an assignment name and select a course.");
+            return; // Stop the function execution
+        }
         // Check authentication
         const authData = AppAuth.getAuth();
         const uid = authData.user.uid;

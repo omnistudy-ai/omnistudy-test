@@ -1,6 +1,6 @@
-import { db, storage } from "../firebase"; // Adjust the import path as needed
-import { doc, getDoc, query, collection, where, getDocs, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../firebase"; 
+import { doc, getDoc, query, collection, where, getDocs, setDoc, updateDoc, arrayUnion, deleteDoc, arrayRemove } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
 
 class AssignmentsDatabase {
     /**
@@ -81,6 +81,24 @@ class AssignmentsDatabase {
         await updateDoc(assignmentRef, {
             progress: progress
         });
+    }
+    /**
+     * Deletes an assignment by its ID and removes it from the course's assignment list.
+     */
+    async deleteAssignment(aid: string, cid: string): Promise<void> {
+        try {
+            // Delete the assignment from the "assignments" collection
+            await deleteDoc(doc(db, "assignments", aid));
+
+            // Remove the assignment ID from the course's assignment list
+            const courseRef = doc(db, "courses", cid);
+            await updateDoc(courseRef, {
+                assignments: arrayRemove(aid)
+            });
+        } catch (error) {
+            console.error("Error deleting assignment: ", error);
+            throw error; 
+        }
     }
 }
 
