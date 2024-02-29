@@ -10,8 +10,6 @@ During this semester, we will be utilizing Google and other third-party technolo
     * Noah Schlorf (schlo348@umn.edu)
     * Abbaas Mohamud (moha1747@umn.edu)
 * Backend Developers:
-    * Alec DuVall (duval120@umn.edu)
-    * Konrad Trestka (trest017@umn.edu)
     * Braydon Higgins (higgi567@umn.edu)
 
 ## Project Features
@@ -36,12 +34,12 @@ Pre-requisites: node.js and npm installed on your machine.
     npm install
     ```
 
-### Note: only the frontend UI is available to run. The code for the server needs to run on a Google Cloud VM and is IP-dependent. You can find the code for the server in the `gc-server` folder.
+### Note: only the frontend UI is available to run. The code for the server needs to run on a Google Cloud VM and is domain name-dependent. You can find the code for the server in the `gc-server` folder.
 3. Run the frontend application, at the root of the folder run:
     ```sh
     cd client
     npm start
     ```
 
-You should now be able to open `localhost:3000` in your browser and see the application running.
-Alternatively, you can view a live demo of the project at `https://omnistudy-test.web.app/`
+You should now be able to open [localhost:3000](localhost:3000) in your browser and see the application running.
+Alternatively, you can view a live demo of the project at [https://omnistudy.io](https://omnistudy.io)
