@@ -27,7 +27,7 @@ function SummarizationModal(props: SummarizationModalProps) {
         setMessages([...messages, { message: messageOut, sender: "user" }]);
         const question = messageOut;
         setMessageOut("");
-        axios.post("http://35.192.151.93:8000/gpt", {
+        axios.post("https://api.omnistudy.io/gpt", {
             doc_paths: props.selectedDocuments,
             question: question,
         }).then((response) => {

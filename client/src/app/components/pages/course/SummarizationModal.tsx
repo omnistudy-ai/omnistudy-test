@@ -28,7 +28,7 @@ function SummarizationModal(props: SummarizationModalProps) {
     function handleSubmit() {
         setTitle("Summarizing documents...");
         setLoading(true);
-        axios.post("http://35.192.151.93:8000/summarize", {
+        axios.post("https://api.omnistudy.io/summarize", {
             doc_paths: props.selectedDocuments,
             length: length,
         }).then((response) => {
