@@ -41,3 +41,13 @@
 .gf-text h3 {
   margin-bottom: 1rem;
 }
+
+@media (max-width: 1024px) {
+  .gf-content {
+    flex-direction: column;
+  }
+
+  .gf-img {
+    justify-content: center;
+  }
+}

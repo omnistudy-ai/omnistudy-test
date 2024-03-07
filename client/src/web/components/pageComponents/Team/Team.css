@@ -40,6 +40,8 @@
 .member-img {
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .member-text {
@@ -54,4 +56,42 @@
 .member-text p {
   font-style: italic;
   color: #555;
+}
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .member-img img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 640px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .member-img img {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 475px) {
+  .team-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .team-member {
+    display: flex;
+  }
+
+  .member-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+  }
 }

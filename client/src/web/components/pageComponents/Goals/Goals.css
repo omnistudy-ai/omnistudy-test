@@ -57,3 +57,13 @@
 .goal-copy h6 {
   font-weight: bold;
 }
+
+@media (max-width: 1024px) {
+  .goal-content {
+    gap: 2rem;
+  }
+
+  .goal-grid {
+    grid-template-columns: none;
+  }
+}

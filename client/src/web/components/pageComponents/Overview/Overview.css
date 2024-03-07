@@ -51,3 +51,13 @@
   z-index: 1;
   filter: blur(100px);
 }
+
+@media (max-width: 1024px) {
+  .overview-content {
+    flex-direction: column;
+  }
+
+  .overview-text {
+    order: 2;
+  }
+}

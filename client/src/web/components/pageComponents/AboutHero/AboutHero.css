@@ -20,3 +20,15 @@
   font-weight: bold;
   font-style: italic;
 }
+
+@media (max-width: 768px) {
+  .about-hero h2 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 475px) {
+  .about-hero h2 {
+    font-size: 24px;
+  }
+}
