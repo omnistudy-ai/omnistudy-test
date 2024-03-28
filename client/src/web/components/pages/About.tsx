@@ -110,7 +110,7 @@ export default function About() {
             <div className="team-member">
               <div className="team-member-picture"></div>
               <div className="team-member-content">
-                <h4>Abbaas Muhamud</h4>
+                <h4>Abbaas Mohamud</h4>
                 <span>Frontend</span>
                 <span>University of Minnesota</span>
               </div>
